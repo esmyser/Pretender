@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  
+  root to: "users#new"
+  get "/auth/:provider/callback" => "sessions#create"
+  get "/signout" => "sessions#destroy", :as => :signout
+
   resources :topics
-
   resources :pretendees
-
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
