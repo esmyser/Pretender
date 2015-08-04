@@ -5,3 +5,12 @@
   var wordList = JSON.parse("<%= @word_list.to_json %>".replace(/&quot;/g, '"'));
   $("#cloud").jQCloud(wordList);
 </script>
+
+<%= render "topic_form" %>
+
+<h2>TOPICS</h2>
+<ul>
+  <% @pretendee.topics.each do |topic| %>
+  <li><%= topic.name %></li>
+  <% end %>
+</ul>
