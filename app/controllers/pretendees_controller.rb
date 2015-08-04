@@ -6,9 +6,3 @@ class PretendeesController < ApplicationController
     @word_list = t.word_count_histogram
   end
 end
-
-
-
-# $(function() {
-  # $("#example").jQCloud(word_array);
-# });
