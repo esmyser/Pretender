@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   	has_many :pretendees
   	has_many :topics, through: :pretendees
 
+    validates :name, presence: true
+
 	def self.create_with_omniauth(auth)
 	  create! do |user|
 	    user.provider = auth["provider"]
