@@ -74,28 +74,29 @@ class TwitterWrapper
   #   get_all_friends(user).map {|tweet| tweet.text}
   # end
 
+  def all_friend_ids(user)
+    @client.friend_ids(user).to_a
+  end
 
   def all_friends(user)
+    friend_ids = all_friend_ids(user)
     start = 0
     finish = 99
     friends = []
-    while friends.length <= @client.friend_ids.count
-      options = @client.friend_ids(user).to_a[start..finish]
-      @client.users(options).each do |u|
-        friends << u
+    while friends.flatten.length < friend_ids.length
+      if finish > friend_ids.length
+        finish = (friend_ids.length - 1)
       end
+      options = friend_ids[start..finish]
+      friends << @client.users(options)
       start += 100
       finish += 100
     end
-    friends
+    friends.flatten.select {|d| d[:description].class == String}
   end
 
   def all_descriptions(user)
-    all_friends(user).map do |friend|
-      if friend[:description]
-        friend[:description]
-      end
-    end
+    all_friends(user).collect {|t| t[:description]}
   end
 
   def collect_with_max_id(collection=[], max_id=nil, &block)
