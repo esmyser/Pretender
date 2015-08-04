@@ -1,0 +1,6 @@
+<%= form_for [@user, @pretendee], as: :pretendee do |f| %>
+<%= f.label :twitter %>
+<%= f.text_field :twitter %>
+<%= f.hidden_field :user_id, :value => @user.id %>
+<%= f.submit %>
+<% end %>
