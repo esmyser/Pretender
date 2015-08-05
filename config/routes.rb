@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :pretendees do
       resources :topics
     end
+    resources :topics
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

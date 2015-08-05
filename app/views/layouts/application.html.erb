@@ -30,7 +30,7 @@
         <ul class="nav navbar-nav">
           <li>
             <% if current_user %>
-              <%= link_to "your settings", user_path(current_user) %></li>
+              <%= link_to "dashboard", user_path(current_user) %></li>
               <li><%= link_to "your creeps", user_pretendees_path(current_user) %>
               </li>
               <li>

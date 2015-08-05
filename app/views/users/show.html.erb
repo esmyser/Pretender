@@ -1,24 +1,29 @@
 <h1>Hi <%="#{@user.name}"%></h1>
 
-<h1>Your creeps</h1>
-<ul><% @user.pretendees.each do |pretendee| %>
-	<li><%= link_to pretendee.name, user_pretendee_path(@user, @pretendee) %></li>
+<% if !@user.pretendees.empty? %>
+
+	<h1>Your creeps</h1>
+	<ul><% @user.pretendees.each do |pretendee| %>
+		<li>
+			<%= link_to "#{pretendee.name}", user_pretendee_path(@user, 	pretendee) %>
+			<%= button_to "x", user_pretendee_path(@user, pretendee), method: :delete %>
+		</li>
+	<% end %>
+	</ul>
 <% end %>
-</ul>
 
+<%= render 'pretendees/form' %>
 
-my creeps
---creep 1
---creep 2
+<% if !@user.topics.empty? %>
 
-<br>
-<ul>
-<% @user.pretendees.each do |p| %>
-  <li><%= p.twitter %></li>
+	<h1>Your topics</h1>
+	<ul><% @user.topics.each do |topic| %>
+	<li>
+		<%= link_to "#{topic.name}", user_topic_path(@user, topic) %>
+		<%= button_to "x", user_topic_path(@user, topic), method: :delete %>
+	</li>
+	<% end %>
+	</ul>
 <% end %>
-  </ul>
-<br>
 
-my topics (direct topics)
---topic 1
---topic 2
+<%= render 'new_user_topic' %>
