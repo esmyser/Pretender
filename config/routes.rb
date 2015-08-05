@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :topics
       get '/report', to: 'pretendees#report', :as => :report
     end
+    resources :topics
   end
 
 

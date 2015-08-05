@@ -1,7 +1,6 @@
 class PretendeesController < ApplicationController
   
   def new
-    @pretendee = Pretendee.new
     @user = current_user
   end
 
@@ -31,6 +30,7 @@ class PretendeesController < ApplicationController
   def destroy
     @pretendee = Pretendee.find(params['id'])
     @pretendee.destroy
+    redirect_to user_path(User.find(params['user_id']))
   end
 
   def report
@@ -39,7 +39,7 @@ class PretendeesController < ApplicationController
 
   private
     def pretendee_params
-      params.require(:pretendee).permit(:twitter, :user_id)
+      params.require(:pretendee).permit(:twitter, :user_id, :name)
     end
 
 end

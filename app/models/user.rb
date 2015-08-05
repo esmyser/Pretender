@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   	has_many :pretendees
+  	has_many :topics
     has_many :reports, through: :pretendees
   	has_many :topics, through: :pretendees
     # has_many :pretendee_topics, through: :pretendees, source: :topic

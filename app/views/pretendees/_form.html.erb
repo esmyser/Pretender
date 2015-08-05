@@ -1,7 +1,9 @@
 <div class="jumbotron">
-  <%= form_for [@user, @pretendee], as: :pretendee, html: {class: "form-group"} do |f| %>
+  <%= form_for [@user, Pretendee.new], as: :pretendee, html: {class: "form-group"} do |f| %>
   <%= f.label :twitter %>
   <%= f.text_field :twitter %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
   <%= f.hidden_field :user_id, :value => @user.id %>
   <%= f.submit class: "btn btn-defaul btn-primary"%>
   <% end %>
