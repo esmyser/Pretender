@@ -2,7 +2,13 @@ my creeps
 --creep 1
 --creep 2
 
-
+<br>
+<ul>
+<% @user.pretendees.each do |p| %>
+  <li><%= p.twitter %></li>
+<% end %>
+  </ul>
+<br>
 
 my topics (direct topics)
 --topic 1
