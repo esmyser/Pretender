@@ -1,3 +1,12 @@
+<h1>Hi <%="#{@user.name}"%></h1>
+
+<h1>Your creeps</h1>
+<ul><% @user.pretendees.each do |pretendee| %>
+	<li><%= link_to pretendee.name, user_pretendee_path(@user, @pretendee) %></li>
+<% end %>
+</ul>
+
+
 my creeps
 --creep 1
 --creep 2

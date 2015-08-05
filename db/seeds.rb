@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+5.times do |i|
+	User.create(name: "John #{i}")
+end
+
+10.times do |i|
+	Pretendee.create(twitter: "@bgadbaw", user_id: i/2)
+end
+
+20.times do |i|
+	Topic.create(name: "topic #{i}", pretendee_id: i/2)
+end
