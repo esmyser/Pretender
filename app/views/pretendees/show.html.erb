@@ -1,6 +1,7 @@
 <div id="cloud" class="jqcloud" style="width: 550px; height: 350px;">
 
 </div>
+
 <script>
   var wordList = JSON.parse("<%= @word_list.to_json %>".replace(/&quot;/g, '"'));
   $("#cloud").jQCloud(wordList);
@@ -14,3 +15,7 @@
   <li><%= topic.name %></li>
   <% end %>
 </ul>
+
+<%= link_to "Edit Pretendee", edit_user_pretendee_path(current_user, @pretendee) %>
+<%= link_to "Delete Pretendee", user_pretendee_path(current_user, @pretendee), method: :delete %>
+
