@@ -10,9 +10,16 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = User.find(params['id'])
+    @user = current_user
     @user.update(user_params)
-    redirect_to :show
+    @report = Report.new(:active => params['user']['report']['active'], :frequency => params['user']['report']['frequency'], :pretendee_id => params['user']['report']['pretendee_id'])
+    binding.pry
+    @report.save
+    binding.pry
+    if @user.pretendees
+      @pretendee = Pretendee.find(params['user']['report']['pretendee_id'])
+    end
+    redirect_to user_pretendee_path(@user, @pretendee)
   end
 
   private

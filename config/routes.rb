@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :users do 
     resources :pretendees do
-      resources :reports, only: :create
+      resources :reports, only: [:create, :update]
       resources :topics
     end
   end
