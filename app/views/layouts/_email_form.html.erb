@@ -1,0 +1,9 @@
+<% if @user.email %>
+  <%= link_to 'Subscribe' %>
+<% else %>
+  <%= form_for(@user) do |f|%>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.submit %>
+  <% end %>
+<% end %>
