@@ -11,7 +11,7 @@
 end
 
 10.times do |i|
-	Pretendee.create(twitter: "@bgadbaw", name: "Pretendee #{i}", user_id: i/2)
+	Pretendee.create(twitter: "ninorosella", name: "Pretendee #{i}", user_id: i/2)
 end
 
 20.times do |i|

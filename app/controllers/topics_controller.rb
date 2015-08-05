@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
 
   def create
+    # byebug
     @user = current_user
     @topic = @user.topics.build(topic_params)
     if @topic.save 
@@ -37,6 +38,6 @@ class TopicsController < ApplicationController
 
   private
     def topic_params
-      params.require(:topic).permit(:name, :pretendee_id)
+      params.require(:topic).permit(:name, :pretendee_id, :user_id)
     end
 end
