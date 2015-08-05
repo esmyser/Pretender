@@ -5,14 +5,14 @@
     <%= f.submit "Subscribe" %>
   <% end %>
 <% elsif @user.email && @pretendee.report == true %>
-  <%= link_to 'Unsubscribe' %>
+  <%= form_for [@user, @pretendee] do |f| %>
+    <%= f.hidden_field :report, :value => false %>
+    <%= f.submit "Unsubscribe" %>
+  <% end %>
 <% else %>
   <%= form_for(@user) do |f|%>
   <%= f.label :email %>
   <%= f.text_field :email %>
-
-<!-- How to set pretendee.report to true???
- -->
   <%= f.submit "Sign up for emails!" %>
   <% end %>
 <% end %>

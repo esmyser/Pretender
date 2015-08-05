@@ -25,18 +25,20 @@ class PretendeesController < ApplicationController
   end
 
   def update
-    @pretende = Pretendee.find(params['id'])
+    @pretendee = Pretendee.find(params['id'])
     @pretendee.update(pretendee_params)
+    redirect_to user_pretendee_path(current_user, @pretendee)
   end
 
   def destroy
     @pretendee = Pretendee.find(params['id'])
     @pretendee.destroy
+    redirect_to user_path(current_user)
   end
 
   private
     def pretendee_params
-      params.require(:pretendee).permit(:twitter, :user_id)
+      params.require(:pretendee).permit(:twitter, :user_id, :report)
     end
 
 end
