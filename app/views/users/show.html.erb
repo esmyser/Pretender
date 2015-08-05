@@ -2,7 +2,7 @@
 
 <h1>Your creeps</h1>
 <ul><% @user.pretendees.each do |pretendee| %>
-	<li><%= link_to pretendee.name, user_pretendee_path(@user, @pretendee) %></li>
+	<li><%= link_to pretendee.name, user_pretendee_path(@user, pretendee) %></li>
 <% end %>
 </ul>
 
@@ -15,7 +15,7 @@ my creeps
 <ul>
 <% @user.pretendees.each do |p| %>
   <li><%= p.twitter %></li>
-  <%= link_to "Report", user_pretendee_report_path(@user, p) %>
+  <%= link_to "Report", user_pretendee_reports_path(@user, p) %>
 <% end %>
   </ul>
 <br>
@@ -23,6 +23,3 @@ my creeps
 my topics (direct topics)
 --topic 1
 --topic 2
-
-
-<%= render 'layouts/email_form' %>

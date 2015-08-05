@@ -1,5 +1,9 @@
 <% if @user.email && @pretendee.report == false %>
-  <%= link_to 'Subscribe' %>
+  <%= form_for [@user, @pretendee, @report], as: :report do |f| %>
+    <%= f.hidden_field :frequency, :value => 7 %>
+    <%= f.hidden_field :pretendee_id, :value => @pretendee.id %>
+    <%= f.submit "Subscribe" %>
+  <% end %>
 <% elsif @user.email && @pretendee.report == true %>
   <%= link_to 'Unsubscribe' %>
 <% else %>
@@ -12,3 +16,4 @@
   <%= f.submit "Sign up for emails!" %>
   <% end %>
 <% end %>
+

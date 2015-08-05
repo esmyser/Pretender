@@ -16,6 +16,7 @@ class PretendeesController < ApplicationController
   end
 
   def show
+    @report = Report.new
     @user = current_user
     @pretendee = Pretendee.find(params['id'])
     t = TwitterWrapper.new(@pretendee)
@@ -31,10 +32,6 @@ class PretendeesController < ApplicationController
   def destroy
     @pretendee = Pretendee.find(params['id'])
     @pretendee.destroy
-  end
-
-  def report
-    @pretendee = Pretendee.find(params['pretendee_id'])
   end
 
   private
