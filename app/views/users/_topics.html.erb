@@ -1,11 +1,14 @@
+
 <% if !@user.topics.empty? %>
 
+<div class="container">
 	<h1>Your topics</h1>
-	<ul><% @user.topics.each do |topic| %>
-	<li>
+	<ul class="list-group"><% @user.topics.each do |topic| %>
+	<li class="list-group-item col-md-4">
 		<%= link_to "#{topic.name}", user_topic_path(@user, topic) %>
-		<%= button_to "x", user_topic_path(@user, topic), method: :delete %>
+		<%= button_to "delete topic", user_topic_path(@user, topic), method: :delete %>
 	</li>
 	<% end %>
 	</ul>
+</div>
 <% end %>

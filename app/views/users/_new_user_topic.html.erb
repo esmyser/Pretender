@@ -1,7 +1,9 @@
-<div class="jumbotron">
+<div class="container">
+	<div class="jumbotron">
 	<%= form_for [@user, Topic.new], as: :topic, html: {class: "form-group"} do |f| %>
 	  <%= f.text_field :name %>
 	  <%= f.hidden_field :user_id, :value => @user.id %>
 	  <%= f.submit class: "btn btn-defaul btn-primary"%>
 	<% end %>
+	</div>
 </div>

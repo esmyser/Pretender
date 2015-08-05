@@ -1,30 +1,7 @@
 <h1>Hi <%="#{@user.name}"%></h1>
 
-<% if !@user.pretendees.empty? %>
-
-	<h1>Your creeps</h1>
-	<ul><% @user.pretendees.each do |pretendee| %>
-		<li>
-			<%= link_to "#{pretendee.name}", user_pretendee_path(@user, 	pretendee) %>
-			<%= button_to "x", user_pretendee_path(@user, pretendee), method: :delete %>
-		</li>
-	<% end %>
-	</ul>
-<% end %>
-
+<%= render 'pretendees' %>
 <%= render 'pretendees/form' %>
 <%= render 'topics' %>
 <%= render 'new_user_topic' %>
-
-<br>
-
-<h1>Reports</h1>
-<ul>
-<% @user.pretendees.each do |p| %>
-  <li><%= p.twitter %></li>
-  <%= link_to "Report", user_pretendee_report_path(@user, p) %>
-<% end %>
-  </ul>
-<br>
-
 <%= render 'layouts/email_form' %>
