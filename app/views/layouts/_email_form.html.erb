@@ -1,0 +1,24 @@
+<% if @user.email && @report.active == false %>
+  <%= form_for [@user, @pretendee, @report], as: :report do |f| %>
+    <%= f.hidden_field :frequency, :value => 7 %>
+    <%= f.hidden_field :pretendee_id, :value => @pretendee.id %>
+    <%= f.hidden_field :active, :value => true %>
+    <%= f.submit "Subscribe" %>
+  <% end %>
+<% elsif @user.email && @report.active == true %>
+  <%= form_for [@user, @pretendee, @report], as: :report do |f| %>
+    <%= f.hidden_field :active, :value => false %>
+    <%= f.submit "Unsubscribe" %>
+  <% end %>
+<% else %>
+  <%= form_for(@user) do |f|%>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+    <%= f.fields_for [@user, @pretendee, @report], as: :report do |ff| %>
+      <%= ff.hidden_field :frequency, :value => 7 %>
+      <%= ff.hidden_field :pretendee_id, :value => @pretendee.id %>
+      <%= ff.hidden_field :active, :value => true %>
+    <% end %>
+  <%= f.submit "Sign up for emails!" %>
+  <% end %>
+<% end %>

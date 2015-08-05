@@ -15,26 +15,28 @@ class PretendeesController < ApplicationController
   end
 
   def show
-    @user = current_user
     @pretendee = Pretendee.find(params['id'])
+    if @pretendee.report
+      @report = @pretendee.report
+    else
+      @report = Report.new
+    end
+    @user = current_user
     t = TwitterWrapper.new(@pretendee)
     @word_list = t.word_count_histogram
     @topic = Topic.new
   end
 
   def update
-    @pretende = Pretendee.find(params['id'])
+    @pretendee = Pretendee.find(params['id'])
     @pretendee.update(pretendee_params)
+    redirect_to user_pretendee_path(current_user, @pretendee)
   end
 
   def destroy
     @pretendee = Pretendee.find(params['id'])
     @pretendee.destroy
     redirect_to user_path(User.find(params['user_id']))
-  end
-
-  def report
-    @pretendee = Pretendee.find(params['pretendee_id'])
   end
 
   private
