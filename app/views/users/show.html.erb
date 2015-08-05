@@ -14,16 +14,6 @@
 
 <%= render 'pretendees/form' %>
 
-<% if !@user.topics.empty? %>
-
-	<h1>Your topics</h1>
-	<ul><% @user.topics.each do |topic| %>
-	<li>
-		<%= link_to "#{topic.name}", user_topic_path(@user, topic) %>
-		<%= button_to "x", user_topic_path(@user, topic), method: :delete %>
-	</li>
-	<% end %>
-	</ul>
-<% end %>
+<%= render 'topics' %>
 
 <%= render 'new_user_topic' %>

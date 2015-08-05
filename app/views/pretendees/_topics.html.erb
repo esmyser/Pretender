@@ -1,0 +1,12 @@
+<% if !@pretendee.topics.empty? %>
+
+	<h1>Topics</h1>
+	<ul><% @pretendee.topics.each do |topic| %>
+	<li>
+		<%= link_to "#{topic.name}", user_pretendee_topic_path(@user, @pretendee, topic) %>
+		<%= button_to "x", user_pretendee_topic_path(@user, @pretendee, topic), method: :delete %>
+	</li>
+	<% end %>
+	</ul>
+
+<% end %>
