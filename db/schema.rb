@@ -11,15 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803184111) do
+ActiveRecord::Schema.define(version: 20150805155457) do
 
   create_table "pretendees", force: :cascade do |t|
     t.string   "name"
     t.string   "twitter"
     t.string   "instagram"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "report",     default: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer  "frequency"
+    t.integer  "pretendee_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "topics", force: :cascade do |t|

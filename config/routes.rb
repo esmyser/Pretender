@@ -7,9 +7,13 @@ Rails.application.routes.draw do
   resources :users do 
     resources :pretendees do
       resources :topics
+      get '/report', to: 'pretendees#report', :as => :report
     end
     resources :topics
   end
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
