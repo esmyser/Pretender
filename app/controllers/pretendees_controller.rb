@@ -33,10 +33,6 @@ class PretendeesController < ApplicationController
     redirect_to user_path(User.find(params['user_id']))
   end
 
-  def report
-    @pretendee = Pretendee.find(params['pretendee_id'])
-  end
-
   private
     def pretendee_params
       params.require(:pretendee).permit(:twitter, :user_id, :name)
