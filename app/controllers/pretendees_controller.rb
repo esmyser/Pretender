@@ -21,6 +21,16 @@ class PretendeesController < ApplicationController
     @word_list = t.word_count_histogram
   end
 
+  def update
+    @pretende = Pretendee.find(params['id'])
+    @pretendee.update(pretendee_params)
+  end
+
+  def destroy
+    @pretendee = Pretendee.find(params['id'])
+    @pretendee.destroy
+  end
+
   private
 
   def pretendee_params

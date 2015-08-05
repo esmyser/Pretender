@@ -27,14 +27,16 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li>
-            <%= link_to "your settings", user_path(current_user) %></li>
-            <li><%= link_to "your creeps", user_pretendees_path(current_user) %>
-            </li>
-            <li>
-              <a href="#">
-                your topics
-              </a>
-            </li>
+            <% if current_user %>
+              <%= link_to "your settings", user_path(current_user) %></li>
+              <li><%= link_to "your creeps", user_pretendees_path(current_user) %>
+              </li>
+              <li>
+                <a href="#">
+                  your topics
+                </a>
+              </li>
+            <% end %>
             <li>
               <% if current_user %>
               <%= link_to "log out", signout_path %>
@@ -47,7 +49,9 @@
       </div>
     </div>
 
+<div class="container">
     <%= yield %>
+</div>
 
   </body>
   </html>
