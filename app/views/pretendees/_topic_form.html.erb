@@ -1,0 +1,6 @@
+<%= form_for [@user, @pretendee, @topic], as: :topic do |f| %>
+  <%= f.text_field :name %>
+  <%= f.hidden_field :pretendee_id, :value => @pretendee.id %>
+  <%= f.hidden_field :user_id, :value => @user.id %>
+  <%= f.submit %>
+<% end %>

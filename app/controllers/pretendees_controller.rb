@@ -16,9 +16,11 @@ class PretendeesController < ApplicationController
   end
 
   def show
+    @user = current_user
     @pretendee = Pretendee.find(params['id'])
     t = TwitterWrapper.new(@pretendee)
     @word_list = t.word_count_histogram
+    @topic = Topic.new
   end
 
   def update
@@ -32,9 +34,8 @@ class PretendeesController < ApplicationController
   end
 
   private
-
-  def pretendee_params
-    params.require(:pretendee).permit(:twitter, :user_id)
-  end
+    def pretendee_params
+      params.require(:pretendee).permit(:twitter, :user_id)
+    end
 
 end
