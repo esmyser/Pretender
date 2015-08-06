@@ -1,5 +1,10 @@
-<%= form_for [@user, @pretendee, @topic], as: :topic do |f| %>
-  <%= f.text_field :name %>
-  <%= f.hidden_field :pretendee_id, :value => @pretendee.id %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <div class="jumbotron">
+
+    <%= form_for [@user, @pretendee, @topic], as: :topic,html: {class: "form-group"} do |f| %>
+    <%= f.text_field :name %>
+    <%= f.hidden_field :pretendee_id, :value => @pretendee.id %>
+    <%= f.submit class: "btn btn-defaul btn-primary"%>
+    <% end %>
+  </div>
+</div>
