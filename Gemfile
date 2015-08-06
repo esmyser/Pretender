@@ -36,6 +36,7 @@ gem 'omniauth-instagram'
 gem 'twitter'
 gem "jqcloud-rails"
 gem 'nytimes-articles'
+gem 'instagram'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

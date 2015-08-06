@@ -16,15 +16,15 @@ class PretendeesController < ApplicationController
 
   def show
     @pretendee = Pretendee.find(params['id'])
-    if @pretendee.report
-      @report = @pretendee.report
-    else
-      @report = Report.new
-    end
+    @report = Report.new
     @user = current_user
     t = TwitterWrapper.new(@pretendee)
+    @pictures = t.recent_photos
     @word_list = t.word_count_histogram
     @topic = Topic.new
+
+    @instagram = Instagram.user_recent_media("238691268", {:count => 10})
+
   end
 
   def update
