@@ -91,8 +91,10 @@ class TwitterWrapper
   end
 
   def popular_tweets(hashtag)
-    tweets = @client.search(hashtag, type: "popular")
-    tweets.sort_by!{|tweet| tweet[:retweet_count]}.reverse.limit[5]
+    tweets = @client.search(hashtag, type: "popular").attrs.first[1]
+    tweets.sort_by! do |tweet|
+      tweet[:retweet_count]
+    end.reverse.take(5)
   end
 
 end
