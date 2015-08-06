@@ -25,6 +25,7 @@ class PretendeesController < ApplicationController
     t = TwitterWrapper.new(@pretendee)
     @word_list = t.word_count_histogram
     @topic = Topic.new
+
   end
 
   def update
