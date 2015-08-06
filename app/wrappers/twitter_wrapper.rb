@@ -90,28 +90,9 @@ class TwitterWrapper
     @client.friend_ids(@pretendee.twitter).to_a
   end
 
-  def popular_hashtag_tweets(hashtag)
-    tweets_with_links = @client.search(hashtag, type: "popular").attrs.first[1].select do |tweet|
-      tweet[:entities][:urls] 
-    end  
-  end
-
-  def hashtag_links(hashtag)
-    url_entity_array = popular_hashtag_tweets(hashtag).collect do |tweet|
-      tweet[:entities][:urls]
-    end.flatten
-    binding.pry
-
-    url_entity_array.collect do |entity|
-      entity[:expanded_url]
-    end
-  end
-
-  def recent_photos
-    options = {count: 200, include_rts: true}
-    @client.user_timeline(@pretendee.twitter, options).map do |tweet|
-      tweet.attrs[:entities][:media][0][:media_url] if tweet.attrs[:entities][:media]
-    end.compact
+  def popular_tweets(hashtag)
+    tweets = @client.search(hashtag, type: "popular")
+    tweets.sort_by!{|tweet| tweet[:retweet_count]}.reverse.limit[5]
   end
 
 end
