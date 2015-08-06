@@ -1,7 +1,6 @@
 class TopicsController < ApplicationController
 
   def create
-    # byebug
     @user = current_user
     @topic = @user.topics.build(topic_params)
     if @topic.save 
@@ -24,8 +23,9 @@ class TopicsController < ApplicationController
   def show
     @topic = Topic.find(params['id'])
     w = WikiWrapper.new
-    @paragraph = w.first_paragraph(@topic.name)
-    @url = w.get_url(@topic.name)
+    @paragraph = w.first_paragraph(@topic)
+    @url = w.get_url(@topic)
+    @articles = NyTimesWrapper.new.articles(@topic)
   end
 
   def update

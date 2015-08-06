@@ -1,17 +1,9 @@
 class NyTimesWrapper
 
-  def initialize(pretendee)
-    @pretendee = pretendee
-  end
-
-  def articles
+  def articles(topic)
     date = (Time.now - 30.days).to_s.split.first.split("-").join("")
-    results = {}
-    @pretendee.topics.each do |topic|
       articles = open("http://api.nytimes.com/svc/search/v2/articlesearch.json?q=#{topic.name}&additional-params=multimedia&begin_date=#{date}&api-key=#{ENV["ny_times_key"]}").read
-      results[topic.name] = parse_article_hash(JSON.parse(articles))
-    end
-    results
+      parse_article_hash(JSON.parse(articles))
   end
 
   def parse_article_hash(art_hash)

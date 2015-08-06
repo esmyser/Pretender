@@ -9,7 +9,7 @@ class WikiWrapper
   end
 
   def get_page(topic)
-    page = Wikipedia.find(topic)
+    page = Wikipedia.find(topic.name)
     if page.raw_data['query']['pages'].keys[0] == '-1'
       return "error"
     else
