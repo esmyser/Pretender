@@ -15,3 +15,9 @@
 
 <%= link_to "Edit Pretendee", edit_user_pretendee_path(current_user, @pretendee) %>
 <%= link_to "Delete Pretendee", user_pretendee_path(current_user, @pretendee), method: :delete %>
+
+<% if @pictures.present? %>
+  <% @pictures.each do |pic| %>
+    <img src= "<%= pic %>" alt="pic">
+  <% end %>
+<% end %>
