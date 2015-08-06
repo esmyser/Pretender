@@ -26,6 +26,8 @@ class PretendeesController < ApplicationController
     @word_list = t.word_count_histogram
     @topic = Topic.new
 
+    @instagram = Instagram.user_recent_media("238691268", {:count => 10})
+
   end
 
   def update
