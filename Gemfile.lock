@@ -106,6 +106,7 @@ GEM
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
     hashie (3.4.2)
+    htmlentities (4.3.4)
     http (0.6.4)
       http_parser.rb (~> 0.6.0)
     http_parser.rb (0.6.0)
@@ -145,6 +146,8 @@ GEM
     notiffany (0.0.7)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    nytimes-articles (0.4.1)
+      htmlentities
     oauth (0.4.7)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
@@ -320,6 +323,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jqcloud-rails
   jquery-rails
+  nytimes-articles
   omniauth-facebook
   omniauth-instagram
   omniauth-twitter
