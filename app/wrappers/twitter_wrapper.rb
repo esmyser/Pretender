@@ -86,4 +86,22 @@ class TwitterWrapper
   def all_friend_ids
     @client.friend_ids(@pretendee.twitter).to_a
   end
+
+  def popular_hashtag_tweets(hashtag)
+    tweets_with_links = @client.search(hashtag, type: "popular").attrs.first[1].select do |tweet|
+      tweet[:entities][:urls] 
+    end  
+  end
+
+  def hashtag_links(hashtag)
+    url_entity_array = popular_hashtag_tweets(hashtag).collect do |tweet|
+      tweet[:entities][:urls]
+    end.flatten
+    binding.pry
+
+    url_entity_array.collect do |entity|
+      entity[:expanded_url]
+    end
+  end
+
 end
