@@ -4,10 +4,11 @@
 	<h1>Your creeps</h1>
 	<ul class="list-group"><% @user.pretendees.each do |pretendee| %>
 		<li class="list-group-item col-md-4">
-		<% profile_img_url = "https://twitter.com/"+pretendee.twitter+"/profile_image?size=original" %>
-			<img src="<%= profile_img_url %>" alt="" class="img-thumbnail" width="200" height="200">
-			<%= link_to "#{pretendee.name}", user_pretendee_path(@user, 	pretendee) %> &nbsp;|&nbsp;
-			<%= link_to "Report", user_pretendee_path(@user, pretendee) %>
+			<% profile_img_url = "https://twitter.com/"+pretendee.twitter+"/profile_image?size=original" %>
+			<a href="<%= user_pretendee_path(@user, pretendee) %>">
+				<img src="<%= profile_img_url %>" alt="" class="img-thumbnail" width="200" height="200">
+			</a>
+			<%= link_to "#{pretendee.name}", user_pretendee_path(@user, pretendee) %>
 			<%= button_to "delete creep", user_pretendee_path(@user, pretendee), method: :delete, class: "btn btn-default btn-block" %>
 		</li>
 	<% end %>
