@@ -23,6 +23,9 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params['id'])
+    w = WikiWrapper.new
+    @paragraph = w.first_paragraph(@topic.name)
+    @url = w.get_url(@topic.name)
   end
 
   def update
