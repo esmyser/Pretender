@@ -97,4 +97,10 @@ class TwitterWrapper
     end.reverse.take(5)
   end
 
+  def recent_photos
+    options = {count: 200, include_rts: true}
+    @client.user_timeline(@pretendee.twitter, options).map do |tweet|
+      tweet.attrs[:entities][:media][0][:media_url] if tweet.attrs[:entities][:media]
+    end.compact
+  end
 end
