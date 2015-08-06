@@ -90,11 +90,21 @@ class TwitterWrapper
     @client.friend_ids(@pretendee.twitter).to_a
   end
 
-  def popular_tweets(hashtag)
+  def popular_tweet_ids(hashtag)
     tweets = @client.search(hashtag, type: "popular").attrs.first[1]
-    tweets.sort_by! do |tweet|
+    tweets = tweets.sort_by! do |tweet|
       tweet[:retweet_count]
     end.reverse.take(5)
+
+    tweets.collect do |tweet|
+      tweet[:id]
+    end
+  end
+
+  def popular_tweets_oembeds(hashtag)
+    popular_tweet_ids("#" + hashtag).collect do |tweet_id|
+      @client.oembed(tweet_id).html
+    end
   end
 
   def recent_photos
@@ -102,5 +112,11 @@ class TwitterWrapper
     @client.user_timeline(@pretendee.twitter, options).map do |tweet|
       tweet.attrs[:entities][:media][0][:media_url] if tweet.attrs[:entities][:media]
     end.compact
+  end
+
+  def popular_tweets_with_links(hashtag)
+    @client.search(hashtag, type: "popular").attrs.first[1].select do |tweet|
+      puts tweet[:entities][:urls] 
+    end
   end
 end
