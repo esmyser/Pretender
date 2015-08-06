@@ -17,8 +17,9 @@ class TwitterWrapper
     frequency = frequency.map do |word, count| 
       {text: word, weight: count}
     end
-    frequency = frequency.sort_by{|hash| hash[:weight]}.reverse[0..200]
 
+    frequency = frequency.sort_by{|hash| hash[:weight]}.reverse[0..200]
+    binding.pry
   end
 
   def create_client
@@ -57,9 +58,9 @@ class TwitterWrapper
   end
 
   def collect_with_max_id(collection=[], max_id=nil, &block)
-    response = yield(max_id)
-    collection += response
-    response.empty? ? collection.flatten : collect_with_max_id(collection, response.last.id - 1, &block)
+    response = yield(max_id) if collection.length <= 1000
+    collection += response if response
+    response.nil? || response.empty? ? collection.flatten : collect_with_max_id(collection, response.last.id - 1, &block)
   end
 
   def all_descriptions_text
@@ -72,10 +73,10 @@ class TwitterWrapper
     finish = 99
     friends = []
     while friends.flatten.length < friend_ids.length
-      if start > friend_ids.length
+      if start > friend_ids.length || start > 5000
         start = (friend_ids.length - 1)
       end
-      if finish > friend_ids.length
+      if finish > friend_ids.length || finish > 5000
         finish = (friend_ids.length - 1)
       end
       options = friend_ids[start..finish]
