@@ -1,4 +1,19 @@
+<div class="container">
   <h1><%= @topic.name.capitalize %></h1>
   <p><%= @paragraph %></p>
   <p><i>Not enough info? Read more about <%= @topic.name %> <%= link_to 'here', @url, :target => "_blank" %>.</i></p>
   
+  <% if @articles.present? %>
+  <h1>Recent Articles</h1>
+  <ul class="list-group"><% @articles.each do |article| %>
+    <li class="list-group-item col-md-4" href="<%= article[:url] %>">
+      <img src="<%= article[:photo_url] %>" alt="" class="img-thumbnail" width="200" height="200">
+      <p><%= article[:title] %></p>
+      <p><%= article[:date] %></p>
+      <p><%= article[:snippet] %></p>
+    </li>
+    <% end %>
+  </ul>
+</div>
+
+<% end %>
