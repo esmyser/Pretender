@@ -6,6 +6,10 @@
   var wordList = JSON.parse("<%= @word_list.to_json %>".replace(/&quot;/g, '"'));
   $("#cloud").jQCloud(wordList);
 </script>
+ 
+<% @instagram.each do |instagram| %>
+	<%= image_tag instagram.images.standard_resolution.url %>
+<% end %>
 
 <%= render "topic_form" %>
 
