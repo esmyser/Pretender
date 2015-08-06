@@ -8,7 +8,7 @@ class TwitterWrapper
 
 
   def word_count_histogram
-    words = (favorites_text + all_tweets_text + all_descriptions_text).flatten.join(' ').gsub(/"/, '').gsub('.', '').gsub(':', '').gsub('!', '').gsub(')', '').gsub('(', '').split(' ')
+    words = (favorites_text + all_tweets_text + all_descriptions_text).flatten.join(' ').gsub(/"/, '').gsub('.', '').gsub(':', '').gsub('!', '').gsub(')', '').gsub('(', '').gsub(",","").split(' ')
     frequency = Hash.new(0)
     words.each { |word| frequency[word.downcase] += 1 }
     commonwords = ["the", "and", "of", "a", "to", "is", "in", "its", "The", "on", "as", "for", "has", "will", "As", "or", "have", "while", "While", "that", "out", "such", "also", "by", "said", "with", "than", "only", "into", "an", "one", "other", "but", "for", "from", "<br />", "i", "more", "about", "About", "again", "Again", "against", "all", "are", "at", "be", "being", "been", "can", "could", "did", "do", "don't", "down", "up", "each", "few", "get", "got", "had", "have", "has", "he", "her", "she", "he", "it", "we", "they", "if", "thus", "it's", "hers", "his", "how", "why", "when", "where", "just", "like", "you", "me", "my", "most", "more", "no", "not", "yes", "off", "once", "only", "our", "out", "over", "under", "own", "then", "some", "these", "there", "then", "this", "those", "too", "through", "between", "until", "very", "who", "with", "wouldn't", "would", "was", "were", "itself", "himself", "herself", "which", "make", "during", "before", "after", "if", "any", "become", "around", "several", "them", "their", "however", "http", "https", "com", "co", "&", "-", "@", "rt", "+", "|", "so", "your", "i'm", "what", "new", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "we're", "//", "it", "i've", "oh", "it.", "...", "&", "&amp;", "twitter", "tweets", "next", "let", "come", "i'll", "thing", "rt:", "things", "you're", "am", "well", "two", "one", "yet", "go", "going", "because", "every", "actually", "another", "we'll", "i'd", "something", "really", "he's", "much", "less", "us", "same", "him" ]
@@ -90,20 +90,20 @@ class TwitterWrapper
     @client.friend_ids(@pretendee.twitter).to_a
   end
 
-  def popular_hashtag_tweets(hashtag)
-    tweets_with_links = @client.search(hashtag, type: "popular").attrs.first[1].select do |tweet|
-      tweet[:entities][:urls] 
-    end  
+  def popular_tweet_ids(hashtag)
+    tweets = @client.search(hashtag, type: "popular").attrs.first[1]
+    tweets = tweets.sort_by! do |tweet|
+      tweet[:retweet_count]
+    end.reverse.take(5)
+
+    tweets.collect do |tweet|
+      tweet[:id]
+    end
   end
 
-  def hashtag_links(hashtag)
-    url_entity_array = popular_hashtag_tweets(hashtag).collect do |tweet|
-      tweet[:entities][:urls]
-    end.flatten
-    binding.pry
-
-    url_entity_array.collect do |entity|
-      entity[:expanded_url]
+  def popular_tweets_oembeds(hashtag)
+    popular_tweet_ids("#" + hashtag).collect do |tweet_id|
+      @client.oembed(tweet_id).html
     end
   end
 
@@ -114,4 +114,9 @@ class TwitterWrapper
     end.compact
   end
 
+  def popular_tweets_with_links(hashtag)
+    @client.search(hashtag, type: "popular").attrs.first[1].select do |tweet|
+      puts tweet[:entities][:urls] 
+    end
+  end
 end
