@@ -6,7 +6,6 @@ class TwitterWrapper
      @client = create_client
   end
 
-
   def word_count_histogram
     words = (favorites_text + all_tweets_text + all_descriptions_text).flatten.join(' ').gsub(/"/, '').gsub('.', '').gsub(':', '').gsub('!', '').gsub(')', '').gsub('(', '').gsub(",","").split(' ')
     frequency = Hash.new(0)
@@ -120,21 +119,40 @@ class TwitterWrapper
     end
   end
 
+  def has_instagram?
+    tweets = get_all_tweets.select do |tweet|
+      tweet.urls != [] && tweet.retweeted? == false
+    end
+
+    instagram_tweet = tweets.select do |tweet|
+      tweet.urls[0].attrs[:expanded_url].include?("instagram")
+    end
+
+    instagram_tweet.any?
+  end
+
   def get_insta_tweet
     tweets = get_all_tweets.select do |tweet|
-      tweet.urls != []
+      tweet.urls != [] && tweet.retweeted? == false
     end
 
     instagram_tweet = tweets.select do |tweet|
       tweet.urls[0].attrs[:expanded_url].include?("instagram")
     end.first
 
-    instagram_tweet.urls[0].attrs[:expanded_url]
+    if instagram_tweet != nil 
+      instagram_tweet.urls[0].attrs[:expanded_url] if instagram_tweet.urls[0].attrs[:expanded_url] 
+    end
   end
 
   def photo_id
+    binding.pry
     link = get_insta_tweet
-    link.gsub("https://instagram.com/p/", "").gsub("/", "")
+    if link && link.first(5) == "http:"
+      link.gsub("http://instagram.com/p/", "").gsub("/", "")
+    else
+      link.gsub("https://instagram.com/p/", "").gsub("/", "")
+    end
   end
 
 end

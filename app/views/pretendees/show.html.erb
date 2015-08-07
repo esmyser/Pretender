@@ -7,12 +7,6 @@
   $("#cloud").jQCloud(wordList);
 </script>
 
-<% if @instagram %>
-  <% @instagram.each do |instagram| %>
-  	<%= image_tag instagram.images.standard_resolution.url %>
-  <% end %>
-<% end %>
-
 <%= render "topic_form" %>
 
 <%= render 'topics' %>
@@ -34,16 +28,16 @@
 <% end %>
 
 <% if @instagram %>
-<div class="container">
-  <h1>Recent Pictures from Instagram</h1>
-  <ul class="list-group">
-    <% @instagram.each do |instagram| %>
-    <li class="list-group-item col-md-4">
-      <%= image_tag(instagram.images.standard_resolution.url, :class => "img-responsive" ) %>
-    </li>
-    <% end %>
-  </ul>
-</div>
+  <div class="container">
+    <h1>Recent Pictures from Instagram</h1>
+    <ul class="list-group">
+      <% @instagram.each do |instagram| %>
+      <li class="list-group-item col-md-4">
+        <%= image_tag(instagram.images.standard_resolution.url, :class => "img-responsive" ) %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <%= link_to "Edit Pretendee", edit_user_pretendee_path(current_user, @pretendee) %>

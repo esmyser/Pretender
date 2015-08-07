@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 gem 'certified'
 gem 'wikipedia-client'
+# gem 'webmock'
+# gem 'vcr'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
