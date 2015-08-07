@@ -13,9 +13,13 @@
  *= require bootstrap
  *= require bootstrap-theme
  *= require jqcloud
+ *= require animate
+ *= require flexslider
+ *= require owl.carousel
+ *= require owl.theme
+ *= require style
+ *= require style.css
+ *= require YTPlayer
  *= require_tree .
  *= require_self
  */
-body { 
-    padding-top: 65px; 
-}
