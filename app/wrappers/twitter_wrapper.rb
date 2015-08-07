@@ -83,7 +83,7 @@ class TwitterWrapper
       start += 100
       finish += 100
     end
-    friends.flatten.select {|d| d.description.class == String}
+    friends.flatten.compact.select {|d| d.description.class == String}
   end
 
   def all_friend_ids
@@ -92,7 +92,7 @@ class TwitterWrapper
       cursor = -1
       follower_ids = []
       while cursor < 0
-        response = @client.follower_ids('barackobama', count:500)
+        response = @client.follower_ids('barackobama')
         follower_ids << response.attrs[:ids]
         cursor += 1
       end
