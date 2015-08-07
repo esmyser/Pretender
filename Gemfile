@@ -9,11 +9,6 @@ gem 'whenever', :require => false
 gem 'sidekiq'
 
 
-gem 'whenever', :require => false
-
-gem 'sidekiq'
-
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use SCSS for stylesheets
