@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  <title>Thanks for signing up!</title>
+</head>
+<body>
+<h1>Hi, <%= @user.name %></h1>
+
+<p>You've just signed up for email reports.</p>
+
+<p>Find us at <%= @url %>.</p>
+</body>
+</html>

@@ -4,6 +4,11 @@ gem 'wikipedia-client'
 # gem 'webmock'
 # gem 'vcr'
 
+gem 'whenever', :require => false
+
+gem 'sidekiq'
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use SCSS for stylesheets
@@ -67,6 +72,8 @@ group :test, :development do
   gem 'pry'
   gem 'guard-rspec', require: false
   gem 'thin'
+  gem "letter_opener"
+  gem "launchy"
 end
 
 group :production do
