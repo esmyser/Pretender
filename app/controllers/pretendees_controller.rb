@@ -23,7 +23,6 @@ class PretendeesController < ApplicationController
     @pictures = t.recent_photos
     @word_list = t.word_count_histogram
     @topic = Topic.new
-
     # @instagram = i.five_instagrams(t.insta_id)
 
   end
