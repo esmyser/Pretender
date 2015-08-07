@@ -24,7 +24,7 @@ class PretendeesController < ApplicationController
     @word_list = t.word_count_histogram
     @topic = Topic.new
 
-    @instagram = i.five_instagrams(t.insta_id)
+    # @instagram = i.five_instagrams(t.insta_id)
 
   end
 
