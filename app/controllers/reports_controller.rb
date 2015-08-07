@@ -8,7 +8,7 @@ class ReportsController < ApplicationController
       redirect_to user_pretendee_path(current_user, @pretendee)
     else
       flash.now[:notice] = @report.errors.full_messages.to_sentence
-      render :new
+      render :back
     end
   end
 

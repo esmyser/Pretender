@@ -1,0 +1,31 @@
+<section id="navigation">
+  <div class="navbar navbar-default navbar-static-top sticky" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">pretender.io</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right scrollto">
+          <li>
+            <% if current_user %>
+            <%= link_to "Dashboard", user_path(current_user) %>
+            <% end %>
+          </li>
+          <li>
+            <% if current_user %>
+            <%= link_to "Log out", signout_path %>
+            <% else %>
+            <%= link_to "Sign in", "/auth/twitter" %>
+            <% end %>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container -->
+  </div>
+</section>

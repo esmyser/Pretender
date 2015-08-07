@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <!-- seth messing around with wordcloud -->
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
@@ -7,48 +7,34 @@
   <script type="text/javascript" src="/assets/jqcloud-1.0.4.js"></script>
   <script type="text/javascript"></script>
 
-  <title>Pretender</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <!--   <%#= javascript_include_tag 'application' %> -->
+  <title>pretender.io</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 </head>
-<body>
+<body data-spy="scroll" data-target="#navigation" data-offset="80">
 
-  <%= flash[:notice] %>
 
-  <div class="navbar navbar-inverse navbar-fixed-top">
+  <%= yield %>
+
+
+  <!-- footer -->
+  <section id="footer" class="padding-80">
     <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/">pretender.io</a>
-      </div>
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li>
-            <% if current_user %>
-              <%= link_to "Dashboard", user_path(current_user) %></li>
-            <% end %>
-            <li>
-              <% if current_user %>
-              <%= link_to "Log out", signout_path %>
-              <% else %>
-              <%= link_to "Sign in", "/auth/twitter" %>
-              <% end %>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
+      <div class="row">
+        <div class="col-md-6 col-sm-6 copyright">
+          <span>&copy;2015 | pretenter.io | All right reserved</span>
+        </div>
       </div>
     </div>
-
-<div class="container">
-    <%= yield %>
-</div>
-
-  </body>
-  </html>
-
-
+  </section>
+  <!--footer end-->
+</body>
+</html>
