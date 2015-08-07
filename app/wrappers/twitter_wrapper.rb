@@ -129,4 +129,22 @@ class TwitterWrapper
       puts tweet[:entities][:urls] 
     end
   end
+
+  def get_insta_tweet
+    tweets = get_all_tweets.select do |tweet|
+      tweet.urls != []
+    end
+
+    instagram_tweet = tweets.select do |tweet|
+      tweet.urls[0].attrs[:expanded_url].include?("instagram")
+    end.first
+
+    instagram_tweet.urls[0].attrs[:expanded_url]
+  end
+
+  def photo_id
+    link = get_insta_tweet
+    link.gsub("https://instagram.com/p/", "").gsub("/", "")
+  end
+
 end
