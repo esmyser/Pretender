@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
-
+gem 'certified'
 gem 'wikipedia-client'
+# gem 'webmock'
+# gem 'vcr'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -36,6 +38,7 @@ gem 'omniauth-instagram'
 gem 'twitter'
 gem "jqcloud-rails"
 gem 'nytimes-articles'
+gem 'instagram'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

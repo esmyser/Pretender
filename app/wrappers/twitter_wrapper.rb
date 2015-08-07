@@ -6,7 +6,6 @@ class TwitterWrapper
      @client = create_client
   end
 
-
   def word_count_histogram
     words = (favorites_text + all_tweets_text + all_descriptions_text).flatten.join(' ').gsub(/"/, '').gsub('.', '').gsub(':', '').gsub('!', '').gsub(')', '').gsub('(', '').gsub(",","").split(' ')
     frequency = Hash.new(0)
@@ -90,11 +89,70 @@ class TwitterWrapper
     @client.friend_ids(@pretendee.twitter).to_a
   end
 
-  def popular_tweets(hashtag)
+  def popular_tweet_ids(hashtag)
     tweets = @client.search(hashtag, type: "popular").attrs.first[1]
-    tweets.sort_by! do |tweet|
+    tweets = tweets.sort_by! do |tweet|
       tweet[:retweet_count]
     end.reverse.take(5)
+
+    tweets.collect do |tweet|
+      tweet[:id]
+    end
+  end
+
+  def popular_tweets_oembeds(hashtag)
+    popular_tweet_ids("#" + hashtag).collect do |tweet_id|
+      @client.oembed(tweet_id).html
+    end
+  end
+
+  def recent_photos
+    options = {count: 200, include_rts: true}
+    @client.user_timeline(@pretendee.twitter, options).map do |tweet|
+      tweet.attrs[:entities][:media][0][:media_url] if tweet.attrs[:entities][:media]
+    end.compact
+  end
+
+  def popular_tweets_with_links(hashtag)
+    @client.search(hashtag, type: "popular").attrs.first[1].select do |tweet|
+      puts tweet[:entities][:urls] 
+    end
+  end
+
+  def has_instagram?
+    tweets = get_all_tweets.select do |tweet|
+      tweet.urls != [] && tweet.retweeted? == false
+    end
+
+    instagram_tweet = tweets.select do |tweet|
+      tweet.urls[0].attrs[:expanded_url].include?("instagram")
+    end
+
+    instagram_tweet.any?
+  end
+
+  def get_insta_tweet
+    tweets = get_all_tweets.select do |tweet|
+      tweet.urls != [] && tweet.retweeted? == false
+    end
+
+    instagram_tweet = tweets.select do |tweet|
+      tweet.urls[0].attrs[:expanded_url].include?("instagram")
+    end.first
+
+    if instagram_tweet != nil 
+      instagram_tweet.urls[0].attrs[:expanded_url] if instagram_tweet.urls[0].attrs[:expanded_url] 
+    end
+  end
+
+  def photo_id
+    binding.pry
+    link = get_insta_tweet
+    if link && link.first(5) == "http:"
+      link.gsub("http://instagram.com/p/", "").gsub("/", "")
+    else
+      link.gsub("https://instagram.com/p/", "").gsub("/", "")
+    end
   end
 
 end
