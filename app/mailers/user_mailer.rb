@@ -14,8 +14,15 @@ class UserMailer < ApplicationMailer
     @user = User.find(@pretendee.user_id)
     @url = 'http://pretender.io'
     @email_with_name = %("#{@user.name}" <#{@user.email}>)
-    binding.pry
     mail(to: @email_with_name, subject: "Your report from pretender.io")
   end
+
+  # def report_email(report)
+  #   @report = report
+  #   @pretendee = Pretendee.find(@report.pretendee_id)
+  #   @user = User.find(@pretendee.user_id)
+  #   @url = 'http://pretender.io'
+  #   mail(to: @user.email, subject: "Your report from pretender.io")
+  # end
 
 end

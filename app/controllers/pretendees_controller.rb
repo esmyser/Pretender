@@ -16,7 +16,11 @@ class PretendeesController < ApplicationController
 
   def show
     @pretendee = Pretendee.find(params['id'])
-    @report = Report.new
+    if @pretendee.report 
+      @report = @pretendee.report 
+    else
+      @report = Report.new
+    end
     @user = current_user
     t = TwitterWrapper.new(@pretendee)
     i = InstagramWrapper.new
