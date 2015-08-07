@@ -72,10 +72,10 @@ class TwitterWrapper
     finish = 99
     friends = []
     while friends.flatten.length < friend_ids.length
-      if start > friend_ids.length || start > 5000
+      if start > friend_ids.length || start > 3000
         start = (friend_ids.length - 1)
       end
-      if finish > friend_ids.length || finish > 5000
+      if finish > friend_ids.length || finish > 3000
         finish = (friend_ids.length - 1)
       end
       options = friend_ids[start..finish]
@@ -87,17 +87,14 @@ class TwitterWrapper
   end
 
   def all_friend_ids
-    # @client.friend_ids(@pretendee.twitter).to_a
-    begin
-      cursor = -1
-      follower_ids = []
-      while cursor < 0
-        response = @client.follower_ids('barackobama')
-        follower_ids << response.attrs[:ids]
-        cursor += 1
-      end
-      follower_ids
-    end.flatten
+    cursor = -1
+    follower_ids = []
+    while cursor < 0
+      response = @client.follower_ids('barackobama')
+      follower_ids << response.attrs[:ids]
+      cursor += 1
+    end
+    follower_ids.flatten
   end
 
   def popular_tweet_ids(hashtag)

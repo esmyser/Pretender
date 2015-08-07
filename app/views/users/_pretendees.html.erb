@@ -4,7 +4,7 @@
 	<h1>Your creeps</h1>
 	<ul class="list-group"><% @user.pretendees.each do |pretendee| %>
 		<li class="list-group-item col-md-4">
-			<% profile_img_url = "https://twitter.com/"+pretendee.twitter+"/profile_image?size=original" %>
+			<% profile_img_url = "https://twitter.com/"+pretendee.twitter.gsub(' ', '')+"/profile_image?size=original" %>
 			<a href="<%= user_pretendee_path(@user, pretendee) %>">
 				<img src="<%= profile_img_url %>" alt="" class="img-thumbnail" width="200" height="200">
 			</a>
