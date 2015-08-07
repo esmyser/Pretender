@@ -1,16 +1,27 @@
 class UserMailer < ApplicationMailer
 
-  def welcome(user)
-    @user = user
+  def report_email(report)
+    @report = report
+    @pretendee = Pretendee.find(@report.pretendee_id)
+    @user = User.find(@pretendee.user_id)
     @url = 'http://pretender.io'
-    mail(to: @user.email, subject: "you're a creepster--and so is ezra")
-    ### make sure to include deliver_now at the end of the method call to send it now.
+    mail(to: @user.email, subject: "Your report from pretender.io")
   end
 
-  # def digest(user, pretendee)
+# From Rose
+  # def initial_schedule_notification(schedule, user)
+  #   @schedule = schedule
   #   @user = user
-  #   @pretendee = pretendee
-  #   @url = 'http://pretender.io'
-  #   mail(to: @user.email, subject: "you're stalker digest for #{pretendee.name}")
+  #   @blog_assignments = @user.blog_assignments.where(schedule_id: @schedule.id)
+
+  #   mail(to: @user.email, subject: "Your Blog Assignments for #{@schedule.name}")
   # end
+
+  # def reminder_email(blog_assignment)
+  #   @blog_assignment = blog_assignment
+  #   @user = blog_assignment.user
+
+  #   mail(to: @user.email, subject: "Blog post due tomorrow #{@blog_assignment.due_date.strftime("%m/%d")}")
+  # end
+
 end

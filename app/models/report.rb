@@ -5,4 +5,8 @@ class Report < ActiveRecord::Base
 
   validates_uniqueness_of :pretendee
 
+  def self.active
+    Report.where(active: true)
+  end
+
 end
