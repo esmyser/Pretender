@@ -6,9 +6,11 @@
   var wordList = JSON.parse("<%= @word_list.to_json %>".replace(/&quot;/g, '"'));
   $("#cloud").jQCloud(wordList);
 </script>
- 
-<% @instagram.each do |instagram| %>
-	<%= image_tag instagram.images.standard_resolution.url %>
+
+<% if @instagram %>
+  <% @instagram.each do |instagram| %>
+  	<%= image_tag instagram.images.standard_resolution.url %>
+  <% end %>
 <% end %>
 
 <%= render "topic_form" %>
@@ -31,6 +33,7 @@
 </div>
 <% end %>
 
+<% if @instagram %>
 <div class="container">
   <h1>Recent Pictures from Instagram</h1>
   <ul class="list-group">
@@ -41,6 +44,7 @@
     <% end %>
   </ul>
 </div>
+<% end %>
 
 <%= link_to "Edit Pretendee", edit_user_pretendee_path(current_user, @pretendee) %>
 <%= link_to "Delete Pretendee", user_pretendee_path(current_user, @pretendee), method: :delete %>

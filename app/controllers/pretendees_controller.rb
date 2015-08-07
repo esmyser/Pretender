@@ -19,11 +19,12 @@ class PretendeesController < ApplicationController
     @report = Report.new
     @user = current_user
     t = TwitterWrapper.new(@pretendee)
+    i = InstagramWrapper.new
     @pictures = t.recent_photos
     @word_list = t.word_count_histogram
     @topic = Topic.new
 
-    @instagram = Instagram.user_recent_media("238691268", {:count => 10})
+    @instagram = i.five_instagrams(t.insta_id)
 
   end
 
