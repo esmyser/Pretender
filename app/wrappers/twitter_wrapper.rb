@@ -19,6 +19,8 @@ class TwitterWrapper
     end
 
     frequency = frequency.sort_by{|hash| hash[:weight]}.reverse[0..200]
+    @pretendee.update(word_histogram: {words: frequency})
+    {words: frequency}
   end
 
   def create_client
