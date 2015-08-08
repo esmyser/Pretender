@@ -6,9 +6,9 @@ class TwitterWrapper
      @client = create_client
   end
 
-
   def word_count_histogram
-    words = (favorites_text + all_tweets_text + all_descriptions_text).flatten.join(' ').gsub(/"/, '').gsub('.', '').gsub(':', '').gsub('!', '').gsub(')', '').gsub('(', '').gsub(",","").split(' ')
+    words = (favorites_text + all_tweets_text + all_descriptions_text).flatten.join(' ').gsub(/"/, '').gsub('.', '').gsub(':', '').gsub('!', '').gsub(')', '').gsub('(', '').gsub(",","").gsub('-', '').split(' ')
+    binding.pry
     frequency = Hash.new(0)
     words.each { |word| frequency[word.downcase] += 1 }
     commonwords = ["the", "and", "of", "a", "to", "is", "in", "its", "The", "on", "as", "for", "has", "will", "As", "or", "have", "while", "While", "that", "out", "such", "also", "by", "said", "with", "than", "only", "into", "an", "one", "other", "but", "for", "from", "<br />", "i", "more", "about", "About", "again", "Again", "against", "all", "are", "at", "be", "being", "been", "can", "could", "did", "do", "don't", "down", "up", "each", "few", "get", "got", "had", "have", "has", "he", "her", "she", "he", "it", "we", "they", "if", "thus", "it's", "hers", "his", "how", "why", "when", "where", "just", "like", "you", "me", "my", "most", "more", "no", "not", "yes", "off", "once", "only", "our", "out", "over", "under", "own", "then", "some", "these", "there", "then", "this", "those", "too", "through", "between", "until", "very", "who", "with", "wouldn't", "would", "was", "were", "itself", "himself", "herself", "which", "make", "during", "before", "after", "if", "any", "become", "around", "several", "them", "their", "however", "http", "https", "com", "co", "&", "-", "@", "rt", "+", "|", "so", "your", "i'm", "what", "new", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "we're", "//", "it", "i've", "oh", "it.", "...", "&", "&amp;", "twitter", "tweets", "next", "let", "come", "i'll", "thing", "rt:", "things", "you're", "am", "well", "two", "one", "yet", "go", "going", "because", "every", "actually", "another", "we'll", "i'd", "something", "really", "he's", "much", "less", "us", "same", "him" ]
@@ -90,13 +90,13 @@ class TwitterWrapper
 
   def all_friend_ids
     cursor = -1
-    follower_ids = []
+    friend_ids = []
     while cursor < 0
-      response = @client.follower_ids('barackobama')
-      follower_ids << response.attrs[:ids]
+      response = @client.friend_ids('barackobama')
+      friend_ids << response.attrs[:ids]
       cursor += 1
     end
-    follower_ids.flatten
+    friend_ids.flatten
   end
 
   def popular_tweet_ids(hashtag)
@@ -129,21 +129,40 @@ class TwitterWrapper
     end
   end
 
+  def has_instagram?
+    tweets = get_all_tweets.select do |tweet|
+      tweet.urls != [] && tweet.retweeted? == false
+    end
+
+    instagram_tweet = tweets.select do |tweet|
+      tweet.urls[0].attrs[:expanded_url].include?("instagram")
+    end
+
+    instagram_tweet.any?
+  end
+
   def get_insta_tweet
     tweets = get_all_tweets.select do |tweet|
-      tweet.urls != []
+      tweet.urls != [] && tweet.retweeted? == false
     end
 
     instagram_tweet = tweets.select do |tweet|
       tweet.urls[0].attrs[:expanded_url].include?("instagram")
     end.first
 
-    instagram_tweet.urls[0].attrs[:expanded_url]
+    if instagram_tweet != nil 
+      instagram_tweet.urls[0].attrs[:expanded_url] if instagram_tweet.urls[0].attrs[:expanded_url] 
+    end
   end
 
   def photo_id
+    binding.pry
     link = get_insta_tweet
-    link.gsub("https://instagram.com/p/", "").gsub("/", "")
+    if link && link.first(5) == "http:"
+      link.gsub("http://instagram.com/p/", "").gsub("/", "")
+    else
+      link.gsub("https://instagram.com/p/", "").gsub("/", "")
+    end
   end
 
 end

@@ -9,8 +9,14 @@ require "instagram"
 		end
 	end
 
+  def get_id(photo_id)
+    photo = Instagram.client.media_shortcode(photo_id)
+    photo[:user][:id]
+  end
+
 	def five_instagrams(insta_user_id)
-		@instagram = Instagram.user_recent_media(insta_user_id, {:count => 5})
+    insta_user_id = insta_user_id.to_i
+		Instagram.user_recent_media(insta_user_id, {:count => 10})
 	end
 
 end

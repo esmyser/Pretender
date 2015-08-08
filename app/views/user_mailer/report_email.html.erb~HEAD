@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  <title>you're a creepster</title>
+  <title>Report from pretender.io</title>
 </head>
 <body>
 <h1>Hi, <%= @user.name %></h1>
