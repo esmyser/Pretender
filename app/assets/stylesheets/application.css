@@ -23,3 +23,9 @@
  *= require_tree .
  *= require_self
  */
+
+
+.nopadding {
+  padding-left: 0;
+  padding-right: 0;
+}

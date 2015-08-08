@@ -1,12 +1,12 @@
 <% if !@user.pretendees.empty? %>
 	<div class="container">
 		<h1>Your creeps</h1>
-		<div class="row">
+		<div class="row test">
 			<div class="portfolio-box iso-call work-col-8">
 				<% @user.pretendees.each do |pretendee|%>
 
 				<% profile_img_url = "https://twitter.com/"+pretendee.twitter.gsub(' ', '')+"/profile_image?size=original" %>
-				<div class="image-wrapper col-sm-3">
+				<div class="image-wrapper col-sm-3 nopadding">
 					<img src="<%= profile_img_url %>" alt="" class="img-responsive">
 					<div class="image-overlay"> 
 						<a href="<%= user_pretendee_path(@user, pretendee) %>">
