@@ -1,18 +1,8 @@
 class TopicsController < ApplicationController
 
   def create
-    @user = current_user
-    @topic = @user.topics.build(topic_params)
-    if @topic.save 
-      redirect_to user_topic_path(current_user, @topic)
-    else
-      render :new
-    # @user = User.find(params[:user_id])
-    # @pretendee = Pretendee.find(params[:pretendee_id])
-    # @topic = @pretendee.topics.build(topic_params)
-    # if @topic.save
-    #   redirect_to user_pretendee_path(@user, @pretendee)
-    end
+    topic = Topic.new(topic_params)
+    topic.save ? (redirect_to user_topic_path(current_user, topic)) : (render :new)
   end
 
   def new

@@ -11,13 +11,11 @@
 
 <%= render 'topics' %>
 
-<%= render 'layouts/email_form' %>
-
-<% if @pictures.present? %>
+<% if @twitter_pics.present? %>
 <div class="container">
   <h1>Recent Pictures from Twitter</h1>
   <ul class="list-group">
-    <% @pictures.each do |pic| %>
+    <% @twitter_pics.each do |pic| %>
     
     <li class="list-group-item col-md-4">
     <img class="img-responsive" src= "<%= pic %>" alt="pic">
@@ -27,11 +25,11 @@
 </div>
 <% end %>
 
-<% if @instagram %>
+<% if @instagram_pics %>
   <div class="container">
     <h1>Recent Pictures from Instagram</h1>
     <ul class="list-group">
-      <% @instagram.each do |instagram| %>
+      <% @instagram_pics.each do |instagram| %>
       <li class="list-group-item col-md-4">
         <%= image_tag(instagram.images.standard_resolution.url, :class => "img-responsive" ) %>
       </li>
