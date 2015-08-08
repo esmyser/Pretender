@@ -30,7 +30,8 @@ class PretendeesController < ApplicationController
     i = InstagramWrapper.new
 
     @pictures = t.recent_photos
-    @word_list = t.word_count_histogram
+    @word_list = @pretendee.word_histogram || t.word_count_histogram
+    @topic = Topic.new
 
     if t.has_instagram?
       insta_id = i.get_id(t.photo_id)

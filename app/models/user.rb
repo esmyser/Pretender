@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
     has_many :pretendee_topics, through: :pretendees, source: :topics
 
     validates :name, presence: true
-    validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
+    # i commented this out because it broke when email is nil
+    # validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
 
 	def self.create_with_omniauth(auth)
 	  create! do |user|

@@ -10,21 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-
-
-
-// i didn't include bootstrap.min.js anywhere because i thought bootstrap.js was the same thing
-
-
 //= require jquery
 //= require jquery_ujs
-//= require jqcloud
+//= require jqcloud-1.0.4
 
-
-
-
-
-//= require jquery.min
 //= require moderniz.min
 //= require jquery-migrate.min
 //= require jquery.easing.1.3.min
@@ -42,10 +31,6 @@
 //= require jquery.imagesloaded.min
 //= require jquery.counterup.min
 //= require jquery.countdown
-//= require contact_me
-//= require jqBootstrapValidation
 //= require custom
-
-
 
 //= require_tree .

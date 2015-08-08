@@ -8,7 +8,6 @@ class TwitterWrapper
 
   def word_count_histogram
     words = (favorites_text + all_tweets_text + all_descriptions_text).flatten.join(' ').gsub(/"/, '').gsub('.', '').gsub(':', '').gsub('!', '').gsub(')', '').gsub('(', '').gsub(",","").gsub('-', '').split(' ')
-    binding.pry
     frequency = Hash.new(0)
     words.each { |word| frequency[word.downcase] += 1 }
     commonwords = ["the", "and", "of", "a", "to", "is", "in", "its", "The", "on", "as", "for", "has", "will", "As", "or", "have", "while", "While", "that", "out", "such", "also", "by", "said", "with", "than", "only", "into", "an", "one", "other", "but", "for", "from", "<br />", "i", "more", "about", "About", "again", "Again", "against", "all", "are", "at", "be", "being", "been", "can", "could", "did", "do", "don't", "down", "up", "each", "few", "get", "got", "had", "have", "has", "he", "her", "she", "he", "it", "we", "they", "if", "thus", "it's", "hers", "his", "how", "why", "when", "where", "just", "like", "you", "me", "my", "most", "more", "no", "not", "yes", "off", "once", "only", "our", "out", "over", "under", "own", "then", "some", "these", "there", "then", "this", "those", "too", "through", "between", "until", "very", "who", "with", "wouldn't", "would", "was", "were", "itself", "himself", "herself", "which", "make", "during", "before", "after", "if", "any", "become", "around", "several", "them", "their", "however", "http", "https", "com", "co", "&", "-", "@", "rt", "+", "|", "so", "your", "i'm", "what", "new", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "we're", "//", "it", "i've", "oh", "it.", "...", "&", "&amp;", "twitter", "tweets", "next", "let", "come", "i'll", "thing", "rt:", "things", "you're", "am", "well", "two", "one", "yet", "go", "going", "because", "every", "actually", "another", "we'll", "i'd", "something", "really", "he's", "much", "less", "us", "same", "him" ]
@@ -19,6 +18,8 @@ class TwitterWrapper
     end
 
     frequency = frequency.sort_by{|hash| hash[:weight]}.reverse[0..200]
+    @pretendee.update(word_histogram: frequency)
+    frequency
   end
 
   def create_client
@@ -90,7 +91,7 @@ class TwitterWrapper
     cursor = -1
     friend_ids = []
     while cursor < 0
-      response = @client.friend_ids('barackobama')
+      response = @client.friend_ids(@pretendee.twitter)
       friend_ids << response.attrs[:ids]
       cursor += 1
     end
@@ -154,7 +155,6 @@ class TwitterWrapper
   end
 
   def photo_id
-    binding.pry
     link = get_insta_tweet
     if link && link.first(5) == "http:"
       link.gsub("http://instagram.com/p/", "").gsub("/", "")
