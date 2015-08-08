@@ -91,7 +91,7 @@ class TwitterWrapper
     cursor = -1
     friend_ids = []
     while cursor < 0
-      response = @client.friend_ids('barackobama')
+      response = @client.friend_ids(@pretendee.twitter)
       friend_ids << response.attrs[:ids]
       cursor += 1
     end

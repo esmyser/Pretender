@@ -11,10 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require jqcloud
 //= require jquery_ujs
+//= require jqcloud-1.0.4
 
-//= require jquery.min
 //= require moderniz.min
 //= require jquery-migrate.min
 //= require jquery.easing.1.3.min
