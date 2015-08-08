@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= require jqcloud-1.0.4
+//= require jqcloud
 //= require jquery_ujs
 
 //= require jquery.min
