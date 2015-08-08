@@ -42,8 +42,6 @@
 //= require jquery.imagesloaded.min
 //= require jquery.counterup.min
 //= require jquery.countdown
-//= require contact_me
-//= require jqBootstrapValidation
 //= require custom
 
 
