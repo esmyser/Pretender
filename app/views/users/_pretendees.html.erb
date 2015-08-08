@@ -1,26 +1,26 @@
-<% if !@user.pretendees.empty? %>
-	<div class="container">
-		<h1>Your creeps</h1>
-		<div class="row test">
-			<div class="portfolio-box iso-call work-col-8">
-				<% @user.pretendees.each do |pretendee|%>
+<% if @user.pretendees.present? %>
+<div class="container">
+	<h1>Your creeps</h1>
+	<div class="row test">
+		<div class="portfolio-box iso-call work-col-8">
+			<% @user.pretendees.each do |pretendee|%>
 
-				<% profile_img_url = "https://twitter.com/"+pretendee.twitter.gsub(' ', '')+"/profile_image?size=original" %>
-				<div class="image-wrapper col-sm-3 nopadding">
-					<img src="<%= profile_img_url %>" alt="" class="img-responsive">
-					<div class="image-overlay"> 
-						<a href="<%= user_pretendee_path(@user, pretendee) %>">
-							<p>
-								<%= pretendee.name %>
-								<br><br>
-								<%= link_to 'delete', user_pretendee_path(@user, pretendee), method: :delete %>
-							</p>
-						</a>
-					</div>
+			<% profile_img_url = "https://twitter.com/"+pretendee.twitter.gsub(' ', '')+"/profile_image?size=original" %>
+			<div class="image-wrapper col-sm-3 nopadding">
+				<img src="<%= profile_img_url %>" alt="" class="img-responsive">
+				<div class="image-overlay"> 
+					<a href="<%= user_pretendee_path(@user, pretendee) %>">
+						<p>
+							<%= pretendee.name %>
+							<br><br>
+							<%= link_to 'delete', user_pretendee_path(@user, pretendee), method: :delete %>
+						</p>
+					</a>
 				</div>
-				<% end %>
-			<%= render 'pretendees/form' %>
 			</div>
+			<% end %>
+			<% end %>
+			<%= render 'pretendees/form' %>
 		</div>
 	</div>
-<% end %>
+</div>

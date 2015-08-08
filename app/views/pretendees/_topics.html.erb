@@ -1,12 +1,24 @@
-<% if !@pretendee.topics.empty? %>
-
-	<h1>Topics</h1>
-	<ul><% @pretendee.topics.each do |topic| %>
-	<li>
-		<%= link_to "#{topic.name}", user_pretendee_topic_path(@user, @pretendee, topic) %>
-		<%= button_to "x", user_pretendee_topic_path(@user, @pretendee, topic), method: :delete %>
-	</li>
-	<% end %>
-	</ul>
-
-<% end %>
+<% if @pretendee.topics.present? %>
+<div class="container">
+  <h1><%= @pretendee.name %>'s topics</h1>
+  <div class="row test">
+    <div class="portfolio-box iso-call work-col-8">
+      <% @pretendee.topics.each do |topic|%>
+      <div class="image-wrapper col-sm-3 nopadding">
+        <img src="http://www.bestbritishsweets.co.uk/user/products/large/topic.jpg" alt="" class="img-responsive">
+        <div class="image-overlay"> 
+          <a href="<%= user_pretendee_topic_path(@user, @pretendee,topic) %>">
+            <p>
+              <%= topic.name %>
+              <br><br>
+              <%= link_to 'Delete', user_pretendee_topic_path(@user, @pretendee, topic), method: :delete %>
+            </p>
+          </a>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+      <%= render 'topic_form' %>
+    </div>
+  </div>
+</div>
