@@ -1,12 +1,21 @@
-<div class="container">
-	<div class="jumbotron">
-	  <%= form_for [@user, Pretendee.new], as: :pretendee, html: {class: "	form-group"} do |f| %>
-	  <%= f.label :twitter %>
-	  <%= f.text_field :twitter %>
-	  <%= f.label :name %>
-	  <%= f.text_field :name %>
-	  <%= f.hidden_field :user_id, :value => @user.id %>
-	  <%= f.submit class: "btn btn-defaul btn-primary"%>
-	  <% end %>
+
+
+
+
+<div class="image-wrapper col-sm-3">
+	<img src='green_box.png' alt="" class="img-responsive">
+	<div class="image-overlay"> 
+		<a href="#">
+			<p>
+			<%= form_for [@user, Pretendee.new], as: :pretendee, html: {class: "	form-group"} do |f| %>
+			<%= f.label :twitter %>
+			<%= f.text_field :twitter %>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+			<%= f.hidden_field :user_id, :value => @user.id %>
+			<%= f.submit class: "btn btn-defaul btn-primary"%>
+			<% end %>
+			</p>
+		</a>
 	</div>
 </div>
