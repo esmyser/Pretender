@@ -23,12 +23,12 @@ class PretendeesController < ApplicationController
     t = TwitterWrapper.new(@pretendee)
     i = InstagramWrapper.new
 
-    @twitter_pics = t.recent_photos
+    @twitter_pics = t.recent_photos[0..7]
     @word_list = @pretendee.word_histogram || t.word_count_histogram
 
     if t.has_instagram?
       insta_id = i.get_id(t.photo_id)
-      @instagram_pics = i.five_instagrams(insta_id)
+      @instagram_pics = i.five_instagrams(insta_id)[0..7]
     end
   end
 

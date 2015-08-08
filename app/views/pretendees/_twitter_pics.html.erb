@@ -1,0 +1,15 @@
+<% if @twitter_pics.present? %>
+<div class="container">
+  <h1><%= @pretendee.name %>'s Recent Twitter Pics</h1>
+  <div class="row test">
+    <div class="portfolio-box iso-call work-col-8">
+      <% @twitter_pics.each do |pic|%>
+      <div class="image-wrapper col-sm-3 nopadding">
+        <img src="<%= pic %>" alt="" class="img-responsive">
+        <div class="image-overlay"></div>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

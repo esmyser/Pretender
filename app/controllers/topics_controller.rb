@@ -11,7 +11,6 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @user = current_user
     @topic = Topic.find(params['id'])
     w = WikiWrapper.new
     @paragraph = w.first_paragraph(@topic)

@@ -1,42 +1,5 @@
 <%= render 'layouts/navigation' %>
-
-<div id="cloud" class="jqcloud" style="width: 750px; height: 425px; margin:0 auto;">
-
-</div>
-
-<script>
-  var wordList = JSON.parse("<%= @word_list.to_json %>".replace(/&quot;/g, '"'));
-  $("#cloud").jQCloud(wordList);
-</script>
-
+<%= render 'word_cloud' %>
 <%= render 'topics' %>
-
-<% if @twitter_pics.present? %>
-<div class="container">
-  <h1>Recent Pictures from Twitter</h1>
-  <ul class="list-group">
-    <% @twitter_pics.each do |pic| %>
-    
-    <li class="list-group-item col-md-4">
-    <img class="img-responsive" src= "<%= pic %>" alt="pic">
-    </li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
-
-<% if @instagram_pics %>
-  <div class="container">
-    <h1>Recent Pictures from Instagram</h1>
-    <ul class="list-group">
-      <% @instagram_pics.each do |instagram| %>
-      <li class="list-group-item col-md-4">
-        <%= image_tag(instagram.images.standard_resolution.url, :class => "img-responsive" ) %>
-      </li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<%= link_to "Edit Pretendee", edit_user_pretendee_path(current_user, @pretendee) %>
-<%= link_to "Delete Pretendee", user_pretendee_path(current_user, @pretendee), method: :delete %>
+<%= render 'instagram_pics' %>
+<%= render 'twitter_pics' %>
