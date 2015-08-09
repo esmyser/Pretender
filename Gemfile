@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
-
+gem 'certified'
 gem 'wikipedia-client'
+# gem 'webmock'
+# gem 'vcr'
 
 gem 'whenever', :require => false
 
@@ -66,7 +68,7 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'simplecov'
   gem 'database_cleaner'
-  gem 'sqlite3'
+  gem 'pg'
   gem 'pry'
   gem 'guard-rspec', require: false
   gem 'thin'

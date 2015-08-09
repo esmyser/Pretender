@@ -1,0 +1,22 @@
+<% if @articles.present? %>
+<div class="container">
+  <h1>Recent Articles</h1>
+  <div class="row">
+    <div class="portfolio-box iso-call work-col-8">
+      <% @articles.each do |article|%>
+      <div class="image-wrapper col-sm-3 nopadding">
+        <img src="<%= article[:photo_url] %>" alt="" class="img-responsive">
+        <div class="image-overlay">
+          <a href="<%= article[:url] %>">
+            <p><%= article[:title] %></p>
+          </a>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+
+

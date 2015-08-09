@@ -1,12 +1,16 @@
-<div class="container">
-	<div class="jumbotron">
-	  <%= form_for [@user, Pretendee.new], as: :pretendee, html: {class: "	form-group"} do |f| %>
-	  <%= f.label :twitter %>
-	  <%= f.text_field :twitter %>
-	  <%= f.label :name %>
-	  <%= f.text_field :name %>
-	  <%= f.hidden_field :user_id, :value => @user.id %>
-	  <%= f.submit class: "btn btn-defaul btn-primary"%>
-	  <% end %>
+<div class="image-wrapper col-sm-3 nopadding">
+	<img src='https://raw.githubusercontent.com/esmyser/Pretender/master/app/assets/images/green_square_creep.png' alt="" class="img-responsive">
+	<div class="image-overlay"> 
+		<p>
+			<%= form_for [@user, Pretendee.new], as: :pretendee, html: {class: "form-group"} do |f| %>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+			<br>
+			<%= f.label :twitter %>
+			<%= f.text_field :twitter %>
+			<%= f.hidden_field :user_id, :value => @user.id %>
+			<%= f.submit class: "btn btn-defaul btn-primary"%>
+			<% end %>
+		</p>
 	</div>
 </div>

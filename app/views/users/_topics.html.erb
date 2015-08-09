@@ -1,13 +1,24 @@
 <% if @user.topics.present? %>
-  <div class="container">
-  	<h1>Your topics</h1>
-  	<ul class="list-group">
-      <% @user.topics.each do |topic| %>
-        <li class="list-group-item col-md-4">
-          <%= link_to "#{topic.name.capitalize}", user_topic_path(@user, topic) %>
-          <%= button_to "Delete", user_topic_path(@user, topic), method: :delete %>
-        </li>
+<div class="container">
+  <h1>Your topics</h1>
+  <div class="row test">
+    <div class="portfolio-box iso-call work-col-8">
+      <% @user.topics.each do |topic|%>
+      <div class="image-wrapper col-sm-3 nopadding">
+        <img src="http://www.bestbritishsweets.co.uk/user/products/large/topic.jpg" alt="" class="img-responsive">
+        <div class="image-overlay"> 
+          <a href="<%= user_topic_path(@user, topic) %>">
+            <p>
+              <%= topic.name %>
+              <br><br>
+              <%= link_to 'Delete', user_topic_path(@user, topic), method: :delete %>
+            </p>
+          </a>
+        </div>
+      </div>
       <% end %>
-    </ul>
+      <% end %>
+      <%= render 'new_user_topic' %>
+    </div>
   </div>
-<% end %>
+</div>
