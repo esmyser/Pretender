@@ -1,16 +1,26 @@
-<div class="image-wrapper col-sm-3 nopadding">
-	<img src='https://raw.githubusercontent.com/esmyser/Pretender/master/app/assets/images/green_square_creep.png' alt="" class="img-responsive">
-	<div class="image-overlay"> 
-		<p>
-			<%= form_for [@user, Pretendee.new], as: :pretendee, html: {class: "form-group"} do |f| %>
-			<%= f.label :name %>
-			<%= f.text_field :name %>
-			<br>
-			<%= f.label :twitter %>
-			<%= f.text_field :twitter %>
-			<%= f.hidden_field :user_id, :value => @user.id %>
-			<%= f.submit class: "btn btn-defaul btn-primary"%>
-			<% end %>
-		</p>
+<div class="services-section-2 parallax" data-stellar-background-ratio="0.5" style="background-position: 50% 83px;">
+	<div class="container">
+		<div class="row">
+  		<div class="col-md-12 text-center">
+				<h1>creep on someone</h1>
+					
+						<%= form_for [@user, Pretendee.new], as: :pretendee, html: {class: "newsletter-form"} do |f| %>
+						<div class="row">
+						<div class="col-sm-4 col-sm-offset-4">
+						<div class="input-group">
+																
+							<%= f.text_field :twitter, class: "form-control", placeholder: "@twitter"%>
+							<%= f.hidden_field :user_id, :value => @user.id %>
+							<br>
+							<span class="input-group-btn">
+								<%= f.submit "creep on", class: "btn btn-theme-color btn-lg" %>
+							</span>
+						</div>
+						</div>
+						<% end %>
+					</div>
+				
+			</div>
+		</div>
 	</div>
 </div>
