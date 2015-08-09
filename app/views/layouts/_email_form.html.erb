@@ -4,7 +4,7 @@
   <p>
 <% if @user.email && @report.active == false %>
   <%= form_for [@user, @pretendee, @report], as: :report, html: {class: "  form-group"} do |f| %>
-    <%= f.hidden_field :frequency, :value => 7 %>
+    <%= f.hidden_field :frequency, :value => 1 %>
     <%= f.hidden_field :pretendee_id, :value => @pretendee.id %>
     <%= f.hidden_field :active, :value => true %>
     <%= f.submit "Subscribe", class: "btn btn-defaul btn-primary" %>
@@ -19,7 +19,7 @@
   <%= f.label :email %>
   <%= f.text_field :email %>
     <%= f.fields_for [@user, @pretendee, @report], as: :report, html: {class: "  form-group"} do |ff| %>
-      <%= ff.hidden_field :frequency, :value => 7 %>
+      <%= ff.hidden_field :frequency, :value => 1 %>
       <%= ff.hidden_field :pretendee_id, :value => @pretendee.id %>
       <%= ff.hidden_field :active, :value => true %>
     <% end %>
