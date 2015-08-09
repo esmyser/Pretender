@@ -4,6 +4,9 @@ gem 'wikipedia-client'
 # gem 'webmock'
 # gem 'vcr'
 
+gem 'launchy'
+gem 'letter_opener'
+
 gem 'whenever', :require => false
 
 gem 'sidekiq'
