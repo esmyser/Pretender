@@ -9,6 +9,16 @@ require "instagram"
 		end
 	end
 
+  def public_instagram?(photo_id)
+    begin 
+      Instagram.client.media_shortcode(photo_id)
+    rescue
+      return false
+    else
+      return true
+    end
+  end
+
   def get_id(photo_id)
     photo = Instagram.client.media_shortcode(photo_id)
     photo[:user][:id]

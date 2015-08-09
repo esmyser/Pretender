@@ -134,7 +134,7 @@ class TwitterWrapper
     end
 
     instagram_tweet = tweets.select do |tweet|
-      tweet.urls[0].attrs[:expanded_url].include?("instagram")
+      tweet.urls[0].attrs[:expanded_url].include?("http://instagram.com/") || tweet.urls[0].attrs[:expanded_url].include?("https://instagram.com/") 
     end
 
     instagram_tweet.any?
@@ -146,7 +146,7 @@ class TwitterWrapper
     end
 
     instagram_tweet = tweets.select do |tweet|
-      tweet.urls[0].attrs[:expanded_url].include?("instagram")
+      tweet.urls[0].attrs[:expanded_url].include?("http://instagram.com/") || tweet.urls[0].attrs[:expanded_url].include?("https://instagram.com/") 
     end.first
 
     if instagram_tweet != nil 
