@@ -13,9 +13,9 @@ require "instagram"
     begin 
       Instagram.client.media_shortcode(photo_id)
     rescue
-      return false
+      false
     else
-      return true
+      true
     end
   end
 
