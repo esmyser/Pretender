@@ -1,5 +1,7 @@
-<div class="container">
-  <div class="jumbotron">
+<div class="image-wrapper col-sm-3 nopadding">
+  <img src='https://raw.githubusercontent.com/esmyser/Pretender/more-css-seth/app/assets/images/green_square_email.png' alt="" class="img-responsive">
+  <div class="image-overlay"> 
+  <p>
 <% if @user.email && @report.active == false %>
   <%= form_for [@user, @pretendee, @report], as: :report, html: {class: "  form-group"} do |f| %>
     <%= f.hidden_field :frequency, :value => 7 %>
@@ -24,5 +26,6 @@
   <%= f.submit "Sign up for emails!", class: "btn btn-defaul btn-primary" %>
   <% end %>
 <% end %>
+</p>
 </div>
 </div>

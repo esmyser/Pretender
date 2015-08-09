@@ -1,9 +1,12 @@
-<div class="container">
-	<div class="jumbotron">
-	<%= form_for [@user, Topic.new], as: :topic, html: {class: "form-group"} do |f| %>
-	  <%= f.text_field :name %>
-	  <%= f.hidden_field :user_id, :value => @user.id %>
-	  <%= f.submit class: "btn btn-defaul btn-primary"%>
-	<% end %>
-	</div>
+<div class="image-wrapper col-sm-3 nopadding">
+  <img src='https://raw.githubusercontent.com/esmyser/Pretender/more-css-seth/app/assets/images/green_square_topic.png' alt="" class="img-responsive">
+  <div class="image-overlay"> 
+    <p>
+    <%= form_for [@user, Topic.new], as: :topic, html: {class: "form-group"} do |f| %>
+      <%= f.text_field :name %>
+      <%= f.hidden_field :user_id, :value => @user.id %>
+      <%= f.submit class: "btn btn-defaul btn-primary"%>
+    <% end %>
+    </p>
+  </div>
 </div>
