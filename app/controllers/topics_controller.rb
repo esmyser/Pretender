@@ -12,6 +12,8 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params['id'])
+    @user = User.find(params["user_id"])
+    @report = @topic.report || Report.new
     w = WikiWrapper.new
     @paragraph = w.first_paragraph(@topic)
     @url = w.get_url(@topic)

@@ -5,6 +5,11 @@ class Report < ActiveRecord::Base
 
   validates_uniqueness_of :pretendee
 
+  belongs_to :topic
+  delegate :user, to: :topic
+
+  validates_uniqueness_of :topic
+
   def self.every_day 
     where(frequency: 1, active: true)
   end

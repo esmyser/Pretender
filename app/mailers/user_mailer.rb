@@ -6,7 +6,7 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: "Thanks for signing up, #{@user.name}!")
   end
 
-  def report_email(report)
+  def pretendee_report_email(report)
     @report = report
     @pretendee = Pretendee.find(@report.pretendee_id)
     @user = User.find(@pretendee.user_id)
