@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     @user.update(user_params)
     @report = Report.new(:active => params['user']['report']['active'], :frequency => params['user']['report']['frequency'], :pretendee_id => params['user']['report']['pretendee_id'])
     @report.save
+    UserMailer.welcome_email(current_user).deliver_now
     if @user.pretendees
       @pretendee = Pretendee.find(params['user']['report']['pretendee_id'])
     end
