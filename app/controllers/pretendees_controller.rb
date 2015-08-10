@@ -23,6 +23,7 @@ class PretendeesController < ApplicationController
     @tweets = @pretendee.tweets || @pretendee.get_recent_tweets
     @word_list = @pretendee.word_histogram || @pretendee.get_word_histogram
     @instagram_pics = @pretendee.instagram_photos || @pretendee.get_recent_instagrams
+
   end
 
   def update

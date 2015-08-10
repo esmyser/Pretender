@@ -15,15 +15,18 @@ class Pretendee < ActiveRecord::Base
       instagram_pics = i.recent_instgrams(insta_id)
       update(instagram: i.insta_username(insta_id), instagram_photos: instagram_pics)
     end
+    self.instagram_photos
   end
 
   def get_recent_tweets
     tweets = TwitterWrapper.new(self).recent_tweets
     update(tweets: tweets)
+    self.tweets
   end
 
   def get_word_histogram
     words = TwitterWrapper.new(self).word_count_histogram
     update(word_histogram: words)
+    self.word_histogram
   end
 end
