@@ -24,6 +24,11 @@
  *= require_self
  */
 
+.center-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .services-section-2-ezra {
   background-image: url(../assets/stalk.png);
   background-size: 100%;

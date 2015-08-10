@@ -1,8 +1,6 @@
 <% if @user.pretendees.present? %>
-<div class="container">
-	<%= render 'pretendees/form' %>
 
-	<h1>Your creeps</h1>
+	<h1 class="center-header">YOUR CREEPS</h1>
 	<div class="row test">
 		<div class="portfolio-box iso-call work-col-8">
 			<% @user.pretendees.each do |pretendee|%>
@@ -25,4 +23,3 @@
 			<% end %>
 		</div>
 	</div>
-</div>

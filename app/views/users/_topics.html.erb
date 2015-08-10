@@ -1,6 +1,5 @@
 <% if @user.topics.present? %>
-<div class="container">
-  <h1>Your topics</h1>
+  <h1 class="center-header">YOUR TOPICS</h1>
   <div class="row test">
     <div class="portfolio-box iso-call work-col-8">
       <% @user.topics.each do |topic|%>
@@ -18,7 +17,5 @@
       </div>
       <% end %>
       <% end %>
-      <%= render 'new_user_topic' %>
     </div>
-  </div>
 </div>
