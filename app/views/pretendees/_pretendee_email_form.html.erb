@@ -4,7 +4,12 @@
   <p>
 <% if @user.email && @report.active == false %>
   <%= form_for [@user, @pretendee, @report], as: :report, html: {class: "  form-group"} do |f| %>
-    <%= f.hidden_field :frequency, :value => 1 %>
+    <%= f.label :frequency, "How often would you like to receive email updates?" %>
+    <%= f.select (:frequency) do %>
+      <% [['Every day', 1], ['Every three days', 3], ['Every week', 7]].each do |c| -%>
+      <%= content_tag(:option, c.first, value: c.last) %>
+      <% end %>
+    <% end %>
     <%= f.hidden_field :pretendee_id, :value => @pretendee.id %>
     <%= f.hidden_field :active, :value => true %>
     <%= f.submit "Subscribe", class: "btn btn-defaul btn-primary" %>
@@ -19,11 +24,16 @@
   <%= f.label :email %>
   <%= f.text_field :email %>
     <%= f.fields_for [@user, @pretendee, @report], as: :report, html: {class: "  form-group"} do |ff| %>
-      <%= ff.hidden_field :frequency, :value => 1 %>
+      <%= ff.label :frequency, "How often would you like to receive email updates?" %>
+      <%= ff.select (:frequency) do %>
+        <% [['Every day', 1], ['Every three days', 3], ['Every week', 7]].each do |c| -%>
+        <%= content_tag(:option, c.first, value: c.last) %>
+        <% end %>
+      <% end %>
       <%= ff.hidden_field :pretendee_id, :value => @pretendee.id %>
       <%= ff.hidden_field :active, :value => true %>
     <% end %>
-  <%= f.submit "Sign up for emails!", class: "btn btn-defaul btn-primary" %>
+  <%= f.submit "Sign up for email updates!", class: "btn btn-defaul btn-primary" %>
   <% end %>
 <% end %>
 </p>

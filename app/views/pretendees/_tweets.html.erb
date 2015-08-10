@@ -1,0 +1,16 @@
+<% if @tweets.present? %>
+  <div class="container">
+    <h1><%= @pretendee.name %>'s Recent Twitter Pics</h1>
+    <div class="row test">
+      <div class="portfolio-box iso-call work-col-8">
+        <% @tweets.each do |tweet|%>
+        <div class="image-wrapper col-sm-3 nopadding">
+          <img src="<%= tweet['url'] %>" alt="" class="img-responsive">
+          <div class="image-overlay">
+            <%= link_to tweet['text'], tweet['url'] %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
