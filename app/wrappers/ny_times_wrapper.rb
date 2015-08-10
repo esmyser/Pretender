@@ -1,8 +1,9 @@
 class NyTimesWrapper
 
   def articles(topic)
+    separated_name = topic.name.gsub(" ", "%20")
     date = (Time.now - 30.days).to_s.split.first.split("-").join("")
-      articles = open("http://api.nytimes.com/svc/search/v2/articlesearch.json?q=#{topic.name}&additional-params=multimedia&begin_date=#{date}&api-key=#{ENV["ny_times_key"]}").read
+      articles = open("http://api.nytimes.com/svc/search/v2/articlesearch.json?q=#{separated_name}&additional-params=multimedia&begin_date=#{date}&api-key=#{ENV["ny_times_key"]}").read
       parse_article_hash(JSON.parse(articles))
   end
 
