@@ -8,6 +8,7 @@ class PretendeesController < ApplicationController
     @user = current_user
     @pretendee = @user.pretendees.build(pretendee_params)
     if @pretendee.save 
+      @pretendee.update(name: TwitterWrapper.new(@pretendee).get_name)
       redirect_to user_pretendee_path(current_user, @pretendee)
     else
       render :new
