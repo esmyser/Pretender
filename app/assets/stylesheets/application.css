@@ -25,11 +25,20 @@
  */
 body {
   background-color: #FBFBFB;
+  height: 100%;
 }
 
 #footer {
-  display: block;
+  clear: both;
+  position: relative;
 }
+
+#topics {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
 .bottompadding {
   padding-bottom: 40px;
   padding-top: 0px;
@@ -65,6 +74,7 @@ body {
   margin: 0px;
   padding: 0px;
 }
+
 .nopadding {
   padding-left: 0;
   padding-right: 0;
