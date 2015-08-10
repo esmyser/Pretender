@@ -23,6 +23,16 @@
  *= require_tree .
  *= require_self
  */
+body {
+  background-color: #FBFBFB;
+}
+
+.bottompadding {
+  padding-bottom: 40px;
+  padding-top: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
 
 .center-header {
   text-align: center;
@@ -31,6 +41,11 @@
 
 .services-section-2-ezra {
   background-image: url(../assets/stalk.png);
+  background-size: 100%;
+}
+
+.services-section-3-ezra {
+  background-image: url(../assets/books.jpg);
   background-size: 100%;
 }
 
