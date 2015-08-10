@@ -28,6 +28,7 @@ class PretendeesController < ApplicationController
 
     if t.has_instagram? && i.public_instagram?(t.photo_id)
       insta_id = i.get_id(t.photo_id)
+      i.update_user_instagram(@pretendee, insta_id)
       @instagram_pics = i.five_instagrams(insta_id)[0..7]
     end
   end

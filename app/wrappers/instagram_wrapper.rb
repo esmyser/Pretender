@@ -29,4 +29,8 @@ require "instagram"
 		Instagram.user_recent_media(insta_user_id, {:count => 10})
 	end
 
+  def update_user_instagram(pretendee, insta_user_id)
+    pretendee.update(instagram: Instagram.user(insta_user_id)[:username])
+  end
+
 end
