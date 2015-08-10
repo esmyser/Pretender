@@ -8,4 +8,5 @@ class Pretendee < ActiveRecord::Base
   def profile_image_url
     "https://twitter.com/" + twitter.gsub(' ', '') + "/profile_image?size=original"
   end
+
 end
