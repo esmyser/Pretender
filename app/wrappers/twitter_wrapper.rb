@@ -21,10 +21,10 @@ class TwitterWrapper
 
   def initialize(pretendee)
      @pretendee = pretendee
-     @twitter_client = twitter_client
+     @client = client
   end
 
-  def twitter_client
+  def client
     Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["twitter_key"]
       config.consumer_secret     = ENV["twitter_secret"]
@@ -34,8 +34,10 @@ class TwitterWrapper
   end
 
   def words
+    frequency = Hash.new(0)
     words = (favorites_text + all_tweets_text + all_descriptions_text).flatten.join(' ').gsub(/"/, '').gsub('.', '').gsub(':', '').gsub('!', '').gsub(')', '').gsub('(', '').gsub(",","").gsub('-', '').gsub("/'s", '').split(' ')
     words.each { |word| frequency[word.downcase] += 1 }
+    frequency
   end
 
   def favorites_text
@@ -51,7 +53,7 @@ class TwitterWrapper
   end
 
   def word_count_histogram
-    frequency = Hash.new(0)
+    frequency = words
     frequency = frequency.reject {|word, count| COMMON_WORDS.include? word}
     frequency = frequency.map do |word, count| 
       {text: word, weight: count}
