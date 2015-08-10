@@ -1,7 +1,6 @@
 class ReportsController < ApplicationController
 
   def create
-    binding.pry
     @report = Report.new(report_params)
     
     if report_params['pretendee_id']
@@ -25,7 +24,7 @@ class ReportsController < ApplicationController
         render :back
       end
     end
-    
+
   end
 
   def update
