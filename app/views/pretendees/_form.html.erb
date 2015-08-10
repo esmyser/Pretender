@@ -1,26 +1,12 @@
-<div class="services-section-2 parallax" data-stellar-background-ratio="0.5" style="background-position: 50% 83px;">
-	<div class="container">
-		<div class="row">
-  		<div class="col-md-12 text-center">
-				<h1>creep on someone</h1>
-					
-						<%= form_for [@user, Pretendee.new], as: :pretendee, html: {class: "newsletter-form"} do |f| %>
-						<div class="row">
-						<div class="col-sm-4 col-sm-offset-4">
-						<div class="input-group">
-																
-							<%= f.text_field :twitter, class: "form-control", placeholder: "@twitter"%>
-							<%= f.hidden_field :user_id, :value => @user.id %>
-							<br>
-							<span class="input-group-btn">
-								<%= f.submit "creep on", class: "btn btn-theme-color btn-lg" %>
-							</span>
-						</div>
-						</div>
-						<% end %>
-					</div>
-				
-			</div>
+<div class="services-section-2-ezra services-section-2 parallax">
+	<div class="container col-md-12 text-center">
+		<h1>Creep on someone new</h1>
+		<%= form_for [@user, Pretendee.new], as: :pretendee, html: {class: "newsletter-form"} do |f| %>
+		<div class="row col-sm-4 col-sm-offset-4 input-group">
+			<%= f.text_field :twitter, class: "form-control", placeholder: "@twitter" %>
+			<%= f.hidden_field :user_id, :value => @user.id %>
+			<span class="input-group-btn"><%= f.submit "creep on", class: "add-padding-btn btn btn-theme-color btn-lg" %></span>
 		</div>
+		<% end %>
 	</div>
 </div>

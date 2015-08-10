@@ -5,6 +5,9 @@ class Pretendee < ActiveRecord::Base
   
   validates :twitter, presence: true
 
+  def profile_image_url
+    "https://twitter.com/" + twitter.gsub(' ', '') + "/profile_image?size=original"
+  end
 
   def get_recent_instagrams
     t = TwitterWrapper.new(self)
