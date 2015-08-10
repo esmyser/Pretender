@@ -1,8 +1,8 @@
 <% if @user.topics.present? %>
+  
   <h1 class="center-header">YOUR TOPICS</h1>
-  <div class="row test">
-    <div class="portfolio-box iso-call work-col-8">
-      <% @user.topics.each do |topic|%>
+  
+  <% @user.topics.each do |topic|%>
       <div class="image-wrapper col-sm-3 nopadding">
         <img src="http://www.bestbritishsweets.co.uk/user/products/large/topic.jpg" alt="" class="img-responsive">
         <div class="image-overlay"> 
@@ -16,6 +16,5 @@
         </div>
       </div>
       <% end %>
-      <% end %>
-    </div>
-</div>
+
+<% end %>

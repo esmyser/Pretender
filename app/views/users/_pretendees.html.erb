@@ -1,25 +1,23 @@
 <% if @user.pretendees.present? %>
-
+	
 	<h1 class="center-header">YOUR CREEPS</h1>
-	<div class="row test">
-		<div class="portfolio-box iso-call work-col-8">
-			<% @user.pretendees.each do |pretendee|%>
+	
+	<% @user.pretendees.each do |pretendee|%>
+		
+		<div class="image-wrapper col-sm-3 nopadding">
+			<img src="<%= pretendee.profile_image_url %>" class="img-responsive">
+			
+			<div class="image-overlay"> 
+				<p>
+					<a href="<%= user_pretendee_path(@user, pretendee) %>"><%= pretendee.name %></a>
+					<br><br>
+					<%= link_to 'delete', user_pretendee_path(@user, pretendee), method: :delete %>
+				</p>
+			</div><!-- end overlay hover div -->
 
-			<% profile_img_url = "https://twitter.com/"+pretendee.twitter.gsub(' ', '')+"/profile_image?size=original" %>
-			<div class="image-wrapper col-sm-3 nopadding">
-				<img src="<%= profile_img_url %>" alt="" class="img-responsive">
-				<div class="image-overlay"> 
-					<a href="<%= user_pretendee_path(@user, pretendee) %>">
-						<p>
-							<%= pretendee.name %>
-							<br><br>
-							<%= link_to 'delete', user_pretendee_path(@user, pretendee), method: :delete %>
-						</p>
-					</a>
-				</div>
-			</div>
-			<% end %>
+		</div><!-- end user image div -->
+
+	<% end %>
 			<!-- i'm ending the if statement which could close earlier divs, but i'm doing it to include the "new" form regardless of whether there are existing creeps.... i need to fix this -->
-			<% end %>
-		</div>
-	</div>
+
+<% end %>

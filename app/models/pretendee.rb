@@ -4,4 +4,8 @@ class Pretendee < ActiveRecord::Base
   has_one :report
   
   validates :twitter, presence: true
+
+  def profile_image_url
+    "https://twitter.com/" + twitter.gsub(' ', '') + "/profile_image?size=original"
+  end
 end
