@@ -115,10 +115,15 @@ class TwitterWrapper
     end
   end
 
-  def recent_photos
-    options = {count: 200, include_rts: true}
+  def recent_tweets
+    options = {count: 10, include_rts: true}
     @client.user_timeline(@pretendee.twitter, options).map do |tweet|
-      tweet.attrs[:entities][:media][0][:media_url] if tweet.attrs[:entities][:media]
+      {
+        url: tweet.uri.to_s,
+        text: tweet.text,
+        date: tweet.created_at.to_s.split.first,
+        photo_url: tweet.media.present? && tweet.media[0].media_url.to_s
+      }
     end.compact
   end
 
