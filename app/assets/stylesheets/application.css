@@ -24,8 +24,15 @@
  *= require_self
  */
 
+#navigation * {
+  height: 50px;
+}
 
- 
+.navbar {
+  height: 50px;
+  margin: 0px;
+  padding: 0px;
+}
 .nopadding {
   padding-left: 0;
   padding-right: 0;
