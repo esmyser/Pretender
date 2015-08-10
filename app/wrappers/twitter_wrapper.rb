@@ -186,4 +186,8 @@ class TwitterWrapper
     end
   end
 
+  def get_name
+    @client.user(@pretendee.twitter).name
+  end
+
 end
