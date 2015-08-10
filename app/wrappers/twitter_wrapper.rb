@@ -119,18 +119,21 @@ class TwitterWrapper
   end
 
   def popular_tweet_ids(hashtag)
-    tweets = @client.search(hashtag, type: "popular").attrs.first[1]
+    tweets = @client.search(hashtag, type: "popular", lang: "en").attrs.first[1]
     tweets = tweets.sort_by! do |tweet|
       tweet[:retweet_count]
-    end.reverse.take(5)
+    end.reverse
+
+    tweets = tweets.uniq { |t| t[:text] }
 
     tweets.collect do |tweet|
       tweet[:id]
-    end
+    end.take(5)
+
   end
 
   def popular_tweets_oembeds(hashtag)
-    popular_tweet_ids("#" + hashtag).collect do |tweet_id|
+    popular_tweet_ids(hashtag).collect do |tweet_id|
       @client.oembed(tweet_id).html
     end
   end
