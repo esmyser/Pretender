@@ -24,6 +24,15 @@
  *= require_self
  */
 
+.services-section-2-ezra {
+  background-image: url(../assets/stalk.png);
+  background-size: 100%;
+}
+
+.add-padding-btn {
+  padding: 11px;
+}
+
 #navigation * {
   height: 50px;
 }

@@ -1,5 +1,7 @@
 <% if @user.pretendees.present? %>
 <div class="container">
+	<%= render 'pretendees/form' %>
+
 	<h1>Your creeps</h1>
 	<div class="row test">
 		<div class="portfolio-box iso-call work-col-8">
@@ -21,7 +23,6 @@
 			<% end %>
 			<!-- i'm ending the if statement which could close earlier divs, but i'm doing it to include the "new" form regardless of whether there are existing creeps.... i need to fix this -->
 			<% end %>
-			<%= render 'pretendees/form' %>
 		</div>
 	</div>
 </div>
