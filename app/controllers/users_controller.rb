@@ -7,6 +7,14 @@ class UsersController < ApplicationController
 
   def show
   	@user = current_user
+
+    if @user.pretendees.present?
+      @pretendees = @user.pretendees
+    end
+
+    if @user.topics.present?
+      @topics = @user.topics
+    end
   end
   
   def update

@@ -1,24 +1,15 @@
-<% if @user.topics.present? %>
-<div class="container">
-  <h1>Your topics</h1>
-  <div class="row test">
-    <div class="portfolio-box iso-call work-col-8">
-      <% @user.topics.each do |topic|%>
-      <div class="image-wrapper col-sm-3 nopadding">
-        <img src="http://www.bestbritishsweets.co.uk/user/products/large/topic.jpg" alt="" class="img-responsive">
-        <div class="image-overlay"> 
-          <a href="<%= user_topic_path(@user, topic) %>">
-            <p>
-              <%= topic.name %>
-              <br><br>
-              <%= link_to 'Delete', user_topic_path(@user, topic), method: :delete %>
-            </p>
-          </a>
-        </div>
-      </div>
-      <% end %>
-<% end %>
-      <%= render 'new_user_topic' %>
-    </div>
-  </div>
-</div>
+<% if @topics %>
+  <h1 class="center-header">YOUR TOPICS</h1>
+  <% @topics.each do |topic|%>
+    <div class="image-wrapper col-sm-3 nopadding">
+      <img src="http://www.bestbritishsweets.co.uk/user/products/large/topic.jpg" class="img-responsive">
+      <div class="image-overlay"> 
+        <p>
+          <a href="<%= user_topic_path(@user, topic) %>"><%= topic.name %></a>
+          <br><br>
+          <%= link_to 'Delete', user_topic_path(@user, topic), method: :delete %>
+        </p>
+      </div><!-- ends overlay div -->
+    </div><!-- ends topic image div -->
+  <% end %><!-- ends topic loop -->
+<% end %><!-- end if statement --> 

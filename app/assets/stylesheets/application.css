@@ -24,8 +24,29 @@
  *= require_self
  */
 
+.center-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
- 
+.services-section-2-ezra {
+  background-image: url(../assets/stalk.png);
+  background-size: 100%;
+}
+
+.add-padding-btn {
+  padding: 11px;
+}
+
+#navigation * {
+  height: 50px;
+}
+
+.navbar {
+  height: 50px;
+  margin: 0px;
+  padding: 0px;
+}
 .nopadding {
   padding-left: 0;
   padding-right: 0;
