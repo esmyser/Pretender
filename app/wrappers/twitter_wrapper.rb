@@ -1,5 +1,5 @@
 class TwitterWrapper
-  attr_reader :client
+  attr_reader :client, :words
   
   COMMON_WORDS = ["the", "and", "of", "a", "to", "is", "in", "its", "The", "on", "as", "for", "has", 
     "will", "As", "or", "have", "while", "While", "that", "out", "such", "also", "by", "said", "with", 
@@ -21,10 +21,10 @@ class TwitterWrapper
 
   def initialize(pretendee)
      @pretendee = pretendee
-     @client = client
+     @twitter_client = twitter_client
   end
 
-  def client
+  def twitter_client
     Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["twitter_key"]
       config.consumer_secret     = ENV["twitter_secret"]
@@ -133,10 +133,15 @@ class TwitterWrapper
     end
   end
 
-  def recent_photos
-    options = {count: 200, include_rts: true}
+  def recent_tweets
+    options = {count: 10, include_rts: true}
     @client.user_timeline(@pretendee.twitter, options).map do |tweet|
-      tweet.attrs[:entities][:media][0][:media_url] if tweet.attrs[:entities][:media]
+      {
+        url: tweet.uri.to_s,
+        text: tweet.text,
+        date: tweet.created_at.to_s.split.first,
+        photo_url: tweet.media.present? && tweet.media[0].media_url.to_s
+      }
     end.compact
   end
 
@@ -152,7 +157,7 @@ class TwitterWrapper
     end
 
     instagram_tweet = tweets.select do |tweet|
-      tweet.urls[0].attrs[:expanded_url].include?("instagram")
+      tweet.urls[0].attrs[:expanded_url].include?("http://instagram.com/") || tweet.urls[0].attrs[:expanded_url].include?("https://instagram.com/") 
     end
 
     instagram_tweet.any?
@@ -164,7 +169,7 @@ class TwitterWrapper
     end
 
     instagram_tweet = tweets.select do |tweet|
-      tweet.urls[0].attrs[:expanded_url].include?("instagram")
+      tweet.urls[0].attrs[:expanded_url].include?("http://instagram.com/") || tweet.urls[0].attrs[:expanded_url].include?("https://instagram.com/") 
     end.first
 
     if instagram_tweet != nil 

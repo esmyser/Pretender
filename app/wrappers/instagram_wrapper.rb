@@ -9,14 +9,36 @@ require "instagram"
 		end
 	end
 
+  def public_instagram?(photo_id)
+    begin 
+      Instagram.client.media_shortcode(photo_id)
+    rescue
+      false
+    else
+      true
+    end
+  end
+
   def get_id(photo_id)
     photo = Instagram.client.media_shortcode(photo_id)
     photo[:user][:id]
   end
 
-	def five_instagrams(insta_user_id)
+	def recent_instgrams(insta_user_id)
     insta_user_id = insta_user_id.to_i
-		Instagram.user_recent_media(insta_user_id, {:count => 10})
+		pics = Instagram.user_recent_media(insta_user_id, {:count => 10})
+    pics.map do |pic|
+      {
+        url: pic.link,
+        caption: pic.caption && pic.caption.text,
+        photo_url: pic.images.standard_resolution.url,
+        date: Time.at(pic.created_time.to_i)
+      }
+    end.compact
 	end
+
+  def insta_username(insta_user_id)
+    Instagram.user(insta_user_id)[:username]
+  end
 
 end

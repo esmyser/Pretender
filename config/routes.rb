@@ -9,7 +9,9 @@ Rails.application.routes.draw do
       resources :reports, only: [:create, :update]
       resources :topics
     end
-    resources :topics
+    resources :topics do 
+      resources :reports, only: [:create, :update]
+    end
   end
 
 

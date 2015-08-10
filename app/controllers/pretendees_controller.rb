@@ -17,20 +17,11 @@ class PretendeesController < ApplicationController
   def show
     @pretendee = Pretendee.find(params['id'])
     @topic = Topic.new
-    
     @user = current_user
     @report = @pretendee.report || Report.new
-    
-    twitter = TwitterWrapper.new(@pretendee)
-    
-    @twitter_pics = twitter.recent_photos
-    @word_list = @pretendee.word_histogram || twitter.word_count_histogram
-
-    if twitter.has_instagram?
-      instagram = InstagramWrapper.new
-      insta_id = instagram.get_id(twitter.photo_id)
-      @instagram_pics = instagram.five_instagrams(insta_id)[0..7]
-    end
+    @tweets = @pretendee.tweets || @pretendee.get_recent_tweets
+    @word_list = @pretendee.word_histogram || @pretendee.get_word_histogram
+    @instagram_pics = @pretendee.instagram_photos || @pretendee.get_recent_instagrams
   end
 
   def update
