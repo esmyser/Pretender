@@ -3,12 +3,12 @@ class Report < ActiveRecord::Base
   belongs_to :pretendee
   delegate :user, to: :pretendee
 
-  validates_uniqueness_of :pretendee
+  validates_uniqueness_of :pretendee, :allow_blank => true
 
   belongs_to :topic
   delegate :user, to: :topic
 
-  validates_uniqueness_of :topic
+  validates_uniqueness_of :topic, :allow_blank => true
 
   def self.every_day 
     where(frequency: 1, active: true)
