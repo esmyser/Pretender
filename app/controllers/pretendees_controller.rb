@@ -20,17 +20,9 @@ class PretendeesController < ApplicationController
     @report = @pretendee.report || Report.new
     @user = current_user
 
-    t = TwitterWrapper.new(@pretendee)
-    i = InstagramWrapper.new
-
-    @twitter_pics = t.recent_photos[0..7]
-    @word_list = @pretendee.word_histogram || t.word_count_histogram
-
-    if t.has_instagram? && i.public_instagram?(t.photo_id)
-      insta_id = i.get_id(t.photo_id)
-      i.update_user_instagram(@pretendee, insta_id)
-      @instagram_pics = i.five_instagrams(insta_id)[0..7]
-    end
+    @tweets = @pretendee.tweets || @pretendee.get_recent_tweets
+    @word_list = @pretendee.word_histogram || @pretendee.get_word_histogram
+    @instagram_pics = @pretendee.instagram_photos || @pretendee.get_recent_instagrams
   end
 
   def update
