@@ -1,43 +1,11 @@
-<% if @user.email && @report.active == false %>
-  <%= form_for [@user, @pretendee, @report], as: :report, html: {class: "  form-group"} do |f| %>
-  <div class="row col-sm-4 col-sm-offset-4 input-group">
-    <%= f.label :frequency, "How often would you like to receive email updates?" %>
-    <%= f.select (:frequency) do %>
-      <% [['Every day', 1], ['Every three days', 3], ['Every week', 7]].each do |c| -%>
-      <%= content_tag(:option, c.first, value: c.last) %>
-      <% end %>
-    <% end %>
-    <%= f.hidden_field :pretendee_id, :value => @pretendee.id %>
-    <%= f.hidden_field :active, :value => true %>
-    <span class="input-group-btn"><%= f.submit "Subscribe", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
-  <% end %>
-  </div>
+<div id ="email-form">
+  <% if @user.email && @report.inactive? %>
+  <%= render partial: 'reports/turn_on_pretendee_report_form', locals: {user: @user, pretendee: @pretendee, report: @report } %>
 
-<% elsif @user.email && @report.active == true %>
-  <%= form_for [@user, @pretendee, @report], as: :report, html: {class: "  form-group"} do |f| %>
-  <div class="row col-sm-4 col-sm-offset-4 input-group">
-    <p>You are subscribed for email updates on <%= @pretendee.name %></p>
-    <%= f.hidden_field :active, :value => false %>
-    <span class="input-group-btn"><%= f.submit "Unsubscribe", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
-  <% end %>
-  </div>
+  <% elsif @user.email && @report.active? %>
+  <%= render partial: 'reports/turn_off_pretendee_report_form', locals: {user: @user, pretendee: @pretendee, report: @report } %>
 
-<% else %>
-  <%= form_for(@user) do |f|%>
-  <div class="row col-sm-4 col-sm-offset-4 input-group">
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-    <%= f.fields_for [@user, @pretendee, @report], as: :report, html: {class: "  form-group"} do |ff| %>
-      <%= ff.label :frequency, "How often would you like to receive email updates?" %>
-      <%= ff.select (:frequency) do %>
-        <% [['Every day', 1], ['Every three days', 3], ['Every week', 7]].each do |c| -%>
-        <%= content_tag(:option, c.first, value: c.last) %>
-        <% end %>
-      <% end %>
-      <%= ff.hidden_field :pretendee_id, :value => @pretendee.id %>
-      <%= ff.hidden_field :active, :value => true %>
-    <% end %>
-  <span class="input-group-btn"><%= f.submit "Sign up for email updates!", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
+  <% else %>
+  <%= render partial: 'users/user_email_pretendee_report_form', locals: {user: @user, pretendee: @pretendee, report: @report } %>
   <% end %>
-<% end %>
-
+</div>

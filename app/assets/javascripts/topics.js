@@ -1,6 +1,6 @@
 $(function(){
 
-  $("#email-form").on('submit', '.edit_user', function(e){ 
+  $("#edit_user").submit(function(e){  
     e.preventDefault();
     e.stopPropagation();  
     
@@ -16,13 +16,13 @@ $(function(){
     })
   });
 
-  $("#email-form").on('submit', '#edit_report', function(e){
+  $("#email-form").on('submit', '#edit_report', function(e){ 
     e.preventDefault();
     e.stopPropagation();  
-    
     var url = $(this).attr('action');
     var method = $(this).attr('method');
     var data = $(this).serializeArray();
+
     $.ajax({
       method: method,
       url: url,
@@ -30,6 +30,5 @@ $(function(){
       dataType: 'script'
     })
   });
-
 
 });

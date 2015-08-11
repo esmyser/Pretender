@@ -23,10 +23,21 @@ class UsersController < ApplicationController
     @report = Report.new(:active => params['user']['report']['active'], :frequency => params['user']['report']['frequency'], :pretendee_id => params['user']['report']['pretendee_id'])
     @report.save
     UserMailer.welcome_email(current_user).deliver_now
-    if @user.pretendees
+
+    if params['user']['report']['pretendee_id'] 
       @pretendee = Pretendee.find(params['user']['report']['pretendee_id'])
+      respond_to do |format|
+        format.html {redirect_to user_pretendee_path(@user, @pretendee)}
+        format.js
+      end
+    else
+      @topic = Topic.find(params['user']['report']['topic_id'])
+      respond_to do |format|
+        format.html {redirect_to user_topic_path(@user, @topic)}
+        format.js
+      end
     end
-    redirect_to user_pretendee_path(@user, @pretendee)
+    
   end
 
   private
