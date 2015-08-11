@@ -118,7 +118,24 @@ class TwitterWrapper
     friend_ids.flatten
   end
 
+  def popular_tweets(topic)
+    tweets = @client.search("#" + topic.name.gsub(" ",""), result_type: "popular", lang: "en")
+    tweets = tweets.sort_by {|tweet| tweet.retweet_count}.reverse
+    tweets = tweets.uniq.map do |tweet| 
+      {
+        text: tweet.text,
+        tweeter: tweet.user.name,
+        date: tweet.created_at,
+        url: tweet.uri.to_s,
+        retweet_count: tweet.retweet_count,
+        favorite_count: tweet.favorite_count,
+        photo_url: (tweet.media.first.url.to_s if tweet.media.present?)
+      }
+    end.flatten
+  end
+
   def popular_tweet_ids(hashtag)
+    binding.pry
     tweets = @client.search(hashtag, type: "popular", lang: "en").attrs.first[1]
     tweets = tweets.sort_by! do |tweet|
       tweet[:retweet_count]
@@ -129,7 +146,6 @@ class TwitterWrapper
     tweets.collect do |tweet|
       tweet[:id]
     end.take(5)
-
   end
 
   def popular_tweets_oembeds(hashtag)

@@ -33,4 +33,11 @@ class WikiWrapper
     end
   end
 
+  def wiki_text(topic)
+    {
+      text: first_paragraph(topic),
+      url: get_url(topic)
+    }
+  end
+
 end
