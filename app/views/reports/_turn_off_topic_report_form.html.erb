@@ -2,6 +2,7 @@
   <div class="row col-sm-4 col-sm-offset-4 input-group">
     <p>You are subscribed for email updates on <%= @topic.name %></p>
     <%= f.hidden_field :active, :value => false %>
+    <%= f.hidden_field :topic_id, :value => @topic.id %>
     <span class="input-group-btn"><%= f.submit "Unsubscribe", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
   </div>
 <% end %>

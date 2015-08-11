@@ -16,7 +16,7 @@ $(function(){
     })
   });
 
-  $("#new_report").submit(function(e){  
+  $("#email-form").on('submit', '#edit_report', function(e){ 
     e.preventDefault();
     e.stopPropagation();  
     var url = $(this).attr('action');
