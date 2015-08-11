@@ -9,6 +9,7 @@ class WikiWrapper
   end
 
   def get_page(topic)
+    topic.name = topic.name.split(" ").collect {|word| word.capitalize}.join(' ')
     page = Wikipedia.find(topic.name)
     if page.raw_data['query']['pages'].keys[0] == '-1'
       return "error"
@@ -26,6 +27,7 @@ class WikiWrapper
   end
 
   def get_url(topic)    
+    binding.pry
     if get_page(topic) == "error"
       return "Did you spell something wrong? There are no Wikipedia pages on this topic."
     else
