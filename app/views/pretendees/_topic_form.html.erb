@@ -1,12 +1,15 @@
-<div class="image-wrapper col-sm-3 nopadding">
-  <img src='https://raw.githubusercontent.com/esmyser/Pretender/master/app/assets/images/green_square_topic.png' alt="" class="img-responsive">
-  <div class="image-overlay"> 
-    <p>
-    <%= form_for [@user, @pretendee, @topic], as: :topic,html: {class: "form-group"} do |f| %>
-    <%= f.text_field :name %>
-    <%= f.hidden_field :pretendee_id, :value => @pretendee.id %>
-    <%= f.submit class: "btn btn-defaul btn-primary"%>
+<div class="services-section-3-ezra services-section-2 parallax">
+  <div class="container col-md-12 text-center">
+
+    <h1>Add a topic</h1>
+    <p>Learn more about <%= @pretendee.first_name %>'s interests.</p>
+
+    <%= form_for [@user, @pretendee, @topic], as: :topic, html: {class: "newsletter-form"} do |f| %>
+      <div class="row col-sm-4 col-sm-offset-4 input-group">
+      <%= f.text_field :name, class: "form-control", placeholder: "What do you want to \"know\" about?" %>
+      <%= f.hidden_field :pretendee_id, :value => @pretendee.id %>
+        <span class="input-group-btn"><%= f.submit "Get Learning", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
     <% end %>
-    </p>
+    </div>
   </div>
 </div>

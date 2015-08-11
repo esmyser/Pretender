@@ -1,5 +1,3 @@
-<div class="container col-md-12 text-center">
-
 <% if @user.email && @report.active == false %>
   <%= form_for [@user, @pretendee, @report], as: :report, html: {class: "  form-group"} do |f| %>
   <div class="row col-sm-4 col-sm-offset-4 input-group">
@@ -41,8 +39,5 @@
     <% end %>
   <span class="input-group-btn"><%= f.submit "Sign up for email updates!", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
   <% end %>
-  </div>
-
 <% end %>
 
-</div>

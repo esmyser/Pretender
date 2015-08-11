@@ -26,7 +26,7 @@ require "instagram"
 
 	def recent_instgrams(insta_user_id)
     insta_user_id = insta_user_id.to_i
-		pics = Instagram.user_recent_media(insta_user_id, {:count => 10})
+		pics = Instagram.user_recent_media(insta_user_id, {:count => 6})
     pics.map do |pic|
       {
         url: pic.link,
