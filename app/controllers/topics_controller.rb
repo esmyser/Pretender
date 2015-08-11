@@ -14,12 +14,11 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params['id'])
     @user = User.find(params["user_id"])
     @report = @topic.report || Report.new
-    w = WikiWrapper.new
-    @paragraph = w.first_paragraph(@topic)
-    @url = w.get_url(@topic)
-    @articles = NyTimesWrapper.new.articles(@topic)
-    @client = TwitterWrapper.new(current_user)
-    @tweets = @client.popular_tweets_oembeds(@topic.name)
+
+    @articles = @topic.ny_times_articles || @topic.get_ny_times_articles
+    @tweets = @topic.tweets || @topic.get_tweets
+    @wiki_paragraph = @topic.wiki_text || @topic.get_wiki_text
+
   end
 
   def update
