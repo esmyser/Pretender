@@ -1,9 +1,9 @@
-<% if @articles.present? %>
+<% if @topic.ny_times_articles.present? %>
 <div class="container">
   <h1>Recent Articles</h1>
   <div class="row">
     <div class="portfolio-box iso-call work-col-8">
-      <% @articles.each do |article|%>
+      <% @topic.ny_times_articles.each do |article|%>
       <div class="image-wrapper col-sm-3 nopadding">
         <img src="<%= article['photo_url'] %>" alt="" class="img-responsive">
         <div class="image-overlay">
