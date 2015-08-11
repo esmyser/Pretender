@@ -2,7 +2,8 @@ class TopicsController < ApplicationController
 
   def create
     topic = Topic.new(topic_params)
-    TopicPropertiesHydrator.new(topic)
+    topic.save
+    TopicPropertiesHydrator.new(topic.id)
     topic.save ? (redirect_to user_topic_path(current_user, topic)) : (render :new)
   end
 
