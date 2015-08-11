@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   
   root to: "users#new"
@@ -14,7 +16,8 @@ Rails.application.routes.draw do
     end
   end
 
-
+  mount Sidekiq::Web, at: '/sidekiq'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

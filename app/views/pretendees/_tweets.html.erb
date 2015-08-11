@@ -1,4 +1,4 @@
-<% if @tweets.present? %>
+<% if @tweets.to_s != @tweets %>
     <div class="row test">
       <div class="portfolio-box iso-call work-col-8">
         <% @tweets.each do |tweet|%>
