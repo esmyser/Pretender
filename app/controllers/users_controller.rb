@@ -26,10 +26,12 @@ class UsersController < ApplicationController
     if @user.pretendees
       @pretendee = Pretendee.find(params['user']['report']['pretendee_id'])
     end
+
     respond_to do |format|
       format.html {redirect_to user_pretendee_path(@user, @pretendee)}
       format.js
     end
+    
   end
 
   private
