@@ -1,7 +1,7 @@
-<% if @paragraph %>
+<% if @wiki_paragraph %>
 <div class="container">
   <h1><%= @topic.name.capitalize %></h1>
-  <p><%= @paragraph %></p>
-  <p><i>Not enough info? Read more about <%= @topic.name %> <%= link_to 'here', @url, :target => "_blank" %>.</i></p>
+  <p><%= @wiki_paragraph['text'] %></p>
+  <p><i>Not enough info? Read more about <%= @topic.name %> <%= link_to 'here', @wiki_paragraph['url'], :target => "_blank" %>.</i></p>
 </div>
 <% end %>
