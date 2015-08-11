@@ -18,3 +18,7 @@ end
 every 1.day, at: '11:30 pm' do
   rake "pretendees:update_pretendees"  
 end
+
+every 1.day, at: '3:00 am' do
+  rake "topics:update_topics"
+end
