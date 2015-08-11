@@ -24,7 +24,6 @@ class ReportsController < ApplicationController
     @report = Report.find(params['id'])
     @report.update(report_params)
     @user = current_user
-
     if @report.pretendee 
       @pretendee = @report.pretendee
       respond_to do |format|
