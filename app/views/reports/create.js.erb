@@ -1,6 +1,5 @@
 <% if @pretendee %>
   $("#email-form").html("<%= j render partial: 'pretendees/pretendee_email_form', locals: {pretendee: @pretendee, report: @report, user: @user} %>");
 <% else %>
-debugger;
   $("#email-form").html("<%= j render partial: 'topics/topic_email_form', locals: {topic: @topic, report: @report, user: @user} %>");
 <% end %>
