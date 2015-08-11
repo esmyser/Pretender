@@ -1,8 +1,8 @@
 class TopicsController < ApplicationController
 
   def create
-    topic = Topic.new(topic_params)
-    topic.save ? (redirect_to user_topic_path(current_user, topic)) : (render :new)
+    @topic = Topic.new(topic_params)
+    @topic.save ? (redirect_to user_topic_path(current_user, @topic)) : (render :new)
   end
 
   def new
@@ -18,7 +18,6 @@ class TopicsController < ApplicationController
     @articles = @topic.ny_times_articles || @topic.get_ny_times_articles
     @tweets = @topic.tweets || @topic.get_tweets
     @wiki_paragraph = @topic.wiki_text || @topic.get_wiki_text
-
   end
 
   def update

@@ -16,13 +16,13 @@ $(function(){
     })
   });
 
-  $("#email-form").on('submit', '#edit_report', function(e){
+  $("#new_report").submit(function(e){  
     e.preventDefault();
     e.stopPropagation();  
-    
     var url = $(this).attr('action');
     var method = $(this).attr('method');
     var data = $(this).serializeArray();
+
     $.ajax({
       method: method,
       url: url,
@@ -30,6 +30,5 @@ $(function(){
       dataType: 'script'
     })
   });
-
 
 });
