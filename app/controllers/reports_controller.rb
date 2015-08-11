@@ -28,7 +28,6 @@ class ReportsController < ApplicationController
   end
 
   def update
-    binding.pry
     @report = Report.find(params['id'])
     @pretendee = @report.pretendee
     @topic = @report.topic

@@ -1,28 +1,30 @@
 class TwitterWrapper
-  attr_reader :client
+  attr_reader :client, :words
+  
+  COMMON_WORDS = ["the", "and", "of", "a", "to", "is", "in", "its", "The", "on", "as", "for", "has", 
+    "will", "As", "or", "have", "while", "While", "that", "out", "such", "also", "by", "said", "with", 
+    "than", "only", "into", "an", "one", "other", "but", "for", "from", "<br />", "i", "more", "about", 
+    "About", "again", "Again", "against", "all", "are", "at", "be", "being", "been", "can", "could", "did", 
+    "do", "don't", "down", "up", "each", "few", "get", "got", "had", "have", "has", "he", "her", "she", "he", 
+    "it", "we", "they", "if", "thus", "it's", "hers", "his", "how", "why", "when", "where", "just", "like", 
+    "you", "me", "my", "most", "more", "no", "not", "yes", "off", "once", "only", "our", "out", "over", "under", 
+    "own", "then", "some", "these", "there", "then", "this", "those", "too", "through", "between", "until", 
+    "very", "who", "with", "wouldn't", "would", "was", "were", "itself", "himself", "herself", "which", "make", 
+    "during", "before", "after", "if", "any", "become", "around", "several", "them", "their", "however", "http", 
+    "https", "com", "co", "&", "-", "@", "rt", "+", "|", "so", "your", "i'm", "what", "new", "1", "2", "3", "4", 
+    "5", "6", "7", "8", "9", "0", "we're", "//", "it", "i've", "oh", "it.", "...", "&", "&amp;", "twitter", 
+    "tweets", "next", "let", "come", "i'll", "thing", "rt:", "things", "you're", "am", "well", "two", "one", 
+    "yet", "go", "going", "because", "every", "actually", "another", "we'll", "i'd", "something", "really", 
+    "he's", "much", "less", "us", "same", "him", "they're", "thanks", "great", "bad", "can't", "can", "say", 
+    "tell", "told", "here", "look", "little", "big", "saw", "awesome", "probably", "trying", "should", "never", 
+    "old", "largest", "best", "now", "good", "wait", "first" ]
 
   def initialize(pretendee)
      @pretendee = pretendee
-     @client = create_client
+     @client = client
   end
 
-  def word_count_histogram
-    words = (favorites_text + all_tweets_text + all_descriptions_text).flatten.join(' ').gsub(/"/, '').gsub('.', '').gsub(':', '').gsub('!', '').gsub(')', '').gsub('(', '').gsub(",","").gsub('-', '').gsub('.', '').gsub('/', '').gsub("/'s", '').split(' ')
-    frequency = Hash.new(0)
-    words.each { |word| frequency[word.downcase] += 1 }
-    commonwords = ["the", "and", "of", "a", "to", "is", "in", "its", "The", "on", "as", "for", "has", "will", "As", "or", "have", "while", "While", "that", "out", "such", "also", "by", "said", "with", "than", "only", "into", "an", "one", "other", "but", "for", "from", "<br />", "i", "more", "about", "About", "again", "Again", "against", "all", "are", "at", "be", "being", "been", "can", "could", "did", "do", "don't", "down", "up", "each", "few", "get", "got", "had", "have", "has", "he", "her", "she", "he", "it", "we", "they", "if", "thus", "it's", "hers", "his", "how", "why", "when", "where", "just", "like", "you", "me", "my", "most", "more", "no", "not", "yes", "off", "once", "only", "our", "out", "over", "under", "own", "then", "some", "these", "there", "then", "this", "those", "too", "through", "between", "until", "very", "who", "with", "wouldn't", "would", "was", "were", "itself", "himself", "herself", "which", "make", "during", "before", "after", "if", "any", "become", "around", "several", "them", "their", "however", "http", "https", "com", "co", "&", "-", "@", "rt", "+", "|", "so", "your", "i'm", "what", "new", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "we're", "//", "it", "i've", "oh", "it.", "...", "&", "&amp;", "twitter", "tweets", "next", "let", "come", "i'll", "thing", "rt:", "things", "you're", "am", "well", "two", "one", "yet", "go", "going", "because", "every", "actually", "another", "we'll", "i'd", "something", "really", "he's", "much", "less", "us", "same", "him", "they're", "thanks", "great", "bad", "can't", "can", "say", "tell", "told", "here", "look", "little", "big", "saw", "awesome", "probably", "trying", "should", "never", "old", "largest", "best", "now", "good", "wait", "first" ]
-    frequency = frequency.select {|word, count| !commonwords.include? word}
-
-    frequency = frequency.map do |word, count| 
-      {text: word, weight: count}
-    end
-
-    frequency = frequency.sort_by{|hash| hash[:weight]}.reverse[0..200]
-    @pretendee.update(word_histogram: frequency)
-    frequency
-  end
-
-  def create_client
+  def client
     Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["twitter_key"]
       config.consumer_secret     = ENV["twitter_secret"]
@@ -30,17 +32,39 @@ class TwitterWrapper
       config.access_token_secret = ENV["twitter_access_token_secret"]
     end
   end
-  
+
+  def words
+    frequency = Hash.new(0)
+    words = (favorites_text + all_tweets_text + all_descriptions_text).flatten.join(' ').gsub(/"/, '').gsub('.', '').gsub(':', '').gsub('!', '').gsub(')', '').gsub('(', '').gsub(",","").gsub('-', '').gsub("/'s", '').split(' ')
+    words.each { |word| frequency[word.downcase] += 1 }
+    frequency
+  end
+
   def favorites_text
     favorites.map {|tweet| tweet.text}
   end
 
-  def favorites
-    @client.favorites(@pretendee.twitter).collect {|favorite| favorite}
-  end
-
   def all_tweets_text
     get_all_tweets.map {|tweet| tweet.text}
+  end
+
+  def all_descriptions_text
+    all_friends.collect {|t| t.description}
+  end
+
+  def word_count_histogram
+    frequency = words
+    frequency = frequency.reject {|word, count| COMMON_WORDS.include? word}
+    frequency = frequency.map do |word, count| 
+      {text: word, weight: count}
+    end
+    frequency = frequency.sort_by{|hash| hash[:weight]}.reverse[0..200]
+    @pretendee.update(word_histogram: frequency)
+    frequency
+  end
+
+  def favorites
+    @client.favorites(@pretendee.twitter).collect {|favorite| favorite}
   end
 
   def get_all_tweets
@@ -61,10 +85,6 @@ class TwitterWrapper
     response = yield(max_id) if collection.length <= 1000
     collection += response if response
     response.nil? || response.empty? ? collection.flatten : collect_with_max_id(collection, response.last.id - 1, &block)
-  end
-
-  def all_descriptions_text
-    all_friends.collect {|t| t.description}
   end
 
   def all_friends
@@ -99,7 +119,7 @@ class TwitterWrapper
   end
 
   def popular_tweets(topic)
-    tweets = @client.search("#" + topic.name, result_type: "popular", lang: "en")
+    tweets = @client.search("#" + topic.name.gsub(" ",""), result_type: "popular", lang: "en")
     tweets = tweets.sort_by {|tweet| tweet.retweet_count}.reverse
     tweets = tweets.uniq.map do |tweet| 
       {
@@ -115,41 +135,21 @@ class TwitterWrapper
   end
 
   def popular_tweet_ids(hashtag)
-    tweets = @client.search(hashtag, type: "popular", lang: "en", count: 1000).attrs.first[1]
-    tweets = tweets.sort_by! {|tweet| tweet[:retweet_count]}.reverse
-    tweets = tweets.uniq {|t| t[:text]}
+    binding.pry
+    tweets = @client.search(hashtag, type: "popular", lang: "en").attrs.first[1]
+    tweets = tweets.sort_by! do |tweet|
+      tweet[:retweet_count]
+    end.reverse
 
-    # tweets.collect do |tweet|
-    #   tweet[:id]
-    # end
+    tweets = tweets.uniq { |t| t[:text] }
 
-
-
-
-
-    # def popular_tweet_ids(hashtag)
-    #    tweets = @client.search(hashtag, type: "popular", lang: "en").attrs.first[1]
-    #    tweets = tweets.sort_by! do |tweet|
-    #      tweet[:retweet_count]
-    #    end.reverse
-
-    #    tweets = tweets.uniq { |t| t[:text] }
-
-    #    tweets.collect do |tweet|
-    #      tweet[:id]
-    #    end.take(5)
-
-    #  end
-
-    #  def popular_tweets_oembeds(hashtag)
-    #    popular_tweet_ids(“#” + hashtag).collect do |tweet_id|
-    #      @client.oembed(tweet_id).html
-    #    end
-    #  end
+    tweets.collect do |tweet|
+      tweet[:id]
+    end.take(5)
   end
 
   def popular_tweets_oembeds(hashtag)
-    popular_tweet_ids("#" + hashtag).collect do |tweet_id|
+    popular_tweet_ids(hashtag).collect do |tweet_id|
       @client.oembed(tweet_id).html
     end
   end
@@ -205,6 +205,10 @@ class TwitterWrapper
     else
       link.gsub("https://instagram.com/p/", "").gsub("/", "")
     end
+  end
+
+  def get_name
+    @client.user(@pretendee.twitter).name
   end
 
 end

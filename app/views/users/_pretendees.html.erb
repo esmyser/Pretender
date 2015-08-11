@@ -1,7 +1,7 @@
 <% if @pretendees %>
 	<h1 class="center-header">YOUR CREEPS</h1>	
 	<% @pretendees.each do |pretendee|%>
-		<div class="image-wrapper col-sm-3 nopadding">
+		<div class="image-wrapper col-sm-3 bottompadding">
 			<img src="<%= pretendee.profile_image_url %>" class="img-responsive">
 			<div class="image-overlay"> 
 				<p>

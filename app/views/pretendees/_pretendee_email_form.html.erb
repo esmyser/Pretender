@@ -1,9 +1,8 @@
-<div class="image-wrapper col-sm-3 nopadding">
-  <img src='https://raw.githubusercontent.com/esmyser/Pretender/master/app/assets/images/green_square_email.png' alt="" class="img-responsive">
-  <div class="image-overlay"> 
-  <p>
+<div class="container col-md-12 text-center">
+
 <% if @user.email && @report.active == false %>
   <%= form_for [@user, @pretendee, @report], as: :report, html: {class: "  form-group"} do |f| %>
+  <div class="row col-sm-4 col-sm-offset-4 input-group">
     <%= f.label :frequency, "How often would you like to receive email updates?" %>
     <%= f.select (:frequency) do %>
       <% [['Every day', 1], ['Every three days', 3], ['Every week', 7]].each do |c| -%>
@@ -12,15 +11,22 @@
     <% end %>
     <%= f.hidden_field :pretendee_id, :value => @pretendee.id %>
     <%= f.hidden_field :active, :value => true %>
-    <%= f.submit "Subscribe", class: "btn btn-defaul btn-primary" %>
+    <span class="input-group-btn"><%= f.submit "Subscribe", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
   <% end %>
+  </div>
+
 <% elsif @user.email && @report.active == true %>
   <%= form_for [@user, @pretendee, @report], as: :report, html: {class: "  form-group"} do |f| %>
+  <div class="row col-sm-4 col-sm-offset-4 input-group">
+    <p>You are subscribed for email updates on <%= @pretendee.name %></p>
     <%= f.hidden_field :active, :value => false %>
-    <%= f.submit "Unsubscribe", class: "btn btn-defaul btn-primary" %>
+    <span class="input-group-btn"><%= f.submit "Unsubscribe", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
   <% end %>
+  </div>
+
 <% else %>
   <%= form_for(@user) do |f|%>
+  <div class="row col-sm-4 col-sm-offset-4 input-group">
   <%= f.label :email %>
   <%= f.text_field :email %>
     <%= f.fields_for [@user, @pretendee, @report], as: :report, html: {class: "  form-group"} do |ff| %>
@@ -33,9 +39,10 @@
       <%= ff.hidden_field :pretendee_id, :value => @pretendee.id %>
       <%= ff.hidden_field :active, :value => true %>
     <% end %>
-  <%= f.submit "Sign up for email updates!", class: "btn btn-defaul btn-primary" %>
+  <span class="input-group-btn"><%= f.submit "Sign up for email updates!", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
   <% end %>
+  </div>
+
 <% end %>
-</p>
-</div>
+
 </div>
