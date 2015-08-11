@@ -1,8 +1,9 @@
 class TopicsController < ApplicationController
 
   def create
-    topic = Topic.new(topic_params)
-    topic.save ? (redirect_to user_topic_path(current_user, topic)) : (render :new)
+    @user = current_user
+    @topic = @user.topics.build(topic_params)
+    @topic.save ? (redirect_to user_topic_path(current_user, @topic)) : (render :new)
   end
 
   def new
