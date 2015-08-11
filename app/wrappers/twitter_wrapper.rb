@@ -1,9 +1,7 @@
 class TwitterWrapper
   attr_reader :client, :words
   
-  COMMON_WORDS = ["the", "and", "of", "a", "to", "is", "in", "its", "The", "on", "as", "for", "has", 
-    "will", "As", "or", "have", "while", "While", "that", "out", "such", "also", "by", "said", "with", 
-    "than", "only", "into", "an", "one", "other", "but", "for", "from", "<br />", "i", "more", "about", 
+  COMMON_WORDS = ["the", "and", "of", "a", "to", "is", "in", "its", "The", "on", "as", "for", "has", "will", "As", "or", "have", "while", "While", "that", "out", "such", "also", "by", "said", "with", "than", "only", "into", "an", "one", "other", "but", "for", "from", "<br />", "i", "more", "about", 
     "About", "again", "Again", "against", "all", "are", "at", "be", "being", "been", "can", "could", "did", 
     "do", "don't", "down", "up", "each", "few", "get", "got", "had", "have", "has", "he", "her", "she", "he", 
     "it", "we", "they", "if", "thus", "it's", "hers", "his", "how", "why", "when", "where", "just", "like", 
