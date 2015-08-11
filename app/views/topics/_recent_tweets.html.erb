@@ -17,13 +17,15 @@
     return t;
   }(document, "script", "twitter-wjs"));
 </script>
+  <% binding.pry %>
 
-<% if @tweets %>
+<% if @topic.tweets %>
+  <% binding.pry %>
 <div class="container">
   <h1>Recent Popular Tweets</h1>
   <div class="row">
     <div class="portfolio-box iso-call work-col-8">
-      <% @tweets.each do |tweet| %>
+      <% @topic.tweets.each do |tweet| %>
       <div class="image-wrapper col-sm-3 nopadding">
         <%= tweet['text'] %> |
         <%= tweet['photo_url'] %>
