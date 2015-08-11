@@ -1,0 +1,17 @@
+<%= form_for(@user) do |f|%>
+  <div class="row col-sm-4 col-sm-offset-4 input-group">
+  <%= f.label :email %>
+  <%= f.text_field :email, class: "form-control", placeholder: "user@user.com" %>
+    <%= f.fields_for [@user, @topic, @report], as: :report, html: {class: "  form-group"} do |ff| %>
+      <%= ff.label :frequency, "How often would you like to receive email updates?" %>
+      <%= ff.select (:frequency) do %>
+        <% [['Every day', 1], ['Every three days', 3], ['Every week', 7]].each do |c| -%>
+        <%= content_tag(:option, c.first, value: c.last) %>
+        <% end %>
+      <% end %>
+      <%= ff.hidden_field :topic_id, :value => @topic.id %>
+      <%= ff.hidden_field :active, :value => true %>
+    <% end %>
+  <span class="input-group-btn"><%= f.submit "Sign up for email updates!", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
+  </div>
+<% end %>
