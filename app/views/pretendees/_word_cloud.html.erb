@@ -1,12 +1,10 @@
 <% if @word_list.present? %>
-  <div class="container">
-    <h1><%= @pretendee.name %>'s Recent Words</h1>
 
-    <div id="cloud" class="jqcloud" style="width: 750px; height: 425px; margin:0 auto;"></div>
+    <div id="cloud" class="jqcloud">
+    </div>
 
     <script>
       var wordList = JSON.parse("<%= @word_list.to_json %>".replace(/&quot;/g, '"'));
       $("#cloud").jQCloud(wordList);
     </script>
-  </div>
 <% end %>

@@ -1,10 +1,8 @@
 <% if @instagram_pics %>
-  <div class="container">
-    <h1><%= @pretendee.name %>'s Recent Instagram Pics</h1>
     <div class="row test">
       <div class="portfolio-box iso-call work-col-8">
         <% @instagram_pics.each do |pic|%>
-        <div class="image-wrapper col-sm-3 nopadding">
+        <div class="image-wrapper col-sm-2 nopadding">
           <img src="<%= pic['photo_url'] %>" alt="" class="img-responsive">
           <div class="image-overlay"> 
             <%= link_to pic['caption'], pic['url']  %>
@@ -13,5 +11,4 @@
         <% end %>
       </div>
     </div>
-  </div>
 <% end %>

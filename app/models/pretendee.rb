@@ -9,6 +9,10 @@ class Pretendee < ActiveRecord::Base
     "https://twitter.com/" + twitter.gsub(' ', '') + "/profile_image?size=original"
   end
 
+  def first_name
+    name.split.first
+  end
+
   def get_recent_instagrams
     t = TwitterWrapper.new(self)
     i = InstagramWrapper.new
@@ -29,6 +33,8 @@ class Pretendee < ActiveRecord::Base
 
   def get_word_histogram
     words = TwitterWrapper.new(self).word_count_histogram
+    greatest_weight = words.first[:weight] + 20
+    words << {text: name, weight: greatest_weight}
     update(word_histogram: words)
     self.word_histogram
   end
