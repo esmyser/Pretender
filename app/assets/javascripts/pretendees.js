@@ -1,39 +1,35 @@
-// $(function(){
+$(function(){
 
-//   $("#edit_user").submit(function(e){  
-//     e.preventDefault();
-//     e.stopPropagation();  
+  $("#edit_user").submit(function(e){  
+    e.preventDefault();
+    e.stopPropagation();  
     
-//     var url = $(this).attr('action');
-//     var method = $(this).attr('method');
-//     var data = $(this).serializeArray();
+    var url = $(this).attr('action');
+    var method = $(this).attr('method');
+    var data = $(this).serializeArray();
 
-//     $.ajax({
-//       method: method,
-//       url: url,
-//       data: data,
-//     })
-//       .done(function() {
-//         alert( "Thanks! We've updated your preferences.");
-//       });
-//   });
+    $.ajax({
+      method: method,
+      url: url,
+      data: data,
+      dataType: 'script'
+    })
+  });
 
-//   $("#edit_report").submit(function(e){
-//     e.preventDefault();
-//     e.stopPropagation();  
+  $("#email-form").on('submit', '#edit_report', function(e){
+    e.preventDefault();
+    e.stopPropagation();  
     
-//     var url = $(this).attr('action');
-//     var method = $(this).attr('method');
-//     var data = $(this).serializeArray();
-//     $.ajax({
-//       method: method,
-//       url: url,
-//       data: data,
-//     })
-//       .done(function() {
-//         alert( "Thanks! We've updated your preferences.");
-//       });
-//   });
+    var url = $(this).attr('action');
+    var method = $(this).attr('method');
+    var data = $(this).serializeArray();
+    $.ajax({
+      method: method,
+      url: url,
+      data: data,
+      dataType: 'script'
+    })
+  });
 
 
-// });
+});
