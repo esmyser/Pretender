@@ -1,6 +1,6 @@
 $(function(){
 
-  $("#edit_user").submit(function(e){  
+  $("#email-form").on('submit', '.edit_user', function(e){ 
     e.preventDefault();
     e.stopPropagation();  
     
