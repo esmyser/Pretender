@@ -1,4 +1,3 @@
-# sessions_controller.rb
 class SessionsController < ApplicationController   
 	
   skip_before_action :login_required, only: :create
