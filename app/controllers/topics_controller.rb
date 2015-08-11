@@ -15,18 +15,6 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params['id'])
     @user = User.find(params["user_id"])
     @report = @topic.report || Report.new
-
-    # if @topic.articles.empty?
-    #   @topic.articles = NyTimesWrapper.articles(@topic.name)
-    # end
-
-    # if @topic.tweets.empty?
-    #   @topic.tweets = TwitterWrapper.tweets(@topic.name)
-    # end
-
-    # if @topic.wiki_text.empty?
-    #   @topic.wiki_text = WikiWrapper.wiki_text(@topic.name)
-    # end
   end
 
   def update
