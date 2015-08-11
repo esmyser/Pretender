@@ -9,7 +9,6 @@ class PretendeesController < ApplicationController
     @pretendee = Pretendee.create(pretendee_params)
     PretendeePropertiesHydrator.new(@pretendee.id)
     if @pretendee.save
-      @pretendee.update(name: TwitterWrapper.new(@pretendee).get_name)
       redirect_to user_pretendee_path(current_user, @pretendee)
     else
       render :new
