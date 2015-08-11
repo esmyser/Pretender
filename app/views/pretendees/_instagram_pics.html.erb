@@ -1,7 +1,7 @@
-<% if @instagram_pics %>
+<% if @pretendee.instagram_photos %>
     <div class="row test">
       <div class="portfolio-box iso-call work-col-8">
-        <% @instagram_pics.each do |pic|%>
+        <% @pretendee.instagram_photos.each do |pic|%>
         <div class="image-wrapper col-sm-2 nopadding">
           <img src="<%= pic['photo_url'] %>" alt="" class="img-responsive">
           <div class="image-overlay"> 

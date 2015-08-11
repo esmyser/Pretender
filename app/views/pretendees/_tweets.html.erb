@@ -1,7 +1,7 @@
-<% if @tweets.to_s != @tweets %>
+<% if @pretendee.tweets.present? %>
     <div class="row test">
       <div class="portfolio-box iso-call work-col-8">
-        <% @tweets.each do |tweet|%>
+        <% @pretendee.tweets.each do |tweet|%>
         <div class="image-wrapper col-sm-4 nopadding">
           <img src="<%= asset_path( 'tweet.png' ) %>" alt="" class="img-responsive">
           <h3 class="tweet">"<%= tweet['text'] %>"</h3>

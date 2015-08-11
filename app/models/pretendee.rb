@@ -33,8 +33,6 @@ class Pretendee < ActiveRecord::Base
 
   def get_word_histogram
     words = TwitterWrapper.new(self).word_count_histogram
-    greatest_weight = words.first[:weight] + 20
-    words.unshift({text: name, weight: greatest_weight})
     update(word_histogram: words)
     self.word_histogram
   end

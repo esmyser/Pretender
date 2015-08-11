@@ -1,10 +1,10 @@
-<% if @word_list.present? %>
+<% if @pretendee.word_histogram? %>
 
     <div id="cloud" class="jqcloud">
     </div>
 
     <script>
-      var wordList = JSON.parse("<%= @word_list.to_json %>".replace(/&quot;/g, '"'));
+      var wordList = JSON.parse("<%= @pretendee.word_histogram.to_json %>".replace(/&quot;/g, '"'));
       $("#cloud").jQCloud(wordList);
     </script>
 <% end %>
