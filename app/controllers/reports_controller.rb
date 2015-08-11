@@ -10,25 +10,16 @@ class ReportsController < ApplicationController
       @topic = Topic.find(report_params['topic_id'])
     end
 
-    # if @pretendee
-    #   if @report.save 
-    #     redirect_to user_pretendee_path(current_user, @pretendee)
-    #   else
-    #     flash.now[:notice] = @report.errors.full_messages.to_sentence
-    #     render :back
-    #   end
-    # else
-    #   if @report.save 
-    #     redirect_to user_topic_path(current_user, @topic)
-    #   else
-    #     flash.now[:notice] = @report.errors.full_messages.to_sentence
-    #     render :back
-    #   end
-    # end
-
-    respond_to do |format|
-      format.html {redirect_to user_pretendee_path(@user, @pretendee)}
-      format.js
+    if @pretendee && @report.save
+      respond_to do |format|
+        format.html {redirect_to user_pretendee_path(@user, @pretendee)}
+        format.js
+      end
+    elsif @topic && @report.save
+      respond_to do |format|
+        format.html {redirect_to user_topic_path(current_user, @topic)}
+        format.js
+      end
     end
   end
 
@@ -38,15 +29,17 @@ class ReportsController < ApplicationController
     @topic = @report.topic
     @report.update(report_params)
     @user = current_user
-    # if @pretendee 
-    #   redirect_to user_pretendee_path(current_user, @pretendee)
-    # else
-    #   redirect_to user_topic_path(current_user, @topic)
-    # end
 
-    respond_to do |format|
-      format.html {redirect_to user_pretendee_path(@user, @pretendee)}
-      format.js
+    if @pretendee
+      respond_to do |format|
+        format.html {redirect_to user_pretendee_path(@user, @pretendee)}
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.html {redirect_to user_topic_path(current_user, @topic)}
+        format.js
+      end
     end
   end
 

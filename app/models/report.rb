@@ -8,6 +8,14 @@ class Report < ActiveRecord::Base
   delegate :user, to: :topic
   validates_uniqueness_of :topic, :allow_blank => true
 
+  def active?
+    self.active == true
+  end
+
+  def inactive?
+    self.active == false
+  end
+
   def self.every_day_pretendee
     where(frequency: 1, active: true, topic_id: nil)
   end
