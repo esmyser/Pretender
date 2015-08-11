@@ -42,9 +42,7 @@ class TwitterWrapper
     frequency = frequency.map do |word, count| 
       {text: word, weight: count}
     end
-    frequency = frequency.sort_by{|hash| hash[:weight]}.reverse[0..200]
-    @pretendee.update(word_histogram: frequency)
-    frequency
+    frequency.sort_by{|hash| hash[:weight]}.reverse[0..199]
   end
 
   def favorites

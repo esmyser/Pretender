@@ -3,7 +3,7 @@
 
     <h1>Add a topic</h1>
     <p>Learn more about <%= @pretendee.first_name %>'s interests.</p>
-
+    
     <%= form_for [@user, @pretendee, @topic], as: :topic, html: {class: "newsletter-form"} do |f| %>
       <div class="row col-sm-4 col-sm-offset-4 input-group">
       <%= f.text_field :name, class: "form-control", placeholder: "What do you want to \"know\" about?" %>
