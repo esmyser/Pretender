@@ -2,7 +2,6 @@
   <div class="row col-sm-4 col-sm-offset-4 input-group">
   <%= f.label :email %>
   <%= f.text_field :email %>
-    render partial: '', locals: {form: f}
     <%= f.fields_for [@user, @pretendee, @report], as: :report, html: {class: "  form-group"} do |ff| %>
       <%= ff.label :frequency, "How often would you like to receive email updates?" %>
       <%= ff.select (:frequency) do %>
