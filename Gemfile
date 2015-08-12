@@ -9,6 +9,7 @@ gem 'whenever', :require => false
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
+gem 'pusher'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
