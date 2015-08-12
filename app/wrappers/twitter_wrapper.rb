@@ -116,25 +116,24 @@ class TwitterWrapper
     end.flatten
   end
 
-  def popular_tweet_ids(hashtag)
-    binding.pry
-    tweets = @client.search(hashtag, type: "popular", lang: "en").attrs.first[1]
-    tweets = tweets.sort_by! do |tweet|
-      tweet[:retweet_count]
-    end.reverse
+  # def popular_tweet_ids(hashtag)
+  #   tweets = @client.search(hashtag, type: "popular", lang: "en").attrs.first[1]
+  #   tweets = tweets.sort_by! do |tweet|
+  #     tweet[:retweet_count]
+  #   end.reverse
 
-    tweets = tweets.uniq { |t| t[:text] }
+  #   tweets = tweets.uniq { |t| t[:text] }
 
-    tweets.collect do |tweet|
-      tweet[:id]
-    end.take(5)
-  end
+  #   tweets.collect do |tweet|
+  #     tweet[:id]
+  #   end.take(5)
+  # end
 
-  def popular_tweets_oembeds(hashtag)
-    popular_tweet_ids(hashtag).collect do |tweet_id|
-      @client.oembed(tweet_id).html
-    end
-  end
+  # def popular_tweets_oembeds(hashtag)
+  #   popular_tweet_ids(hashtag).collect do |tweet_id|
+  #     @client.oembed(tweet_id).html
+  #   end
+  # end
 
   def recent_tweets
     options = {count: 10, include_rts: true}
