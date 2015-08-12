@@ -39,7 +39,7 @@ gem 'flickr.rb', '~> 1.2.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'pg'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-instagram'
@@ -49,21 +49,9 @@ gem 'nytimes-articles'
 gem 'instagram'
 gem 'image_suckr'
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'pry-byebug'
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-
-  gem 'rails-erd'
-
-end
 
 group :test, :development do
+  gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'selenium-webdriver'
@@ -72,16 +60,17 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'simplecov'
   gem 'database_cleaner'
-  gem 'pg'
   gem 'pry'
   gem 'guard-rspec', require: false
   gem 'thin'
   gem "letter_opener"
   gem "launchy"
+  gem 'spring'
+  gem 'rails-erd'
+  gem 'web-console', '~> 2.0'
 end
 
 group :production do
-  # gem 'pg'
   gem 'google-analytics-rails'
   gem 'rails_12factor'
 end
