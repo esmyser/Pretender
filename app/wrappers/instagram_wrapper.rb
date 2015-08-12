@@ -39,6 +39,22 @@ require "instagram"
     end.compact
 	end
 
+  def instagram_caption_text(insta_user_id)
+    initial_page = Instagram.user_recent_media(insta_user_id)
+    insta_user_id = insta_user_id.to_i
+    photos = []
+    parse_pages_starting_with(initial_page, insta_user_id, photos)
+  end
+
+  def parse_pages_starting_with(page, insta_user_id, photos)
+    unless page.pagination.next_max_id.nil?
+      photos << page.collect {|i| i.caption}.compact
+      next_page = Instagram.user_recent_media(insta_user_id, :max_id => page.pagination.next_max_id )
+      parse_pages_starting_with(next_page, insta_user_id, photos)
+    end
+    photos.flatten.collect {|c| c.text}.compact
+  end
+
   def insta_username(insta_user_id)
     Instagram.user(insta_user_id)[:username]
   end
