@@ -1,15 +1,18 @@
 <% if @pretendee.tweets.present? %>
-    <div class="row test">
-      <div class="portfolio-box iso-call work-col-8">
-        <% @pretendee.tweets.each do |tweet|%>
-        <div class="image-wrapper col-sm-4 nopadding">
-          <img src="<%= asset_path( 'tweet.png' ) %>" alt="" class="img-responsive">
-          <h3 class="tweet">"<%= tweet['text'] %>"</h3>
-          <div class="image-overlay">
-            <%= link_to tweet['text'], tweet['url'] %>
-          </div>
+  <div class="row test">
+    <div class="portfolio-box iso-call work-col-8">
+      <% @pretendee.tweets.each do |tweet|%>
+      <div class="image-wrapper col-sm-4 nopadding">
+        <img src="<%= asset_path( 'tweet.png' ) %>" alt="" class="img-responsive">
+        <h3 class="tweet"><%= tweet['text'] %></h3>
+        <div class="image-overlay">
+          <% if tweet['photo_url'] %>
+            <img src="<%= tweet['photo_url'] %>" alt="" class="img-responsive">
+          <% end %>
+          <%= link_to tweet['text'], tweet['url'] %>
         </div>
-      <% end %>
       </div>
+    <% end %>
     </div>
+  </div>
 <% end %>
