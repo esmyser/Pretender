@@ -19,6 +19,7 @@ class TwitterWrapper
 
   def words
     frequency = Hash.new(0)
+    instagram_text ? instagram_text : (instagram_text = []) 
     words = (favorites_text + all_tweets_text + all_descriptions_text + instagram_text).flatten.join(' ').gsub(/"/, '').gsub('.', '').gsub(':', '').gsub('!', '').gsub(')', '').gsub('(', '').gsub(",","").gsub('-', '').gsub("|", "").gsub("/'s", '').split(' ')
     words.each { |word| frequency[word.downcase] += 1 }
     frequency
@@ -192,7 +193,9 @@ class TwitterWrapper
   def instagram_text
     i = InstagramWrapper.new
     insta_id = i.get_id(self.photo_id)
-    captions = i.instagram_caption_text(insta_id)
+    if insta_id
+      captions = i.instagram_caption_text(insta_id)
+    end
   end
 
   def get_name

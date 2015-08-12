@@ -16,21 +16,20 @@ class ReportsController < ApplicationController
         format.js
       end
     end
-
   end
 
   def update
+    binding.pry
     @report = Report.find(params['id'])
     @report.update(report_params)
     @user = current_user
-    if @report.pretendee 
-      @pretendee = @report.pretendee
+    if @report.save && report_params['pretendee_id']
       respond_to do |format|
         format.html {redirect_to user_pretendee_path(@user, @pretendee)}
         format.js
       end
-    elsif @report.topic 
-      @topic = @report.topic
+    elsif @report.save && report_params['topic_id']
+      binding.pry
       respond_to do |format|
         format.html {redirect_to user_topic_path(@user, @topic)}
         format.js
