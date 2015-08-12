@@ -9,7 +9,7 @@ class PretendeesController < ApplicationController
     @pretendee = Pretendee.create(pretendee_params)
     PretendeePropertiesHydrator.new(@pretendee.id)
     if @pretendee.save
-      redirect_to user_pretendee_path(current_user, @pretendee)
+      redirect_to user_path(current_user)
     else
       render :new
     end

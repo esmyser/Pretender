@@ -20,8 +20,10 @@ require "instagram"
   end
 
   def get_id(photo_id)
-    photo = Instagram.client.media_shortcode(photo_id)
-    photo[:user][:id]
+    if photo_id
+      photo = Instagram.client.media_shortcode(photo_id)
+      photo[:user][:id]
+    end
   end
 
 	def recent_instgrams(insta_user_id)

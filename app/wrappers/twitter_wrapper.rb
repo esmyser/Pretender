@@ -182,9 +182,9 @@ class TwitterWrapper
 
   def photo_id
     link = get_insta_tweet
-    if link && link.first(5) == "http:"
+    if (link && link.first(5) == "http:")
       link.gsub("http://instagram.com/p/", "").gsub("/", "")
-    else
+    elsif (link && link.first(5) == "https:")
       link.gsub("https://instagram.com/p/", "").gsub("/", "")
     end
   end
