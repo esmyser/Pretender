@@ -2,7 +2,8 @@
 <p>Choose how often you'd like to receive an updated report on <%= @pretendee.name %></p>
 <%= form_for [@user, @pretendee, @report], as: :report, html: {class: "  form-group"} do |f| %>
   <div class="row col-sm-4 col-sm-offset-4 input-group">
-    <%= f.select (:frequency) do %>
+    <%= f.select (:frequency), class: "selectpicker" do %>
+      <optgroup label="Frequency">
       <% [['Every day', 1], ['Every three days', 3], ['Every week', 7]].each do |c| -%>
       <%= content_tag(:option, c.first, value: c.last) %>
       <% end %>

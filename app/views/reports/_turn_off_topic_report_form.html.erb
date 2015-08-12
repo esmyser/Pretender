@@ -3,7 +3,8 @@
 
 <%= form_for [@user, @topic, @report], as: :report, html: {class: "  form-group"} do |f| %>
   <div class="row col-sm-4 col-sm-offset-4 input-group">
-    <%= f.select (:frequency) do %>
+    <%= f.select (:frequency), class: "selectpicker" do %>
+      <optgroup label="Frequency">
       <% [['Every day', 1], ['Every three days', 3], ['Every week', 7]].each do |c| -%>
       <%= content_tag(:option, c.first, value: c.last) %>
       <% end %>
@@ -14,7 +15,7 @@
   </div>
 <% end %>
 
-<p>Done creeping on <%= @topic.name %>?</p>
+<p>Done learning about <%= @topic.name %>?</p>
 <%= form_for [@user, @topic, @report], as: :report, html: {class: "  form-group"} do |f| %>
   <div class="row col-sm-4 col-sm-offset-4 input-group">
     <%= f.hidden_field :active, :value => false %>

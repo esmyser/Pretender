@@ -1,18 +1,24 @@
 <% if @pretendee.tweets.present? %>
-  <div class="row test">
-    <div class="portfolio-box iso-call work-col-8">
-      <% @pretendee.tweets.each do |tweet|%>
-      <div class="image-wrapper col-sm-4 nopadding">
-        <img src="<%= asset_path( 'tweet.png' ) %>" alt="" class="img-responsive">
-        <h3 class="tweet"><%= tweet['text'] %></h3>
-        <div class="image-overlay">
-          <% if tweet['photo_url'] %>
-            <img src="<%= tweet['photo_url'] %>" alt="" class="img-responsive">
-          <% end %>
-          <%= link_to tweet['text'], tweet['url'] %>
+  <div class="testi parallax " data-stellar-background-ratio="0.5" id="tweets-parallax">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+          <div id="testi-carousel" class="owl-carousel">
+            <% @pretendee.tweets.each do |tweet|%>
+            <a href = "<%= tweet['url'] %>" target="_blank">
+            <div>
+              <% if tweet['photo_url'] %>
+                <img src="<%= tweet['photo_url'] %>" alt="">
+              <% else %>
+                <img src="<%= @pretendee.profile_image_url %>" alt="">
+               <% end %>
+              <h4><%= tweet['text'] %></h4>
+            </div><!--testimonials item like paragraph-->
+            </a>
+            <% end %>
+          </div>
         </div>
       </div>
-    <% end %>
     </div>
   </div>
 <% end %>

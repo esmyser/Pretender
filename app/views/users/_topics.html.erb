@@ -1,5 +1,6 @@
-<% if @topics %>
-  <h1 class="center-header">YOUR TOPICS</h1>
+<div id="topics">
+  <% if @topics %>
+    <h1 class="center-header">YOUR TOPICS</h1>
     <% @topics.each do |topic|%>
       <div class="image-wrapper col-sm-3 nopadding">
         <img src="<%= SuckrWrapper.new.google_image_url_for_phrase(topic.name) %>" class="img-responsive">
@@ -13,5 +14,4 @@
       </div><!-- ends topic image div -->
     <% end %><!-- ends topic loop -->
   <% end %><!-- end if statement --> 
-
-""
+</div>

@@ -99,8 +99,18 @@ body {
   padding-bottom: 0;
 }
 
-.topicstweet {
-  background-image: url('pattern.png');
-  background-repeat: repeat;
-  background-color: rgba(0, 0, 0, 0.6);
+#testi-carousel > div.owl-wrapper-outer > div > div > a > div > img {
+  height: 99px;
+}
+
+#tweets-parallax {
+  background-image: url(../assets/twitter-background.jpg);
+}
+
+#tweets-parallax > div > div > div > h1 {
+  color: #FFFFFF;
+}
+
+#signup-emails {
+  background-image: url(../assets/mail.jpg);
 }
