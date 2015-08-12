@@ -11,9 +11,6 @@ class TopicWorker
 
     Pusher.url = "https://01e0b165f94105952d85:2d714e5fb2468fd05eec@api.pusherapp.com/apps/135145"
     Pusher["whatever"].trigger("finished", {topic: topic})
-      # is the data just @topic? —> will be converted to json
-      # it should just be a hash:
-      # {:topic => @topic}
   end
 
 end
