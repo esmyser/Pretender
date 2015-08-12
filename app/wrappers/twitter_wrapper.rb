@@ -112,7 +112,7 @@ class TwitterWrapper
         url: tweet.uri.to_s,
         retweet_count: tweet.retweet_count,
         favorite_count: tweet.favorite_count,
-        photo_url: (tweet.media.first.url.to_s if tweet.media.present?)
+        photo_url: (tweet.media.first.media_url.to_s if tweet.media.present?)
       }
     end.flatten
   end
@@ -143,7 +143,7 @@ class TwitterWrapper
         url: tweet.uri.to_s,
         text: tweet.text,
         date: tweet.created_at.to_s.split.first,
-        photo_url: tweet.media.present? && tweet.media[0].media_url.to_s
+        photo_url: (tweet.media[0].media_url.to_s if tweet.media.present?)
       }
     end.compact
   end

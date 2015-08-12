@@ -98,3 +98,9 @@ body {
   padding-top: 0;
   padding-bottom: 0;
 }
+
+.topicstweet {
+  background-image: url('pattern.png');
+  background-repeat: repeat;
+  background-color: rgba(0, 0, 0, 0.6);
+}

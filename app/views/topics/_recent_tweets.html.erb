@@ -18,22 +18,22 @@
   }(document, "script", "twitter-wjs"));
 </script>
 
-<% if @topic.tweets %>
-<div class="container">
-  <h1>Recent Popular Tweets</h1>
-  <div class="row">
+<% if @topic.tweets.present? %>
+  <div class="row test">
+    <h1>Recent Popular Tweets</h1>
     <div class="portfolio-box iso-call work-col-8">
-      <% @topic.tweets.each do |tweet| %>
-      <div class="image-wrapper col-sm-3 nopadding">
-        <%= tweet['text'] %> |
-        <%= tweet['photo_url'] %>
-        <a href="#">
+      <% @topic.tweets.each do |tweet|%>
+      <div class="image-wrapper col-sm-4 nopadding">
+        <img src="<%= asset_path( 'tweet.png' ) %>" alt="" class="img-responsive">
+        <h3 class="tweet"><%= tweet['tweeter'] %>: <%= tweet['text'] %></h3>
         <div class="image-overlay">
+          <% if tweet['photo_url'] %>
+           <img src="<%= tweet['photo_url'] %>" alt="" class="img-responsive">
+           <% end %>
+          <%= link_to tweet['text'], tweet['url'] %>
         </div>
-        </a>
       </div>
-      <% end %>
+    <% end %>
     </div>
   </div>
-</div>
 <% end %>
