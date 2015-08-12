@@ -1,10 +1,14 @@
 class SuckrWrapper
 
-require "image_suckr"
+# require "image_suckr"
 
-	def google_image_url_for_phrase(phrase)
+	# def initialize(topic)
+	# 	@topic = topic
+ #  end
+
+	def google_image_url_for_phrase(topic)
 		suckr = ImageSuckr::GoogleSuckr.new
-		suckr.get_image_url({"q" => "#{phrase}"})
+		suckr.get_image_url({"q" => "#{topic}"})
 	end
 
 end
