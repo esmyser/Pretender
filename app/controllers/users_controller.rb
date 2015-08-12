@@ -20,7 +20,13 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     @user.update(user_params)
-    @report = Report.new(:active => params['user']['report']['active'], :frequency => params['user']['report']['frequency'], :pretendee_id => params['user']['report']['pretendee_id'])
+
+    if params['user']['report']['pretendee_id']
+      @report = Report.new(:active => params['user']['report']['active'], :frequency => params['user']['report']['frequency'], :pretendee_id => params['user']['report']['pretendee_id'])
+    else
+      @report = Report.new(:active => params['user']['report']['active'], :frequency => params['user']['report']['frequency'], :topic_id => params['user']['report']['topic_id'])
+    end
+
     @report.save
     UserMailer.welcome_email(current_user).deliver_now
 

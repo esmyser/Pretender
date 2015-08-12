@@ -3,7 +3,6 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(report_params)
     @user = current_user
-
     if @report.save && report_params['pretendee_id']
       @pretendee = Pretendee.find(report_params['pretendee_id'])
       respond_to do |format|

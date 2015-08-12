@@ -1,10 +1,10 @@
-<%= form_for(@user) do |f|%>
+<h1>Receive email updates!</h1>
+<p>Choose how often you'd like to receive an updated report on <%= @pretendee.name %></p>
+<%= form_for @user, html: {class: "newsletter-form"} do |f|%>
   <div class="row col-sm-4 col-sm-offset-4 input-group">
-  <%= f.label :email %>
-  <%= f.text_field :email %>
+  <%= f.text_field :email, class: "form-control", placeholder: "user@user.com" %>
     <%= f.fields_for [@user, @pretendee, @report], as: :report, html: {class: "  form-group"} do |ff| %>
-      <%= ff.label :frequency, "How often would you like to receive email updates?" %>
-      <%= ff.select (:frequency) do %>
+      <%= ff.select (:frequency), class: "form-control" do %>
         <% [['Every day', 1], ['Every three days', 3], ['Every week', 7]].each do |c| -%>
         <%= content_tag(:option, c.first, value: c.last) %>
         <% end %>
@@ -12,6 +12,7 @@
       <%= ff.hidden_field :pretendee_id, :value => @pretendee.id %>
       <%= ff.hidden_field :active, :value => true %>
     <% end %>
-  <span class="input-group-btn"><%= f.submit "Sign up for email updates!", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
+  <span class="input-group-btn"><%= f.submit "Subscribe me!", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
   </div>
 <% end %>
+
