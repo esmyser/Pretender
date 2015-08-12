@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'figaro'
+gem 'flickr.rb', '~> 1.2.1'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -45,6 +47,7 @@ gem 'twitter'
 gem "jqcloud-rails"
 gem 'nytimes-articles'
 gem 'instagram'
+gem 'image_suckr'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

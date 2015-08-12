@@ -117,7 +117,7 @@ class TwitterWrapper
   end
 
   def popular_tweet_ids(hashtag)
-    binding.pry
+
     tweets = @client.search(hashtag, type: "popular", lang: "en").attrs.first[1]
     tweets = tweets.sort_by! do |tweet|
       tweet[:retweet_count]
