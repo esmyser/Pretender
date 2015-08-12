@@ -1,10 +1,15 @@
 class TopicsController < ApplicationController
 
   def create
-    topic = Topic.new(topic_params)
-    topic.save
+    topic = Topic.create(topic_params)
     TopicPropertiesHydrator.new(topic.id)
-    topic.save ? (redirect_to user_topic_path(current_user, topic)) : (render :new)
+
+    respond_to do |format|
+      format.html { topic.save ? (redirect_to user_topic_path(current_user, topic)) : (render :new) }
+
+      format.js { }
+    end
+
   end
 
   def new
