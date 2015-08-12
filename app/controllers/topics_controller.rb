@@ -5,7 +5,13 @@ class TopicsController < ApplicationController
     topic.image = SuckrWrapper.new.google_image_url_for_phrase(topic.name)
     topic.save
     TopicPropertiesHydrator.new(topic.id)
-    topic.save ? (redirect_to user_topic_path(current_user, topic)) : (render :new)
+
+    respond_to do |format|
+      format.html { topic.save ? (redirect_to user_topic_path(current_user, topic)) : (render :new) }
+
+      format.js { }
+    end
+
   end
 
   def new

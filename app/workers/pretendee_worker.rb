@@ -1,5 +1,5 @@
 class PretendeeWorker
-	include Sidekiq::Worker
+  include Sidekiq::Worker
 
   def perform(pretendee_id)
     pretendee = Pretendee.find(pretendee_id)
