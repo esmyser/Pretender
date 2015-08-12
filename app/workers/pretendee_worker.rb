@@ -6,9 +6,6 @@ class PretendeeWorker
     twitter_wrapper = TwitterWrapper.new(pretendee)
     instagram_wrapper = InstagramWrapper.new
 
-
-    # binding.pry
-
     pretendee.name = twitter_wrapper.get_name
     pretendee.tweets = twitter_wrapper.recent_tweets
     pretendee.word_histogram = twitter_wrapper.word_count_histogram
