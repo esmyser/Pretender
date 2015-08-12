@@ -1,11 +1,15 @@
-<div id ="email-form">
-  <% if @user.email && @report.inactive? %>
-  <%= render partial: 'reports/turn_on_pretendee_report_form', locals: {user: @user, pretendee: @pretendee, report: @report } %>
+<div class="services-section-2 parallax" id="signup-emails">
+  <div class="container col-md-12 text-center">
+    <div id ="email-form">
+      <% if @user.email && @report.inactive? %>
+      <%= render partial: 'reports/turn_on_pretendee_report_form', locals: {user: @user, pretendee: @pretendee, report: @report } %>
 
-  <% elsif @user.email && @report.active? %>
-  <%= render partial: 'reports/turn_off_pretendee_report_form', locals: {user: @user, pretendee: @pretendee, report: @report } %>
+      <% elsif @user.email && @report.active? %>
+      <%= render partial: 'reports/turn_off_pretendee_report_form', locals: {user: @user, pretendee: @pretendee, report: @report } %>
 
-  <% else %>
-  <%= render partial: 'users/user_email_pretendee_report_form', locals: {user: @user, pretendee: @pretendee, report: @report } %>
-  <% end %>
+      <% else %>
+      <%= render partial: 'users/user_email_pretendee_report_form', locals: {user: @user, pretendee: @pretendee, report: @report } %>
+      <% end %>   
+    </div>
+  </div>
 </div>

@@ -1,13 +1,15 @@
- <%= form_for [@user, @topic, @report], as: :report, html: {class: "  form-group"} do |f| %>
+<h1>Receive email updates!</h1>
+<p>Choose how often you'd like to receive an updated report on <%= @topic.name %></p>
+<%= form_for [@user, @topic, @report], as: :report, html: {class: "  form-group"} do |f| %>
   <div class="row col-sm-4 col-sm-offset-4 input-group">
-    <%= f.label :frequency, "How often would you like to receive email updates?" %>
-    <%= f.select (:frequency) do %>
+    <%= f.select (:frequency), class: "selectpicker" do %>
+      <optgroup label="Frequency">
       <% [['Every day', 1], ['Every three days', 3], ['Every week', 7]].each do |c| -%>
       <%= content_tag(:option, c.first, value: c.last) %>
       <% end %>
     <% end %>
     <%= f.hidden_field :topic_id, :value => @topic.id %>
     <%= f.hidden_field :active, :value => true %>
-    <span class="input-group-btn"><%= f.submit "Subscribe", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
+    <span class="input-group-btn"><%= f.submit "Subscribe me!", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
   </div>
 <% end %>

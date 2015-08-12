@@ -9,7 +9,12 @@ class NyTimesWrapper
 
   def parse_article_hash(art_hash)
     art_hash['response']['docs'][0..4].map do |art|
-      url = !art['multimedia'].empty? && "http://nytimes.com/#{art['multimedia'].max_by{|hash| hash['width']}['url']}"
+      if art['multimedia'].empty?
+        keywords = art['snippet']
+        url = SuckrWrapper.new.google_image_url_for_phrase(keywords)
+      else
+        url ="http://nytimes.com/#{art['multimedia'].max_by{|hash| hash['width']}['url']}"
+      end
       {
         url: art['web_url'],
         title: art['headline']['main'],

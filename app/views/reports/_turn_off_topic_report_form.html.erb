@@ -1,6 +1,23 @@
+<h1>Update your email preferences</h1>
+<p>Choose how often you'd like to receive an updated report on <%= @topic.name %></p>
+
 <%= form_for [@user, @topic, @report], as: :report, html: {class: "  form-group"} do |f| %>
   <div class="row col-sm-4 col-sm-offset-4 input-group">
-    <p>You are subscribed for email updates on <%= @topic.name %></p>
+    <%= f.select (:frequency), class: "selectpicker" do %>
+      <optgroup label="Frequency">
+      <% [['Every day', 1], ['Every three days', 3], ['Every week', 7]].each do |c| -%>
+      <%= content_tag(:option, c.first, value: c.last) %>
+      <% end %>
+    <% end %>
+    <%= f.hidden_field :topic_id, :value => @topic.id %>
+    <%= f.hidden_field :active, :value => true %>
+    <span class="input-group-btn"><%= f.submit "Update my preferences", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
+  </div>
+<% end %>
+
+<p>Done learning about <%= @topic.name %>?</p>
+<%= form_for [@user, @topic, @report], as: :report, html: {class: "  form-group"} do |f| %>
+  <div class="row col-sm-4 col-sm-offset-4 input-group">
     <%= f.hidden_field :active, :value => false %>
     <%= f.hidden_field :topic_id, :value => @topic.id %>
     <span class="input-group-btn"><%= f.submit "Unsubscribe", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>

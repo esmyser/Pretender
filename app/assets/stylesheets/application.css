@@ -98,3 +98,19 @@ body {
   padding-top: 0;
   padding-bottom: 0;
 }
+
+#testi-carousel > div.owl-wrapper-outer > div > div > a > div > img {
+  height: 99px;
+}
+
+#tweets-parallax {
+  background-image: url(../assets/twitter-background.jpg);
+}
+
+#tweets-parallax > div > div > div > h1 {
+  color: #FFFFFF;
+}
+
+#signup-emails {
+  background-image: url(../assets/mail.jpg);
+}

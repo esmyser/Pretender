@@ -1,7 +1,9 @@
 class TopicsController < ApplicationController
 
   def create
-    topic = Topic.create(topic_params)
+    topic = Topic.new(topic_params)
+    topic.image = SuckrWrapper.new.google_image_url_for_phrase(topic.name)
+    topic.save
     TopicPropertiesHydrator.new(topic.id)
 
     respond_to do |format|

@@ -1,10 +1,10 @@
 <% if @pretendee.topics.present? %>
-  <h1><%= @pretendee.name %>'s topics</h1>
+  <h1 align="center"><%= @pretendee.name %>'s topics</h1>
   <div class="row test">
     <div class="portfolio-box iso-call work-col-8">
       <% @pretendee.topics.each do |topic|%>
       <div class="image-wrapper col-sm-3 nopadding">
-        <img src="http://www.bestbritishsweets.co.uk/user/products/large/topic.jpg" alt="" class="img-responsive">
+        <img src="<%= topic.image %>" alt="" class="img-responsive">
         <div class="image-overlay"> 
           <a href="<%= user_pretendee_topic_path(@user, @pretendee,topic) %>">
             <p>
