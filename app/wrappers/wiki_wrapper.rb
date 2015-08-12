@@ -27,7 +27,6 @@ class WikiWrapper
   end
 
   def get_url(topic)    
-    binding.pry
     if get_page(topic) == "error"
       return "Did you spell something wrong? There are no Wikipedia pages on this topic."
     else
