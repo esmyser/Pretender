@@ -12,7 +12,7 @@ $(function(){
       url: url,
       data: data,
       dataType: 'script'
-    })
+    });
   });
 
   $("#email-form").on('submit', '#edit_report', function(e){ 
@@ -27,7 +27,7 @@ $(function(){
       url: url,
       data: data,
       dataType: 'script'
-    })
+    });
   });
 
   $("#email-form").on('submit', '#new_report', function(e){
@@ -42,7 +42,6 @@ $(function(){
       url: url,
       data: data,
       dataType: 'script'
-    })
+    });
   });
-
 });
