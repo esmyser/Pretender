@@ -8,7 +8,7 @@ class NyTimesWrapper
   end
 
   def parse_article_hash(art_hash)
-    art_hash['response']['docs'][0..4].map do |art|
+    art_hash['response']['docs'][0..3].map do |art|
       if art['multimedia'].empty?
         keywords = art['snippet']
         url = SuckrWrapper.new.google_image_url_for_phrase(keywords)

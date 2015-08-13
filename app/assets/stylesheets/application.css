@@ -24,19 +24,6 @@
  *= require_self
  */
 
-.image-wrapper {
-  height: 360px;
-}
-
-.article-image {
-  height: 200px;
-}
-
-.image-wrapper img {
-  width: 100%;
-  height: auto;
-}
-
 body {
   background-color: #FBFBFB;
   height: 100%;
@@ -127,4 +114,16 @@ body {
 
 #signup-emails {
   background-image: url(../assets/mail.jpg);
+}
+
+.square-div {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 100%;
+}
+
+.square-img {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
 }

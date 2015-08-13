@@ -4,9 +4,15 @@ class Report < ActiveRecord::Base
   delegate :user, to: :pretendee
   validates_uniqueness_of :pretendee, :allow_blank => true
 
+  # can't delegate to both.. Will delegate to whichever one is last in the code
+  # find the user of a pretendee report by calling report.pretendee.user
+
+  # Report#user delegated to topic.user
   belongs_to :topic
   delegate :user, to: :topic
   validates_uniqueness_of :topic, :allow_blank => true
+
+
 
   def active?
     self.active == true

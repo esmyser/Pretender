@@ -9,9 +9,7 @@ $(function(){
     // need to set separate channels for each topic creation
     
     channel.bind('finished', function(data) {
-      debugger;
-      var html = "<div class='image-wrapper col-sm-3 nopadding'><img src='" + data['topic']['image'] + "' class='img-responsive'><div class='image-overlay'><p><a href='http://localhost:3000/users/" + data['topic']['user_id'] + "/topics/" + data['topic']['id'] + "'>" + data['topic']['name'] + "</a><br><br><a rel='nofollow' data-method='delete' href='http://localhost:3000/users/" + data['topic']['user_id'] + "/topics/" + data['topic']['user_id'] + "'>Delete</a></p></div></div>"
-      
+      var html = "<div class='image-wrapper col-sm-3 nopadding'><div class='square-div'><img src='" + data['topic']['image'] + "' class='img-responsive square-img'></div><div class='image-overlay'><p><a href='http://localhost:3000/users/" + data['topic']['user_id'] + "/topics/" + data['topic']['id'] + "'>" + data['topic']['name'] + "</a><br><br><a rel='nofollow' data-method='delete' href='http://localhost:3000/users/" + data['topic']['user_id'] + "/topics/" + data['topic']['user_id'] + "'>Delete</a></p></div></div>"
       $("#topics").children().last().remove();
       $("#topics").append(html);
       pusher.unsubscribe("whatever");

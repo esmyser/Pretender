@@ -1,9 +1,10 @@
 <div id="topics">
   <% if @topics %>
-    <h1 class="center-header">YOUR TOPICS</h1>
     <% @topics.each do |topic|%>
       <div class="image-wrapper col-sm-3 nopadding">
-        <img src="<%= topic.image %>" class="img-responsive">
+        <div class="square-div">
+          <img src="<%= topic.image %>" class="img-responsive square-img">
+        </div>
         <div class="image-overlay"> 
           <p>
             <a href="<%= user_topic_path(@user, topic) %>"><%= topic.name %></a>
