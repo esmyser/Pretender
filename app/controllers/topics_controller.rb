@@ -8,7 +8,6 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       format.html { topic.save ? (redirect_to user_topic_path(current_user, topic)) : (render :new) }
-
       format.js { }
     end
 
