@@ -1,6 +1,5 @@
 <div id="topics">
   <% if @topics %>
-    <h1 class="center-header">YOUR TOPICS</h1>
     <% @topics.each do |topic|%>
       <div class="image-wrapper col-sm-3 nopadding">
         <img src="<%= topic.image %>" class="img-responsive">
