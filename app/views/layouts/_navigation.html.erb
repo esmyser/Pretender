@@ -15,6 +15,7 @@
           <li>
             <% if current_user %>
             <%= link_to "Dashboard", user_path(current_user) %>
+            <span display: none, id="the_user"><%= current_user.id %></span>
             <% end %>
           </li>
           <li>
