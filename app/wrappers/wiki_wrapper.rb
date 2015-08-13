@@ -21,6 +21,8 @@ class WikiWrapper
   def first_paragraph(topic)
     if get_page(topic) == "error"
       return "Did you spell something wrong? There are no Wikipedia pages on this topic."
+    elsif get_page(topic).text.split(/\r?\n/).first.split(" ").count < 50
+      get_page(topic).text.split(/\r?\n\n\n/).first
     else
       get_page(topic).text.split(/\r?\n/).first
     end
