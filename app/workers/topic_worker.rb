@@ -9,14 +9,13 @@ class TopicWorker
     topic.tweets = TwitterWrapper.new(Pretendee.new).popular_tweets(topic)
     topic.save
 
-
-    Pusher.url = "https://01e0b165f94105952d85:2d714e5fb2468fd05eec@api.pusherapp.com/apps/135145"
+    pusher = PusherWrapper.new
     channel_id = if topic.user
       topic.user.id.to_s
     else 
       topic.pretendee.user.id.to_s
     end
-    Pusher[channel_id].trigger("finished", {topic: topic})
+    pusher.client[channel_id].trigger("finished", {topic: topic})
   end
 
 end

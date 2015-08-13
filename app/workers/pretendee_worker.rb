@@ -15,8 +15,8 @@ class PretendeeWorker
     pretendee.instagram_photos = instagram_wrapper.recent_instgrams(insta_id) if insta_id
     pretendee.save
 
-    Pusher.url = "https://01e0b165f94105952d85:2d714e5fb2468fd05eec@api.pusherapp.com/apps/135145"
-    Pusher[pretendee.user.id.to_s].trigger("finished", 
+    pusher = PusherWrapper.new
+    pusher.client[pretendee.user.id.to_s].trigger("finished", 
       {
         pretendee_id: pretendee.id,
         user_id: pretendee.user.id,
