@@ -3,7 +3,9 @@
     <div class="portfolio-box iso-call work-col-8">
       <% @topic.ny_times_articles.each do |article|%>
       <div class="image-wrapper col-sm-3 nopadding">
-        <img src="<%= article['photo_url'] %>" alt="" class="img-responsive">
+        <div class="square-div">
+          <img src="<%= article['photo_url'] %>" alt="" class="img-responsive square-img">
+        </div>
         <div class="image-overlay">
           <a href="<%= article['url'] %>">
             <p><%= article['title'] %></p>

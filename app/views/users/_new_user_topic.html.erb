@@ -1,9 +1,9 @@
 <div class="services-section-3-ezra services-section-2 parallax">
   <div class="container col-md-12 text-center">
-    <h1>Follow a new topic</h1>
+    <h1>Stuff you wanna pretend to know about</h1>
     <%= form_for [@user, Topic.new], as: :topic, html: {class: "newsletter-form"} do |f| %>
     <div class="row col-sm-4 col-sm-offset-4 input-group">
-      <%= f.text_field :name, class: "form-control", placeholder: "What do you want to \"know\" about?" %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Add a topic or issue here" %>
       <%= f.hidden_field :user_id, value: @user.id %>
       <span class="input-group-btn"><%= f.submit "Get Learning", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
     <% end %>
