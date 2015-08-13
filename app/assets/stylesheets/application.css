@@ -114,3 +114,15 @@ body {
 #signup-emails {
   background-image: url(../assets/mail.jpg);
 }
+
+.square-div {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 100%;
+}
+
+.square-img {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+}
