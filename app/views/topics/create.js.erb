@@ -1,4 +1,6 @@
-var topicName = $(this).find("#topic_name").val(),
-    html = "<div class='image-wrapper col-sm-3 nopadding'><img src='../assets/ajax-loader.gif' class='img-responsive'><div class='image-overlay'><p>"+ topicName + "</p></div></div>";
+var topicName = $("#topic_name").val();
+var html = "<div class='image-wrapper col-sm-3 nopadding'><img src='../assets/ajax-loader.gif' class='img-responsive'><div class='image-overlay'><p>"+ topicName + "</p></div></div>";
 
 $("#topics").append(html)
+
+$("#topic_name").val("");

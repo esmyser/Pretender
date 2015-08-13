@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812200438) do
+ActiveRecord::Schema.define(version: 20150813141134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20150812200438) do
     t.hstore   "word_histogram",                array: true
     t.hstore   "instagram_photos",              array: true
     t.hstore   "tweets",                        array: true
+    t.string   "image"
   end
 
   create_table "reports", force: :cascade do |t|
