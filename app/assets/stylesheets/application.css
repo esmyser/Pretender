@@ -70,12 +70,12 @@ body {
 }
 
 .services-section-2-ezra {
-  background-image: url(../assets/stalk.png);
+  background-image: url(stalk.png);
   background-size: 100%;
 }
 
 .services-section-3-ezra {
-  background-image: url(../assets/books.jpg);
+  background-image: url(books.jpg);
   background-size: 100%;
 }
 
@@ -105,7 +105,7 @@ body {
 }
 
 #tweets-parallax {
-  background-image: url(../assets/twitter-background.jpg);
+  background-image: url(twitter-background.jpg);
 }
 
 #tweets-parallax > div > div > div > h1 {
@@ -113,7 +113,7 @@ body {
 }
 
 #signup-emails {
-  background-image: url(../assets/mail.jpg);
+  background-image: url(mail.jpg);
 }
 
 .square-div {
