@@ -10,6 +10,7 @@ gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'pusher'
+gem 'redis'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -31,6 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'figaro'
 gem 'flickr.rb', '~> 1.2.1'
+gem 'bootstrap-sass', '~> 3.1.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -75,5 +77,3 @@ group :production do
   gem 'google-analytics-rails'
   gem 'rails_12factor'
 end
-
-gem 'bootstrap-sass', '~> 3.1.1'
