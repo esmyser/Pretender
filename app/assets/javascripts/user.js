@@ -9,7 +9,8 @@ $(function(){
     // need to set separate channels for each topic creation
     
     channel.bind('finished', function(data) {
-      var html = "<div class='image-wrapper col-sm-3 nopadding'><img src='http://www.bestbritishsweets.co.uk/user/products/large/topic.jpg' class='img-responsive'><div class='image-overlay'><p><a href='http://localhost:3000/users/" + data['topic']['user_id'] + "/topics/" + data['topic']['user_id'] + "'>" + data['topic']['name'] + "</a><br><br><a rel='nofollow' data-method='delete' href='http://localhost:3000/users/" + data['topic']['user_id'] + "/topics/" + data['topic']['user_id'] + "'>Delete</a></p></div></div>"
+      debugger;
+      var html = "<div class='image-wrapper col-sm-3 nopadding'><img src='" + data['topic']['image'] + "' class='img-responsive'><div class='image-overlay'><p><a href='http://localhost:3000/users/" + data['topic']['user_id'] + "/topics/" + data['topic']['id'] + "'>" + data['topic']['name'] + "</a><br><br><a rel='nofollow' data-method='delete' href='http://localhost:3000/users/" + data['topic']['user_id'] + "/topics/" + data['topic']['user_id'] + "'>Delete</a></p></div></div>"
       
       $("#topics").children().last().remove();
       $("#topics").append(html);
