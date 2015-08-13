@@ -392,6 +392,7 @@ DEPENDENCIES
   rails (= 4.2.0)
   rails-erd
   rails_12factor
+  redis
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
@@ -407,3 +408,6 @@ DEPENDENCIES
   web-console (~> 2.0)
   whenever
   wikipedia-client
+
+BUNDLED WITH
+   1.10.6
