@@ -1,15 +1,9 @@
-<div class="services-section-2 parallax" id="signup-emails">
-  <div class="container col-md-12 text-center">
-    <div id="email-form">
-    <% if @user.email && @report.inactive? %>
-    <%= render partial: 'reports/turn_on_topic_report_form', locals: {user: @user, topic: @topic, report: @report } %>
+<% if @user.email && @report.inactive? %>
+<%= render partial: 'reports/turn_on_topic_report_form', locals: {user: @user, topic: @topic, report: @report } %>
 
-    <% elsif @user.email && @report.active? %>
-    <%= render partial: 'reports/turn_off_topic_report_form', locals: {user: @user, topic: @topic, report: @report } %>
+<% elsif @user.email && @report.active? %>
+<%= render partial: 'reports/turn_off_topic_report_form', locals: {user: @user, topic: @topic, report: @report } %>
 
-    <% else %>
-    <%= render partial: 'users/user_email_topic_report_form', locals: {user: @user, topic: @topic, report: @report } %>
-    <% end %>
-    </div>
-  </div>
-</div>
+<% else %>
+<%= render partial: 'users/user_email_topic_report_form', locals: {user: @user, topic: @topic, report: @report } %>
+<% end %>
