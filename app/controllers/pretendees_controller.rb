@@ -15,13 +15,6 @@ class PretendeesController < ApplicationController
       format.html { topic.save ? (redirect_to user_path(current_user)) : (render :new) }
       format.js { }
     end
-
-
-    # if @pretendee.save
-    #   redirect_to user_path(current_user)
-    # else
-    #   render :new
-    # end
   end
 
   def show
