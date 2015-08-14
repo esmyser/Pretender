@@ -10,7 +10,6 @@ class TopicsController < ApplicationController
       format.html { topic.save ? (redirect_to user_topic_path(current_user, topic)) : (render :new) }
       format.js { }
     end
-
   end
 
   def new
@@ -37,7 +36,6 @@ class TopicsController < ApplicationController
       format.html {redirect_to(:back)}
       format.js{}
     end
-    
   end
 
   private

@@ -57,16 +57,16 @@ $(function(){
 
     
     channel.bind('finished', function(data) {
-      var url = window.location.href
-      var html = "<div class='image-wrapper col-sm-3 nopadding'><div class='square-div'><img src='" + data['topic']['image'] + "' class='img-responsive square-img'></div><div class='image-overlay'><p><a href='" + url + "/topics/" + data['topic']['id'] + "'>" + data['topic']['name'] + "</a><br><br><a rel='nofollow' data-method='delete' href='" + url + "/topics/" + data['topic']['id'] + "'>Delete</a></p></div></div>"
+      var url = window.location.href;
+      var html = "<div class='image-wrapper col-sm-3 nopadding'><div class='square-div'><img src='" + data['topic']['image'] + "' class='img-responsive square-img'></div><div class='image-overlay'><p><a href='" + url + "/topics/" + data['topic']['id'] + "'>" + data['topic']['name'] + "</a><br><br><a rel='nofollow' data-method='delete' class-'deleter' href='" + url + "/topics/" + data['topic']['id'] + "'>Delete</a></p></div></div>";
       $("#topics").children().last().remove();
       $("#topics").append(html);
       pusher.unsubscribe($("#the_user").text());
     });
 
     var url = $(this).attr('action'),
-        method = $(this).attr('method'),
-        data = $(this).serializeArray();
+    method = $(this).attr('method'),
+    data = $(this).serializeArray();
 
     $.ajax({
       method: method,
@@ -76,4 +76,17 @@ $(function(){
     });
   });
 
+
+  $("#topics").on("click", ".deleter", function(e){
+    e.stopPropagation();
+    e.preventDefault();
+
+    $.ajax({
+      method: $(this).attr('data-method'),
+      url: $(this).attr('href'),
+      data: $(this).serializeArray(),
+      dataType: 'script'
+    });
+    $(this).parents().eq(2).remove();
+  });
 });
