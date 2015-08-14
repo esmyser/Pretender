@@ -10,7 +10,6 @@ class TopicsController < ApplicationController
       format.html { topic.save ? (redirect_to user_topic_path(current_user, topic)) : (render :new) }
       format.js { }
     end
-
   end
 
   def new
@@ -32,7 +31,11 @@ class TopicsController < ApplicationController
   def destroy
     @topic = Topic.find(params['id'])
     @topic.destroy
-    redirect_to(:back)
+
+    respond_to do |format|
+      format.html {redirect_to(:back)}
+      format.js{}
+    end
   end
 
   private

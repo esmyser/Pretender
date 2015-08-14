@@ -9,7 +9,7 @@
           <p>
             <a href="<%= user_topic_path(@user, topic) %>"><%= topic.name %></a>
             <br><br>
-            <%= link_to 'Delete', user_topic_path(@user, topic), method: :delete %>
+            <%= link_to 'Delete', user_topic_path(@user, topic), method: :delete, class: "deleter" %>
           </p>
         </div><!-- ends overlay div -->
       </div><!-- ends topic image div -->
