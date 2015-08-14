@@ -50,4 +50,6 @@ Rails.application.configure do
    :authentication       => "plain",
   :enable_starttls_auto => true
   }
+
+  ENV["REDISTOGO_URL"] = ENV["redis"]
 end
