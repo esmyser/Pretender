@@ -9,7 +9,7 @@
           <p>
             <a href="<%= user_pretendee_topic_path(@user, @pretendee,topic) %>"><%= topic.name %></a>
             <br><br>
-            <%= link_to 'Delete', user_pretendee_topic_path(@user, @pretendee, topic), method: :delete %>
+            <%= link_to 'Delete', user_pretendee_topic_path(@user, @pretendee, topic), method: :delete, class: 'deleter' %>
           </p>
         </div>
       </div>
