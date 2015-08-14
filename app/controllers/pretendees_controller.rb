@@ -33,7 +33,11 @@ class PretendeesController < ApplicationController
   def destroy
     @pretendee = Pretendee.find(params['id'])
     @pretendee.destroy
-    redirect_to user_path(User.find(params['user_id']))
+
+    respond_to do |format|
+      format.html {redirect_to user_path(User.find(params['user_id']))}
+      format.js{}
+    end
   end
 
   private

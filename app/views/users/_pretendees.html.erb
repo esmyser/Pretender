@@ -9,7 +9,7 @@
 				<p>
 					<a href="<%= user_pretendee_path(@user, pretendee) %>"><%= pretendee.name %></a>
 					<br><br>
-					<%= link_to 'delete', user_pretendee_path(@user, pretendee), method: :delete %>
+					<%= link_to 'delete', user_pretendee_path(@user, pretendee), method: :delete, class: "deleter" %>
 				</p>
 			</div><!-- ends overlay div -->
 		</div><!-- ends user image div -->
