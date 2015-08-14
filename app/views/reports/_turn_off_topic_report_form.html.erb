@@ -1,26 +1,31 @@
+<div class="services-section-2 parallax" id="signup-emails">
+  <div class="container col-md-12 text-center">
+    <div id ="email-form">
+
 <h1>Update your email preferences</h1>
 <p>Choose how often you'd like to receive an updated report on <%= @topic.name %></p>
 
-<%= form_for [@user, @topic, @report], as: :report, html: {class: "  form-group"} do |f| %>
-  <div class="row col-sm-4 col-sm-offset-4 input-group">
-    <%= f.select (:frequency), class: "selectpicker" do %>
-      <optgroup label="Frequency">
-      <% [['Every day', 1], ['Every three days', 3], ['Every week', 7]].each do |c| -%>
-      <%= content_tag(:option, c.first, value: c.last) %>
-      <% end %>
+<%= form_for [@user, @topic, @report], as: :report, html: {class: "form-horizontal"} do |f| %>
+  <%= f.select (:frequency), class: "selectpicker" do %>
+    <optgroup label="Frequency">
+    <% [['Every day', 1], ['Every three days', 3], ['Every week', 7]].each do |c| -%>
+    <%= content_tag(:option, c.first, value: c.last) %>
     <% end %>
-    <%= f.hidden_field :topic_id, :value => @topic.id %>
-    <%= f.hidden_field :active, :value => true %>
-    <span class="input-group-btn"><%= f.submit "Update my preferences", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
+  <% end %>
+  <%= f.hidden_field :topic_id, :value => @topic.id %>
+  <%= f.hidden_field :active, :value => true %>
+  
+  <div class = "form-group">
+  <span class="input-group-btn"><%= f.submit "Update my preferences", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
   </div>
 <% end %>
 
-<p>Done learning about <%= @topic.name %>?</p>
-<%= form_for [@user, @topic, @report], as: :report, html: {class: "  form-group"} do |f| %>
-  <div class="row col-sm-4 col-sm-offset-4 input-group">
+<%= form_for [@user, @topic, @report], as: :report, html: {class: "form-horizontal"} do |f| %>
     <%= f.hidden_field :active, :value => false %>
     <%= f.hidden_field :topic_id, :value => @topic.id %>
     <span class="input-group-btn"><%= f.submit "Unsubscribe", class: "add-padding-btn btn btn-theme-color btn-lg"%></span>
-  </div>
 <% end %>
   
+  </div>
+ </div>
+</div>
