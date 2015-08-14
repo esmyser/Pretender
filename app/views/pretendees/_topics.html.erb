@@ -2,9 +2,13 @@
   <% if @pretendee.topics.present? %>
     <% @pretendee.topics.each do |topic|%>
       <div class="image-wrapper col-sm-3 nopadding">
+<<<<<<< Updated upstream
         <div class="square-div">
           <img src="<%= topic.image %>" alt="" class="img-responsive square-img">
         </div>
+=======
+        <img src="<%= SuckrWrapper.new.google_image_url_for_phrase(topic.name) %>" alt="" class="img-responsive">
+>>>>>>> Stashed changes
         <div class="image-overlay"> 
           <p>
             <a href="<%= user_pretendee_topic_path(@user, @pretendee,topic) %>"><%= topic.name %></a>

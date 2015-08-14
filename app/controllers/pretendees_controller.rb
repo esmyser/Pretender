@@ -6,6 +6,7 @@ class PretendeesController < ApplicationController
 
   def create
     @user = current_user
+<<<<<<< Updated upstream
     @pretendee = Pretendee.new(pretendee_params)
     @pretendee.image = "https://twitter.com/" + @pretendee.twitter.gsub(' ', '') + "/profile_image?size=original"
     @pretendee.save
@@ -14,6 +15,15 @@ class PretendeesController < ApplicationController
     respond_to do |format|
       format.html { topic.save ? (redirect_to user_path(current_user)) : (render :new) }
       format.js { }
+=======
+    @pretendee = Pretendee.create(pretendee_params)
+    binding.pry
+    PretendeePropertiesHydrator.new(@pretendee.id)
+    if @pretendee.save
+      redirect_to user_path(current_user)
+    else
+      render "users/show"
+>>>>>>> Stashed changes
     end
   end
 
