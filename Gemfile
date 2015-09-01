@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'skylight'
 gem 'certified'
 gem 'wikipedia-client'
 # gem 'webmock'

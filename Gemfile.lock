@@ -308,6 +308,8 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (>= 1.3, < 3)
+    skylight (0.8.0)
+      activesupport (>= 3.0.0)
     slim (3.0.6)
       temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
@@ -400,6 +402,7 @@ DEPENDENCIES
   sidekiq
   simplecov
   sinatra
+  skylight
   slim
   spring
   thin
@@ -408,3 +411,6 @@ DEPENDENCIES
   web-console (~> 2.0)
   whenever
   wikipedia-client
+
+BUNDLED WITH
+   1.10.6
