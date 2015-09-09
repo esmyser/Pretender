@@ -13,7 +13,7 @@ This was a two week project at the Flatiron School.
  - Discover a person's interests based on their tweets, favorites, and the people they follow.
  - Get familiar with topics they're interested in with details from wikipedia and the NYTimes.
  - See their instagram photos if they've tweeted them.
- - Be their best friend.
+ - Become their best friend.
 
 ## Development
 
