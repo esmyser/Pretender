@@ -11,8 +11,9 @@ This was a two week project at the Flatiron School.
 ## Features
 
  - Discover a person's interests based on their tweets, favorites, and the people they follow.
- - Learn more about topics with details from wikipedia and the NYTimes.
- - Collects their instagram photos if they've tweeted them.
+ - Get familiar with topics they're interested in with details from wikipedia and the NYTimes.
+ - See their instagram photos if they've tweeted them.
+ - Be their best friend.
 
 ## Development
 
