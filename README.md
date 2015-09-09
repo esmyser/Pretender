@@ -2,38 +2,21 @@
 
 ## Description
 
-Add a short description of your app.
-
-## Screenshots
-
-Add some spiffy screenshots of your app here.
+When meeting someone new, Pretender helps you know what to talk about. Enter a person's twitter handle and Pretender will give you details about their interests. We can help you get creepy.
 
 ## Background
 
-Why did you want to make this app? What was your development process
-like?
+This was a two week project at the Flatiron School. 
 
 ## Features
 
-Bullet point some of the key features of your app here.
+ - Discover a person's interests based on their tweets, favorites, and the people they follow.
+ - Learn more about topics with details from wikipedia and the NYTimes.
+ - Collects their instagram photos if they've tweeted them.
 
-## Usage
+## Development
 
-How do users use your app?
-
-## Development/Contribution
-
-Explain how people can contribute to your app. How should they write tests?
-Any things in particular you'd like to see in pull requests?
-
-## Future
-
-What features are you currently working on? Only mention things that you
-actually are implementing. No pie-in-the-sky-never-gonna-happen stuff.
-
-## Author
-
-Link to your blog, twitter, etc!
+Pretender is a Rails app that uses Postgres, Redis, Heroku, and Pusher. 
 
 ## License
 
